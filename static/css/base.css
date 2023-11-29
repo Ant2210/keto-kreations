@@ -66,12 +66,6 @@ a:hover,
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Homepage */
-.hero-text {
-    color: #000;
-    text-shadow: 2px 2px 4px #fff;
-}
-
 /***** Media Queries *****/
 @media screen and (max-width: 375px) {
     .logo {
