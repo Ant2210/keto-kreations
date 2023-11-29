@@ -49,7 +49,10 @@ a,
 
 .nav-item .nav-link:hover,
 a:hover,
-.hover-blue:hover {
+.hover-blue:hover,
+.nav-item .nav-link:focus,
+a:focus,
+.hover-blue:focus {
     color: var(--light-blue);
 }
 

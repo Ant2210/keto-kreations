@@ -28,110 +28,16 @@
     <title>Keto Kreations{% block title%}{% endblock %}</title>
   </head>
   <body>
-    
-    <!-- Navbar -->
-    <header class="container-fluid">
-        <nav class="navbar fixed-top navbar-expand-lg">
-            <div class="container-fluid"> 
-                 <!-- Main Logo  -->
-                <a class="navbar-brand mx-auto col-lg-3" href="{% url 'home' %}">
-                    <img class="logo" src="{% static '../../media/logo.webp' %}" alt="Logo">
-                </a>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <!-- Off Canvas Logo -->
-                    <div class="offcanvas-header">
-                        <div class="offcanvas-title" id="offcanvasNavbarLabel">
-                            <img class="logo" src="{% static '../../media/logo.webp' %}" alt="Logo">
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <!-- Search Bar -->
-                        <div class="col-12 col-lg-8 my-auto py-1 py-lg-0">
-                            <div>
-                                <form method="GET" action="">
-                                    <div class="input-group w-100">
-                                        <input class="form-control" type="text" name="q" placeholder="Search our site">
-                                        <span class="input-group-text p-0">
-                                            <button class="form-control btn m-0" type="submit" aria-label="Search button">
-                                                <span class="icon">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </button>
-                                        </sp>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- Nav links -->
-                            <div>
-                                <ul class="navbar-nav text-center d-flex align-items-center justify-content-center">
-                                    <li class="nav-item px-2">
-                                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                                    </li>
-                                    <li class="nav-item px-2">
-                                        <a class="nav-link" href="">Something</a>
-                                    </li>
-                                    <li class="nav-item px-2">
-                                        <a class="nav-link" href="">Something else</a>
-                                    </li>
-                                    <li class="nav-item px-2">
-                                        <a class="nav-link" href="">Another something</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Account and Shopping Bag -->
-                        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                            <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                                <li class="list-inline-item dropdown px-lg-2 pe-3">
-                                    <a class="nav-link" href="#" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <div class="text-center hover-blue">
-                                            <div><i class="fas fa-user fa-lg icon"></i></div>
-                                            <p class="my-0">My Account</p>
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                                        {% if request.user.is_authenticated %}
-                                            {% if request.user.is_superuser %}
-                                                <a href="" class="dropdown-item">Product Management</a>
-                                            {% endif %}
-                                            <a href="" class="dropdown-item">My Profile</a>
-                                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                                        {% else %}
-                                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                                        {% endif %}
-                                    </div>
-                                </li>
-                                <li class="list-inline-item px-lg-2 ps-3">
-                                    <a class="nav-link" href="">
-                                        <div class="text-center hover-blue">
-                                            <div><i class="fas fa-shopping-bag fa-lg icon"></i></div>
-                                            <p class="my-0">
-                                                {% if grand_total %}
-                                                    ${{ grand_total|floatformat:2 }}
-                                                {% else %}
-                                                    $0.00
-                                                {% endif %}
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Open Menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-          </nav>
-    </header>
 
+    <!-- Navbar -->
+    {% include 'includes/navbar.html' %}
+
+    <!-- Messages -->
     {% if messages %}
         <div class="message-container"></div>
     {% endif %}
 
+    <!-- Main content -->
     {% block content %}
     {% endblock %}
 
