@@ -32,13 +32,14 @@
     <!-- Navbar -->
     <header class="container-fluid">
         <nav class="navbar fixed-top navbar-expand-lg">
-            <div class="container-fluid">  
+            <div class="container-fluid"> 
+                 <!-- Main Logo  -->
                 <a class="navbar-brand mx-auto col-lg-3" href="{% url 'home' %}">
                     <img class="logo" src="{% static '../../media/logo.webp' %}" alt="Logo">
                 </a>
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <!-- Logo -->
-                    <div class="offcanvas-header col-lg-3">
+                    <!-- Off Canvas Logo -->
+                    <div class="offcanvas-header">
                         <div class="offcanvas-title" id="offcanvasNavbarLabel">
                             <img class="logo" src="{% static '../../media/logo.webp' %}" alt="Logo">
                         </div>
@@ -52,7 +53,7 @@
                                     <div class="input-group w-100">
                                         <input class="form-control" type="text" name="q" placeholder="Search our site">
                                         <span class="input-group-text p-0">
-                                            <button class="form-control btn m-0" type="submit">
+                                            <button class="form-control btn m-0" type="submit" aria-label="Search button">
                                                 <span class="icon">
                                                     <i class="fas fa-search"></i>
                                                 </span>
@@ -130,9 +131,6 @@
     {% if messages %}
         <div class="message-container"></div>
     {% endif %}
-
-    {% block page_header %}
-    {% endblock %}
 
     {% block content %}
     {% endblock %}
