@@ -1,0 +1,39 @@
+{% load static %}
+
+<footer class="mt-auto">
+    <div class="row container-fluid mx-auto">
+        <ul class="col-12 text-center py-2 d-flex flex-wrap m-0">
+            <li class="d-inline-block fs-1 col-3 col-md-2 order-2 order-md-1">
+                <a href="https://www.facebook.com" target="_blank" aria-label="Link to Facebook">
+                    <i aria-hidden="true" class="fa-brands fa-facebook"></i>
+                </a>
+            </li>
+            <li class="d-inline-block fs-1 col-3 col-md-2 order-3 order-md-2">
+                <a href="https://www.instagram.com" target="_blank" aria-label="Link to Instagram">
+                    <i aria-hidden="true" class="fa-brands fa-instagram"></i>
+                </a>
+            </li>
+            <li class="d-inline-block col-12 col-md-4 order-1 order-md-3 pb-3 pb-md-0">
+                <a href="{% url 'home' %}">
+                    <img class="footer-logo" src="{% static '../../media/logo.webp' %}" alt="Keto Kreations Logo">
+                </a>
+            </li>
+            <li class="d-inline-block fs-1 col-3 col-md-2 order-4">
+                <a href="https://www.twitter.com" target="_blank" aria-label="Link to X">
+                    <i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+                </a>
+            </li>
+            <li class="d-inline-block fs-1 col-3 col-md-2 order-5">
+                <a href="https://www.linkedin.com" target="_blank" aria-label="Link to LinkedIn">
+                    <i aria-hidden="true" class="fa-brands fa-linkedin"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="col-12 text-center pb-1">
+            <span>
+            This website is for educational purposes only and does not represent a real company.
+            <br>©Anthony Griffiths 2023. All Rights Reserved.
+            </span>
+        </div>
+    </div>
+  </footer>

@@ -19,9 +19,8 @@ html {
 body {
     background: url('/media/hero.webp') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: 100vh;
     font-family: 'Roboto Condensed', sans-serif;
-    margin-top: 90px;
 }
 
 /* From Bulma */
@@ -67,6 +66,17 @@ a:focus,
 
 .dropdown-menu {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+footer {
+    background-color: #fff;
+    box-shadow: 0 -2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.footer-logo {
+    width: 200px;
+    max-width: 90%;
 }
 
 /***** Media Queries *****/

@@ -29,8 +29,8 @@
   </head>
   <body>
 
-    <!-- Navbar -->
-    {% include 'includes/navbar.html' %}
+    <!-- Header/Navbar -->
+    {% include 'includes/header.html' %}
 
     <!-- Messages -->
     {% if messages %}
@@ -40,6 +40,9 @@
     <!-- Main content -->
     {% block content %}
     {% endblock %}
+
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
 
     {% block core_js %}
         <!-- Bootstrap -->
