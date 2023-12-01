@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-jgr_f=7z22c+0h%*97fy)wa45qz-uc_sqmg-u1@!)ks_kc2lwl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-ant2210-ketokreations-t8ufjthhd31.ws-eu106.gitpod.io']
 
 
 # Application definition
@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
