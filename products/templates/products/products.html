@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %} | Products{% endblock %}
+
+{% block content %}
+    <div class="container clear-nav">
+        <div class="row">
+            <div class="col text-danger">
+                {{ products }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
