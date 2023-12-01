@@ -6,6 +6,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -35,6 +36,9 @@ class Product(models.Model):
         max_digits=6, decimal_places=2, null=True, blank=True)
     sale = models.BooleanField(default=False, null=True, blank=True)
     new = models.BooleanField(default=False, null=True, blank=True)
+    portion_size = models.IntegerField(default=1, null=False, blank=False)
+    portion_unit = models.CharField(max_length=20, null=False, blank=False)
+    stock_count = models.IntegerField(null=True, blank=True)
     nutritional_info = models.ForeignKey(
         'NutritionalInfo', null=True, blank=True, on_delete=models.CASCADE,
         related_name='nutritional_infos')
@@ -49,10 +53,11 @@ class ProductVariant(models.Model):
     size can be tracked for stock management
     """
 
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, null=False, blank=False, on_delete=models.CASCADE)
     sku = models.CharField(max_length=255, unique=True)
-    size = models.CharField(max_length=20)
-    portions = models.IntegerField(default=1)
+    size = models.IntegerField(default=1, null=False, blank=False)
+    size_unit = models.CharField(max_length=20, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     sale_price = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
@@ -67,6 +72,7 @@ class NutritionalInfo(models.Model):
 
     class Meta:
         verbose_name_plural = 'Nutritional Info'
+
     product = models.ForeignKey(
         'Product', null=True, blank=True, on_delete=models.SET_NULL,
         related_name='nutritional_infos')
