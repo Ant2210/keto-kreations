@@ -37,7 +37,7 @@ class Product(models.Model):
     sale = models.BooleanField(default=False, null=True, blank=True)
     new = models.BooleanField(default=False, null=True, blank=True)
     portion_size = models.IntegerField(default=1, null=False, blank=False)
-    portion_unit = models.CharField(max_length=20, null=False, blank=False)
+    portion_unit = models.CharField(default='g', max_length=20, null=False, blank=False)
     stock_count = models.IntegerField(null=True, blank=True)
     nutritional_info = models.ForeignKey(
         'NutritionalInfo', null=True, blank=True, on_delete=models.CASCADE,
