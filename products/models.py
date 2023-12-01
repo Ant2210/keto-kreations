@@ -36,7 +36,6 @@ class Product(models.Model):
     size = models.CharField(max_length=254, null=True, blank=True)
     sale_price = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
-    sale = models.BooleanField(default=False, null=True, blank=True)
     new = models.BooleanField(default=False, null=True, blank=True)
     portion_size = models.IntegerField(default=1, null=False, blank=False)
     portion_unit = models.CharField(

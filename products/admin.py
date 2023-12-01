@@ -26,7 +26,6 @@ class ProductAdmin(admin.ModelAdmin):
         'portion_size',
         'portion_unit',
         'sale_price',
-        'sale',
         'new',
         'stock_count',
     )
