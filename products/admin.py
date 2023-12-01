@@ -55,6 +55,7 @@ class ProductVariantAdmin(admin.ModelAdmin):
         'sku',
         'size',
         'price',
+        'sale_price',
         'stock_count',
     )
 
