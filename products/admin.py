@@ -62,7 +62,7 @@ class ProductVariantAdmin(admin.ModelAdmin):
     ordering = ('product',)
 
 
-admin.site.register(Category)
-admin.site.register(Product)
-admin.site.register(NutritionalInfo)
-admin.site.register(ProductVariant)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(NutritionalInfo, NutritionalInfoAdmin)
+admin.site.register(ProductVariant, ProductVariantAdmin)
