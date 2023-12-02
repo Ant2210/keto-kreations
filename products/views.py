@@ -47,6 +47,9 @@ def all_products(request):
         'products': products,
         'search_term': query,
         'current_categories': categories,
+        'sale': 'Sale',
+        'new': 'New',
+        'all_specials': ['Sale', 'New'],
     }
 
     return render(request, 'products/products.html', context)

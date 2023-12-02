@@ -10,6 +10,34 @@
         <div class="row">
             <div class="col text-center">
                 <h2 class="dark-blue">Products</h2>
+                <!-- Display a badge for all categories filtered -->
+                {% for c in current_categories %}
+                    <a class="text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                        <span class="badge bg-secondary">{{ c.friendly_name }}</span>
+                    </a>
+                {% endfor %}
+                <!-- If the GET request contains the word new display new badge -->
+                {% if 'new' in request.GET %}
+                    <a class="text-decoration-none" href="{% url 'products' %}?new">
+                        <span class="badge bg-secondary">New</span>
+                    </a>
+                {% endif %}
+                <!-- If the GET request contains the word sale display sale badge -->
+                {% if 'sale' in request.GET %}
+                    <a class="text-decoration-none" href="{% url 'products' %}?sale">
+                        <span class="badge bg-secondary">Sale</span>
+                    </a>
+                {% endif %}
+                <!-- If the GET request contains all_specials display new and sale badges -->
+                {% if 'all_specials' in request.GET %}
+                    <a class="text-decoration-none" href="{% url 'products' %}?new">
+                        <span class="badge bg-secondary">New</span>
+                    </a>
+                    <a class="text-decoration-none" href="{% url 'products' %}?sale">
+                        <span class="badge bg-secondary">Sale</span>
+                    </a>
+                {% endif %}
+                
                 <hr class="w-50 mx-auto mb-3">
             </div>
         </div>
@@ -33,14 +61,20 @@
                             <p class="mb-0">
                                 {{ product.name }}
                                 {% if product.new == True %}
-                                    <span class="badge bg-primary ms-2">New</span>
+                                    <a class="text-decoration-none" href="{% url 'products' %}?new">
+                                        <span class="badge bg-primary">New</span>
+                                    </a>
                                 {% endif %}
                                 {% if product.sale_price > 0 %}
-                                    <span class="badge bg-danger ms-2">Sale</span>
+                                    <a class="text-decoration-none" href="{% url 'products' %}?sale">
+                                        <span class="badge bg-danger">Sale</span>
+                                    </a>
                                 {% elif product.productvariant_set.all %}
                                     {% with lowest_sale_price=product.productvariant_set.all|dictsort:'sale_price'|first %}
                                         {% if lowest_sale_price.sale_price > 0 %}
-                                            <span class="badge bg-danger ms-2">Sale</span>
+                                            <a class="text-decoration-none" href="{% url 'products' %}?sale">
+                                                <span class="badge bg-danger">Sale</span>
+                                            </a>
                                         {% endif %}
                                     {% endwith %}
                                 {% endif %}
