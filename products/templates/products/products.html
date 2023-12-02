@@ -30,12 +30,28 @@
                             {% endif %}
                         </div>
                         <div class="card-body pb-0">
-                            <p class="mb-0">{{ product.name }}</p>
+                            <p class="mb-0">
+                                {{ product.name }}
+                                {% if product.new == True %}
+                                    <span class="badge bg-primary ms-2">New</span>
+                                {% endif %}
+                                {% if product.sale_price > 0 %}
+                                    <span class="badge bg-success ms-2">Sale</span>
+
+                                {% elif product.productvariant_set.all %}
+                                    {% with lowest_sale_price=product.productvariant_set.all|dictsort:'sale_price'|first %}
+                                        {% if lowest_sale_price.sale_price > 0 %}
+                                            <span class="badge bg-success ms-2">Sale</span>
+                                        {% endif %}
+                                    {% endwith %}
+                                {% endif %}
+                            </p>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
                                     {% if product.productvariant_set.all %}
+                                        <!-- Info on 'dictsort' found here: https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#std-templatefilter-dictsort -->
                                         {% with lowest_price=product.productvariant_set.all|dictsort:'price'|first %}
                                             <p class="lead mb-0 text-left font-weight-bold">From £{{ lowest_price.price }}</p>
                                         {% endwith %}
