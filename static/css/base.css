@@ -103,6 +103,12 @@ footer {
     height: 100%; /* Ensure the image takes the full height of the container */
 }
 
+/* Product Detail Page */
+.product-detail-img {
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
 /***** Media Queries *****/
 @media screen and (min-width: 992px) and (max-width: 1071px) {
     .clear-nav {
