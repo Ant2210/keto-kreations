@@ -43,7 +43,7 @@ class Product(models.Model):
         default='g', max_length=20, null=False, blank=False)
     stock_count = models.IntegerField(null=True, blank=True)
     nutritional_info = models.ForeignKey(
-        'NutritionalInfo', null=True, blank=True, on_delete=models.CASCADE,
+        'NutritionalInfo', null=True, blank=True, on_delete=models.SET_NULL,
         related_name='nutritional_infos')
 
     def __str__(self):
@@ -77,24 +77,17 @@ class NutritionalInfo(models.Model):
         verbose_name_plural = 'Nutritional Info'
 
     product = models.ForeignKey(
-        'Product', null=True, blank=True, on_delete=models.SET_NULL,
+        'Product', null=True, blank=True, on_delete=models.CASCADE,
         related_name='nutritional_infos')
     energy_kcal = models.IntegerField(null=True, blank=True)
     energy_kj = models.IntegerField(null=True, blank=True)
-    fat = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    saturated_fat = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    carbs = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    sugar = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    protein = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    fiber = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    salt = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
+    fat = models.IntegerField(null=True, blank=True)
+    saturated_fat = models.IntegerField(null=True, blank=True)
+    carbs = models.IntegerField(null=True, blank=True)
+    sugar = models.IntegerField(null=True, blank=True)
+    protein = models.IntegerField(null=True, blank=True)
+    fibre = models.IntegerField(null=True, blank=True)
+    salt = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.product.name

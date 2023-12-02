@@ -109,6 +109,15 @@ footer {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
 }
 
+.collapse-heading {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: normal;
+}
+
 /***** Media Queries *****/
 @media screen and (min-width: 992px) and (max-width: 1071px) {
     .clear-nav {
