@@ -52,9 +52,9 @@
                                         Pantry
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="pantry-link">
-                                        <a href="" class="dropdown-item dark-blue">Bread</a>
-                                        <a href="" class="dropdown-item dark-blue">Pasta</a>
-                                        <a href="" class="dropdown-item dark-blue">All Pantry</a>
+                                        <a href="{% url 'products' %}?category=bread" class="dropdown-item dark-blue">Bread</a>
+                                        <a href="{% url 'products' %}?category=pasta_rice" class="dropdown-item dark-blue">Pasta &amp; Rice</a>
+                                        <a href="{% url 'products' %}?category=bread,pasta_rice" class="dropdown-item dark-blue">All Pantry</a>
                                     </div>
                                 </li>
                                 <!-- Sweet treats dropdown -->
@@ -63,11 +63,11 @@
                                         Sweet Treats
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="sweet-treats-link">
-                                        <a href="" class="dropdown-item dark-blue">Cakes &amp; Cookies</a>
-                                        <a href="" class="dropdown-item dark-blue">Bars</a>
-                                        <a href="" class="dropdown-item dark-blue">Sweets</a>
-                                        <a href="" class="dropdown-item dark-blue">Popcorn</a>
-                                        <a href="" class="dropdown-item dark-blue">All Sweet Treats</a>
+                                        <a href="{% url 'products' %}?category=cakes_cookies" class="dropdown-item dark-blue">Cakes &amp; Cookies</a>
+                                        <a href="{% url 'products' %}?category=bars" class="dropdown-item dark-blue">Bars</a>
+                                        <a href="{% url 'products' %}?category=sweets" class="dropdown-item dark-blue">Sweets</a>
+                                        <a href="{% url 'products' %}?category=popcorn" class="dropdown-item dark-blue">Popcorn</a>
+                                        <a href="{% url 'products' %}?category=cakes_cookies,bars,sweets,popcorn" class="dropdown-item dark-blue">All Sweet Treats</a>
                                     </div>
                                 </li>
                                 <!-- Condiments dropdown -->
@@ -76,9 +76,9 @@
                                         Condiments
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="condiments-link">
-                                        <a href="" class="dropdown-item dark-blue">Sauces</a>
-                                        <a href="" class="dropdown-item dark-blue">Oils</a>
-                                        <a href="" class="dropdown-item dark-blue">All Condiments</a>
+                                        <a href="{% url 'products' %}?category=sauces" class="dropdown-item dark-blue">Sauces</a>
+                                        <a href="{% url 'products' %}?category=oils" class="dropdown-item dark-blue">Oils</a>
+                                        <a href="{% url 'products' %}?category=sauces,oils" class="dropdown-item dark-blue">All Condiments</a>
                                     </div>
                                 </li>
                                 <!-- Special offers dropdown -->
@@ -87,9 +87,9 @@
                                         Special Offers
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="special-offers-link">
-                                        <a href="" class="dropdown-item dark-blue">New Arrivals</a>
-                                        <a href="" class="dropdown-item dark-blue">Sales</a>
-                                        <a href="" class="dropdown-item dark-blue">All Specials</a>
+                                        <a href="{% url 'products' %}?new" class="dropdown-item dark-blue">New Arrivals</a>
+                                        <a href="{% url 'products' %}?sale" class="dropdown-item dark-blue">Sale Items</a>
+                                        <a href="{% url 'products' %}?all_specials" class="dropdown-item dark-blue">All Specials</a>
                                     </div>
                                 </li>
                             </ul>
