@@ -36,12 +36,11 @@
                                     <span class="badge bg-primary ms-2">New</span>
                                 {% endif %}
                                 {% if product.sale_price > 0 %}
-                                    <span class="badge bg-success ms-2">Sale</span>
-
+                                    <span class="badge bg-danger ms-2">Sale</span>
                                 {% elif product.productvariant_set.all %}
                                     {% with lowest_sale_price=product.productvariant_set.all|dictsort:'sale_price'|first %}
                                         {% if lowest_sale_price.sale_price > 0 %}
-                                            <span class="badge bg-success ms-2">Sale</span>
+                                            <span class="badge bg-danger ms-2">Sale</span>
                                         {% endif %}
                                     {% endwith %}
                                 {% endif %}
@@ -53,11 +52,24 @@
                                     {% if product.productvariant_set.all %}
                                         <!-- Info on 'dictsort' found here: https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#std-templatefilter-dictsort -->
                                         {% with lowest_price=product.productvariant_set.all|dictsort:'price'|first %}
-                                            <p class="lead mb-0 text-left font-weight-bold">From £{{ lowest_price.price }}</p>
+                                            {% if lowest_price.sale_price > 0 %}
+                                                <span class="font-weight-bold">From</span>
+                                                <del class="text-muted">£{{ lowest_price.price }}</del>
+                                                <span class="text-danger font-weight-bold">£{{ lowest_price.sale_price }}</span>
+                                            {% else %}
+                                                <span class="font-weight-bold">From £{{ lowest_price.price }}</span>
+                                            {% endif %}
                                         {% endwith %}
                                     {% else %}
-                                        <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
+                                        {% if product.sale_price > 0 %}
+                                            <span class="font-weight-bold">From</span>
+                                            <del class="text-muted">£{{ product.price }}</del>
+                                            <span class="text-danger font-weight-bold">£{{ product.sale_price }}</span>
+                                        {% else %}
+                                            <span>£{{ product.price }}</span>
+                                        {% endif %}
                                     {% endif %}
+                                    <br>
                                     {% if product.rating %}
                                         <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                                     {% else %}
