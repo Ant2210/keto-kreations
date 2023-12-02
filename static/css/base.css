@@ -26,7 +26,7 @@ body {
 }
 
 .clear-nav {
-    margin-top: 130px;
+    margin-top: 80px;
 }
 
 /* From Bulma */
@@ -37,6 +37,16 @@ body {
     height: 1.5rem;
     width: 1.5rem;
     color: var(--dark-blue) !important;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
 }
 
 /* Navbar */
@@ -85,7 +95,27 @@ footer {
     max-width: 90%;
 }
 
+/* Product Page */
+.card-img-top {
+    object-fit: cover;
+    object-position: center;
+    width: 100%; /* Ensure the image takes the full width of the container */
+    height: 100%; /* Ensure the image takes the full height of the container */
+}
+
 /***** Media Queries *****/
+@media screen and (min-width: 992px) and (max-width: 1071px) {
+    .clear-nav {
+        margin-top: 140px;
+    }
+}
+
+@media screen and (min-width: 1072px) {
+    .clear-nav {
+        margin-top: 116px;
+    }
+}
+
 @media screen and (max-width: 375px) {
     .logo {
         width: 275px;
