@@ -12,28 +12,28 @@
                 <h2 class="dark-blue">Products</h2>
                 <!-- Display a badge for all categories filtered -->
                 {% for c in current_categories %}
-                    <a class="text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                    <a class="text-decoration-none me-1" href="{% url 'products' %}?category={{ c.name }}">
                         <span class="badge bg-secondary">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}
                 <!-- If the GET request contains the word new display new badge -->
                 {% if 'new' in request.GET %}
-                    <a class="text-decoration-none" href="{% url 'products' %}?new">
+                    <a class="text-decoration-none me-1" href="{% url 'products' %}?new">
                         <span class="badge bg-secondary">New</span>
                     </a>
                 {% endif %}
                 <!-- If the GET request contains the word sale display sale badge -->
                 {% if 'sale' in request.GET %}
-                    <a class="text-decoration-none" href="{% url 'products' %}?sale">
+                    <a class="text-decoration-none me-1" href="{% url 'products' %}?sale">
                         <span class="badge bg-secondary">Sale</span>
                     </a>
                 {% endif %}
                 <!-- If the GET request contains all_specials display new and sale badges -->
                 {% if 'all_specials' in request.GET %}
-                    <a class="text-decoration-none" href="{% url 'products' %}?new">
+                    <a class="text-decoration-none me-1" href="{% url 'products' %}?new">
                         <span class="badge bg-secondary">New</span>
                     </a>
-                    <a class="text-decoration-none" href="{% url 'products' %}?sale">
+                    <a class="text-decoration-none me-1" href="{% url 'products' %}?sale">
                         <span class="badge bg-secondary">Sale</span>
                     </a>
                 {% endif %}
@@ -61,7 +61,7 @@
                             <p class="mb-0">
                                 {{ product.name }}
                                 {% if product.new == True %}
-                                    <a class="text-decoration-none" href="{% url 'products' %}?new">
+                                    <a class="text-decoration-none mx-1" href="{% url 'products' %}?new">
                                         <span class="badge bg-primary">New</span>
                                     </a>
                                 {% endif %}

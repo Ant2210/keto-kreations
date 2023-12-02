@@ -49,6 +49,14 @@ body {
     background-color: #fff;
 }
 
+.badge {
+    transition: all 0.2s ease-in-out;
+}
+
+.badge:hover {    
+    transform: scale(1.15);
+}
+
 /* Navbar */
 .navbar {
     background-color: #fff;
