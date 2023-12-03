@@ -57,6 +57,45 @@ body {
     transform: scale(1.15);
 }
 
+.tags {
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+}
+
+.tags:hover {    
+    transform: scale(1.15);
+}
+
+/* Back to top button */
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease-in-out;
+}
+
+.btt-icon {
+    font-size: 30px;
+}
+
+.btt-link {
+    text-decoration: none;
+}
+
+.btt-button:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    transform:translateX(1px) translateY(1px);
+    box-shadow: 0px 0px 0px 0px;
+}
+
+
 /* Navbar */
 .navbar {
     background-color: #fff;

@@ -42,7 +42,29 @@
             </div>
         </div>
         <div class="row mt-1 mb-2">
-            XXX
+            <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                <div class="w-50">
+                    <select id="sort-selector" class="form-select" aria-label="Sorting selector">
+                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                        <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                        <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 order-md-first">
+                <p class="text-muted mt-3 text-center text-md-start">
+                    {% if search_term or current_categories or current_sorting != 'None_None' %}
+                        <span><a class="text-decoration-none" href="{% url 'products' %}">Products Home</a> | </span>
+                    {% endif %}
+                    {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                </p>
+            </div>
         </div>
         <div class="row">
             {% for product in products %}
@@ -107,8 +129,8 @@
                                     {% endif %}
                                     {% if product.category %}
                                         <p class="small mt-1 mb-0">
-                                            <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                            <a class="text-muted text-decoration-none tags" href="{% url 'products' %}?category={{ product.category.name }}">
+                                                <i class="fas fa-tag mr-1"></i> {{ product.category.friendly_name }}
                                             </a>
                                         </p>
                                     {% endif %}
@@ -146,4 +168,44 @@
             {% endfor %}
         </div>
     </div>
+    <div class="btt-button text-center">
+        <a id="btt-link" class="btt-link d-flex h-100">
+            <i class="fa-solid fa-chevron-up btt-icon my-auto mx-auto"></i>
+        </a>	
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+    <script>
+        document.querySelector('#btt-link').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelector('#sort-selector').addEventListener('change', () => {
+            const selector = document.querySelector('#sort-selector');
+            const currentUrl = new URL(window.location.href);
+
+            const selectedVal = selector.value;
+            if (selectedVal !== 'reset') {
+                const [sort, direction] = selectedVal.split('_');
+
+                currentUrl.searchParams.set('sort', sort);
+                currentUrl.searchParams.set('direction', direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete('sort');
+                currentUrl.searchParams.delete('direction');
+
+                window.location.replace(currentUrl);
+            }
+        });
+    </script>
 {% endblock %}
