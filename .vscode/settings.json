@@ -3,6 +3,7 @@
         "allauth",
         "forloop",
         "kreations",
+        "offcanvas",
         "productvariant",
         "socialaccount"
     ]

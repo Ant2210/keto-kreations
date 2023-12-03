@@ -214,7 +214,13 @@ to {
     font-weight: normal;
 }
 
+/* Shopping Bag Page */
+.shopping-button {
+    width: 48%;
+}
+
 /***** Media Queries *****/
+/* Navbar */
 @media screen and (min-width: 320px) and (max-width: 375px) {
     .clear-nav {
         margin-top: 65px;
