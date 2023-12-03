@@ -142,6 +142,55 @@ footer {
     max-width: 90%;
 }
 
+/* Offer Banner - Code found here: https://blog.hubspot.com/website/scrolling-text-css */
+.scroll-container {
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 1.2rem;
+    /* position: fixed;
+    top: 125px; */
+    width: 100vw;
+    /* z-index: 999; */
+  }
+  
+.scroll-text {
+/* animation properties */
+-moz-transform: translateX(100%);
+-webkit-transform: translateX(100%);
+transform: translateX(100%);
+
+-moz-animation: my-animation 25s linear infinite;
+-webkit-animation: my-animation 25s linear infinite;
+animation: my-animation 25s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+from { -moz-transform: translateX(100%); }
+to { -moz-transform: translateX(-100%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+from { -webkit-transform: translateX(100%); }
+to { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes my-animation {
+from {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+}
+
 /* Product Page */
 .card-img-top {
     object-fit: cover;
@@ -182,12 +231,20 @@ footer {
     .logo {
         width: 275px;
     }
+
+    .scroll-container {
+        font-size: 1.1rem;
+    }
     
 }
 
 @media screen and (max-width: 320px) {
     .logo {
         width: 240px;
+    }
+
+    .scroll-container {
+        font-size: 0.95rem;
     }
     
 }
