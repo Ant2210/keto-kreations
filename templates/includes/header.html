@@ -40,10 +40,10 @@
                                         All Products
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="all-products-link">
-                                        <a href="" class="dropdown-item dark-blue">By Price</a>
-                                        <a href="" class="dropdown-item dark-blue">By Rating</a>
-                                        <a href="" class="dropdown-item dark-blue">By Category</a>
-                                        <a href="{% url 'products' %}" class="dropdown-item dark-blue">All Products</a>
+                                        <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                                        <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
+                                        <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
+                                        <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
                                     </div>
                                 </li>
                                 <!-- Pantry dropdown -->
