@@ -35,7 +35,7 @@
                         <div>
                             <ul class="navbar-nav text-center d-flex align-items-center justify-content-center pt-1">
                                 <!-- All products dropdown -->
-                                <li class="nav-item dropdown px-2">
+                                <li class="nav-item dropdown px-xl-2">
                                     <a class="nav-link" href="#" id="all-products-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         All Products
                                     </a>
@@ -47,7 +47,7 @@
                                     </div>
                                 </li>
                                 <!-- Pantry dropdown -->
-                                <li class="nav-item dropdown px-2">
+                                <li class="nav-item dropdown px-xl-2">
                                     <a class="nav-link" href="#" id="pantry-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Pantry
                                     </a>
@@ -58,7 +58,7 @@
                                     </div>
                                 </li>
                                 <!-- Sweet treats dropdown -->
-                                <li class="nav-item dropdown px-2">
+                                <li class="nav-item dropdown px-xl-2">
                                     <a class="nav-link" href="#" id="sweet-treats-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Sweet Treats
                                     </a>
@@ -71,7 +71,7 @@
                                     </div>
                                 </li>
                                 <!-- Condiments dropdown -->
-                                <li class="nav-item dropdown px-2">
+                                <li class="nav-item dropdown px-xl-2">
                                     <a class="nav-link" href="#" id="condiments-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Condiments
                                     </a>
@@ -82,7 +82,7 @@
                                     </div>
                                 </li>
                                 <!-- Special offers dropdown -->
-                                <li class="nav-item dropdown px-2">
+                                <li class="nav-item dropdown px-xl-2">
                                     <a class="nav-link" href="#" id="special-offers-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Special Offers
                                     </a>
@@ -96,9 +96,9 @@
                         </div>
                     </div>
                     <!-- Account and Shopping Bag -->
-                    <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                        <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                            <li class="list-inline-item dropdown px-lg-2 pe-3">
+                    <div class="col-12 col-lg-4 py-1 py-lg-0">
+                        <ul class="list-inline list-unstyled text-center text-lg-right">
+                            <li class="list-inline-item dropdown account-and-bag">
                                 <a class="nav-link" href="#" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="text-center hover-blue">
                                         <div><i class="fas fa-user fa-lg icon"></i></div>
@@ -110,7 +110,7 @@
                                         {% if request.user.is_superuser %}
                                             <a href="" class="dropdown-item dark-blue">Product Management</a>
                                         {% endif %}
-                                        <a href="" class="dropdown-item" dark-blue>My Profile</a>
+                                        <a href="" class="dropdown-item dark-blue">My Profile</a>
                                         <a href="{% url 'account_logout' %}" class="dropdown-item dark-blue">Logout</a>
                                     {% else %}
                                         <a href="{% url 'account_signup' %}" class="dropdown-item dark-blue">Register</a>
@@ -118,7 +118,7 @@
                                     {% endif %}
                                 </div>
                             </li>
-                            <li class="list-inline-item px-lg-2 ps-3">
+                            <li class="list-inline-item account-and-bag">
                                 <a class="nav-link" href="{% url 'view_bag' %}">
                                     <div class="text-center hover-blue">
                                         <div><i class="fas fa-shopping-bag fa-lg icon"></i></div>
