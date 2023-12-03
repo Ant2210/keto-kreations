@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %} | Home{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+        <div class="container-fluid clear-nav mb-3">
+            <div class="row">
+                <div class="col text-center">
+                    <h2 class="dark-blue">Shopping Bag</h2>
+                    <hr class="w-50 mx-auto mb-3">                    
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12 col-md-8 mx-auto">
+                    {% if bag_items %}
+                        <p>ITEMS HERE</p>
+                    {% else %}
+                        <div class="mx-auto text-center">                            
+                            <p class="fw-bold">Your bag is empty. Hit the button below to add some items!</p>
+                            <a href="{% url 'products' %}" class="btn btn-primary text-center"><i class="fas fa-chevron-left pe-2"></i> Keep Shopping</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
