@@ -25,8 +25,8 @@ def add_to_bag(request, item_id):
 
         variant_id = request.POST['selected_variant_id']
         item_id = f"variant_{variant_id}"
-        variant = get_object_or_404(ProductVariant, pk=variant_id)
-        current_stock = variant.stock_count
+        product = get_object_or_404(ProductVariant, pk=variant_id)
+        current_stock = product.stock_count
     else:
         """ If no product size is selected, add the product y it's ID """
 
@@ -39,12 +39,26 @@ def add_to_bag(request, item_id):
     else:
         new_quantity = quantity
 
-    # Check if the new quantity exceeds the current stock
+    product_name_display = product.product.name if 'product-size' in \
+        request.POST else product.name
+
     if new_quantity > current_stock:
-        messages.warning(
-            f"Sorry, there is not enough stock for {new_quantity} items. The \
-                maximum quantity for this item is {current_stock} which \
-                includes items that may already be in your bag.")
+        if bag.get(item_id):
+            messages.warning(request,
+                             f"Sorry, there is not enough stock for \
+                            {quantity} items. The maximum quantity for \
+                            {product_name_display} - {product.size}\
+                            ({product.size_unit}) is {current_stock} and \
+                            you already have {new_quantity - quantity} \
+                            in your bag."
+                             )
+        else:
+            messages.warning(request,
+                             f"Sorry, there is not enough stock for \
+                            {quantity} items. The maximum quantity for \
+                            {product_name_display} - {product.size}\
+                            ({product.size_unit}) is {current_stock}."
+                             )
         return redirect(redirect_url)
 
     bag[item_id] = new_quantity
