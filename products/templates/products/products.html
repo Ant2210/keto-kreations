@@ -112,8 +112,9 @@
                                         <!-- Info on 'dictsort' found here: https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#std-templatefilter-dictsort -->
                                         {% with lowest_price=product.productvariant_set.all|dictsort:'price'|first %}
                                             {% if lowest_price.sale_price > 0 %}
-                                                <span class="font-weight-bold">From</span>
-                                                <del class="text-muted">£{{ lowest_price.price }}</del>
+                                                <span class="font-weight-bold">From
+                                                    <del class="text-muted">£{{ lowest_price.price }}</del>
+                                                </span>
                                                 <span class="text-danger font-weight-bold">£{{ lowest_price.sale_price }}</span>
                                             {% else %}
                                                 <span class="font-weight-bold">From £{{ lowest_price.price }}</span>
@@ -121,8 +122,9 @@
                                         {% endwith %}
                                     {% else %}
                                         {% if product.sale_price > 0 %}
-                                            <span class="font-weight-bold">From</span>
-                                            <del class="text-muted">£{{ product.price }}</del>
+                                            <span class="font-weight-bold">From
+                                                <del class="text-muted">£{{ product.price }}</del>
+                                            </span>
                                             <span class="text-danger font-weight-bold">£{{ product.sale_price }}</span>
                                         {% else %}
                                             <span>£{{ product.price }}</span>
