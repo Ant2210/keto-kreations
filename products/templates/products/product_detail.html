@@ -113,6 +113,9 @@
                                 </a>
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            {% if product.productvariant_set.exists %}
+                                <input type="hidden" name="selected_variant_id" id="selected_variant_id" value="{{ product.productvariant_set.first.id }}">
+                            {% endif %}
                         </div>
                     </form>
                     <a class="mt-3 mb-0 fs-5 collapse-heading d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
@@ -192,7 +195,7 @@
 
 {% block extra_js %}
 {{ block.super }}
-    <!-- If there is a size select box update the price based on which size is selected in ES6 -->
+    <!-- If there is a size select box update the price based on which size is selected -->
     <script>
         if (document.querySelector('#product_size')) {
             document.querySelector('#product_size').addEventListener('change', (event) => {
@@ -206,6 +209,7 @@
                 } else {
                     document.querySelector('#product-price').innerHTML = `£${variantPrice}`;
                 }
+                document.querySelector('#selected_variant_id').value = variantId;
             });
         }
     </script>
