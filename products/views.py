@@ -103,9 +103,15 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    # Check if product stock count is less not null and less than 1
+    product_out_of_stock = product.stock_count and product.stock_count < 1
+    variants_out_of_stock = product.productvariant_set.filter(
+        stock_count__gt=0).count() == 0
 
     context = {
         'product': product,
+        'product_out_of_stock': product_out_of_stock,
+        'variants_out_of_stock': variants_out_of_stock,
     }
 
     return render(request, 'products/product_detail.html', context)

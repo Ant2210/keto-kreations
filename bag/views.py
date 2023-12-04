@@ -14,7 +14,7 @@ def add_to_bag(request, item_id):
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
 
-    if 'product_size' in request.POST:
+    if 'product-size' in request.POST:
         """
         If a product size is selected, add the corresponding product
         variant by it's ID and prefix the item_id with 'variant_' so

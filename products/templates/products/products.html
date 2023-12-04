@@ -103,6 +103,29 @@
                                         {% endif %}
                                     {% endwith %}
                                 {% endif %}
+                                {% if product.stock_count == 0 %}
+                                    <a class="text-decoration-none" href="{% url 'products' %}?out_of_stock">
+                                        <span class="badge bg-warning text-dark">Out of stock</span>
+                                    </a>
+                                {% else %}
+                                {% with sorted_variants=product.productvariant_set.all|dictsortreversed:'stock_count' %}
+                                    {% if sorted_variants.0.stock_count == 0 %}
+                                        <a class="text-decoration-none" href="{% url 'products' %}?out_of_stock">
+                                            <span class="badge bg-warning text-dark">Out of stock</span>
+                                        </a>
+                                    {% endif %}
+                                {% endwith %}
+                                    
+                                 
+                                 
+                                 <!-- {% for variant in product.productvariant_set.all %}
+                                        {% if variant in variants_out_of_stock %}
+                                            <a class="text-decoration-none" href="{% url 'products' %}?out_of_stock">
+                                                <span class="badge bg-warning text-dark">Out of stock</span>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %} -->
+                                {% endif %}                           
                             </p>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
