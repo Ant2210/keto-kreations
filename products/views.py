@@ -64,15 +64,15 @@ def all_products(request):
         # Found info on removing duplicates from queryset here:
         # https://docs.djangoproject.com/en/4.2/ref/models/querysets/#django.db.models.query.QuerySet.distinct
         if 'sale' in request.GET:
-            products = products.filter(Q(sale_price__isnull=False) | Q(
-                productvariant__sale_price__isnull=False)).distinct()
+            products = products.filter(Q(sale_price__gt=0) | Q(
+                productvariant__sale_price__gt=0)).distinct()
 
         if 'new' in request.GET:
             products = products.filter(new=True)
 
         if 'all_specials' in request.GET:
-            products = products.filter(Q(sale_price__isnull=False) | Q(
-                productvariant__sale_price__isnull=False) | Q(
+            products = products.filter(Q(sale_price__gt=0) | Q(
+                productvariant__sale_price__gt=0) | Q(
                     new=True)).distinct()
 
         if 'q' in request.GET:
