@@ -17,13 +17,14 @@ def add_to_bag(request, item_id):
     if 'product_size' in request.POST:
         """
         If a product size is selected, add the corresponding product
-        variant
+        variant by it's ID and prefix the item_id with 'variant_' so
+        it can be identified in the context processor
         """
 
         variant_id = request.POST['selected_variant_id']
         item_id = f"variant_{variant_id}"
     else:
-        """ If no product size is selected, add the product """
+        """ If no product size is selected, add the product y it's ID """
 
         item_id = item_id
 

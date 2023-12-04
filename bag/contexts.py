@@ -13,7 +13,13 @@ def bag_contents(request):
 
     for item_id, quantity in bag.items():
         if item_id.startswith('variant_'):
-            # For product variants
+            """
+            If the product being added is a product variant then get the
+            variant ID and get the variant from the database using the ID
+            and set the type to 'variant' so it can be identified when it
+            is passed to the template
+            """
+
             variant_id = int(item_id.split('_')[1])
             variant = get_object_or_404(ProductVariant, pk=variant_id)
             total += quantity * (variant.sale_price if variant.sale_price else variant.price) # NOQA
@@ -25,7 +31,13 @@ def bag_contents(request):
                 'type': 'variant',
             })
         else:
-            # For main products
+            """
+            If the product being added is not a variant
+            then get the product from the database using the ID
+            and set the type to 'product' so it can be identified when it
+            is passed to the template
+            """
+
             product = get_object_or_404(Product, pk=item_id)
             total += quantity * (product.sale_price if product.sale_price else product.price) # NOQA
             product_count += quantity
