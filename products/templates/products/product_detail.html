@@ -83,6 +83,8 @@
                     <p class="mt-3">{{ product.description }}</p>
                     {% if product.stock_count < 1 %}
                         <p id="product-stock-count" class="text-danger">Out of stock</p>
+                    {% else %}
+                        <p class="text-success">{{ product.stock_count }} in stock</p>
                     {% endif %}
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
@@ -104,7 +106,7 @@
                                                 </option>
                                             {% else %}
                                                 <option value="{{ variant.size }}" data-variant-id="{{ variant.id }}" data-variant-price="{{ variant.price }}" data-variant-sale-price="{{ variant.sale_price}}">
-                                                    {{ variant.size }}({{ variant.size_unit }})
+                                                    {{ variant.size }}({{ variant.size_unit }}) - {{ variant.stock_count }} in stock
                                                 </option>
                                             {% endif %}
                                         {% endfor %}
