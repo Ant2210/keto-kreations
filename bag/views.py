@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from products.models import Product, ProductVariant
 
 
 def view_bag(request):
@@ -23,15 +25,29 @@ def add_to_bag(request, item_id):
 
         variant_id = request.POST['selected_variant_id']
         item_id = f"variant_{variant_id}"
+        variant = get_object_or_404(ProductVariant, pk=variant_id)
+        current_stock = variant.stock_count
     else:
         """ If no product size is selected, add the product y it's ID """
 
         item_id = item_id
+        product = get_object_or_404(Product, pk=item_id)
+        current_stock = product.stock_count
 
     if item_id in list(bag.keys()):
-        bag[item_id] += quantity
+        new_quantity = bag[item_id] + quantity
     else:
-        bag[item_id] = quantity
+        new_quantity = quantity
+
+    # Check if the new quantity exceeds the current stock
+    if new_quantity > current_stock:
+        messages.warning(
+            f"Sorry, there is not enough stock for {new_quantity} items. The \
+                maximum quantity for this item is {current_stock} which \
+                includes items that may already be in your bag.")
+        return redirect(redirect_url)
+
+    bag[item_id] = new_quantity
 
     request.session['bag'] = bag
     return redirect(redirect_url)

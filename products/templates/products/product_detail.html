@@ -84,7 +84,9 @@
                     {% if product.stock_count < 1 %}
                         <p id="product-stock-count" class="text-danger">Out of stock</p>
                     {% else %}
-                        <p class="text-success">{{ product.stock_count }} in stock</p>
+                        {% if product.stock_count > 0 %}
+                            <p class="text-success">{{ product.stock_count }} in stock</p>
+                        {% endif %}
                     {% endif %}
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
@@ -219,7 +221,8 @@
 
 {% block extra_js %}
 {{ block.super }}
-    <script>        
+    <script>
+        // If there is a size select box disable the add to bag button if no size is selected
         if (document.querySelector('#product-size')) {
             const productSize = document.querySelector('#product-size');
             const qtySelector = document.querySelector('#qty-selector');
@@ -245,6 +248,7 @@
                     qtySelectorPlus.disabled = false;
                 }
             });
+        // If there is no size select box disable the add to bag button if the product is out of stock
         } else if (document.querySelector('#product-stock-count')) {
             document.querySelector('#submit-button').disabled = true;
             document.querySelector('#qty-selector').disabled = true;
@@ -253,8 +257,8 @@
         }
     </script>
 
-    <!-- If there is a size select box update the price based on which size is selected -->
     <script>
+        // If there is a size select box update the price based on which size is selected
         if (document.querySelector('#product-size')) {
             document.querySelector('#product-size').addEventListener('change', (event) => {
                 const variantId = event.target.options[event.target.selectedIndex].dataset.variantId;
@@ -271,7 +275,4 @@
             });
         }
     </script>
-
-
-
 {% endblock %}
