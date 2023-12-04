@@ -21,7 +21,7 @@ def bag_contents(request):
             bag_items.append({
                 'item_id': variant_id,
                 'quantity': quantity,
-                'product': variant.product,
+                'variant': variant,
                 'type': 'variant',
             })
         else:

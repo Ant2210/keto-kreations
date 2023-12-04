@@ -90,7 +90,9 @@
                                     <p><strong>Size:</strong></p>
                                     <select class="form-select w-100" name="product_size" id='product_size'>
                                         {% for variant in product.productvariant_set.all %}
-                                            <option value="{{ variant.size }}" data-variant-id="{{ variant.id }}" data-variant-price="{{ variant.price }}" data-variant-sale-price="{{ variant.sale_price}}">{{ variant.size }}({{ variant.size_unit }})</option>
+                                            <option value="{{ variant.size }}" data-variant-id="{{ variant.id }}" data-variant-price="{{ variant.price }}" data-variant-sale-price="{{ variant.sale_price}}">
+                                                {{ variant.size }}({{ variant.size_unit }})
+                                            </option>
                                         {% endfor %}
                                     </select>
                                 </div>

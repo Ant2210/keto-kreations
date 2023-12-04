@@ -18,7 +18,99 @@
             <div class="row mt-3">
                 <div class="col-12 col-md-8 mx-auto">
                     {% if bag_items %}
-                        {{ bag_items }}
+                        <div class="table-responsive rounded">
+                            <table class="table table-sm table-borderless">
+                                <thead class="text-black">
+                                    <tr>
+                                        <th scope="col">Product Info</th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Subtotal</th>
+                                    </tr>
+                                </thead>
+
+                                {% for item in bag_items %}
+                                    {% if item.type == 'product' %}
+                                        <tr>
+                                            <td class="p-3 w-25">
+                                                <img class="card-img-top product-detail-img" src="{{ item.product.image.url }}">
+                                            </td>
+                                            <td class="py-3">
+                                                <p class="my-0"><strong>{{ item.product.name }}</strong></p>                                            
+                                                <p class="my-0"><strong>Size: </strong>{% if item.product.size %}{{ item.product.size|upper }} ({{ item.product.size_unit}}){% else %}N/A{% endif %}</p>
+                                                <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                            </td>
+                                            <td class="py-3">
+                                                {% if item.product.sale_price %}
+                                                    <p class="my-0"><strong>Was: </strong><span class="text-decoration-line-through">£{{ item.product.price }}</span></p>
+                                                    <p class="my-0"><strong>Now: </strong><span class="text-danger">£{{ item.product.sale_price }}</span></p>
+                                                {% else %}
+                                                    <p class="my-0">£{{ item.product.price }}</p>
+                                                {% endif %}
+                                            </td>
+                                            <td class="py-3 w-25">
+                                                <p class="my-0">{{ item.quantity }}</p>
+                                            </td>
+                                            <td class="py-3">
+                                                <p class="my-0">£{{ item.product.price }}</p>
+                                            </td>
+                                        </tr>
+                                    {% elif item.type == 'variant' %}
+                                        <tr>
+                                            <td class="p-3 w-25">
+                                                <img class="card-img-top product-detail-img" src="{{ item.variant.product.image.url }}">
+                                            </td>
+                                            <td class="py-3">
+                                                <p class="my-0"><strong>{{ item.variant.product.name }}</strong></p>                                            
+                                                <p class="my-0"><strong>Size: </strong>{% if item.variant.size %}{{ item.variant.size|upper }} ({{ item.variant.size_unit}}){% else %}N/A{% endif %}</p>
+                                                <p class="my-0 small text-muted">SKU: {{ item.variant.sku|upper }}</p>
+                                            </td>
+                                            <td class="py-3">
+                                                {% if item.variant.sale_price %}
+                                                    <p class="my-0"><strong>Was: </strong><span class="text-decoration-line-through">£{{ item.variant.price }}</span></p>
+                                                    <p class="my-0"><strong>Now: </strong><span class="text-danger">£{{ item.variant.sale_price }}</span></p>
+                                                {% else %}
+                                                    <p class="my-0">£{{ item.variant.price }}</p>
+                                                {% endif %}
+                                            </td>
+                                            <td class="py-3 w-25">
+                                                <p class="my-0">{{ item.quantity }}</p>
+                                            </td>
+                                            <td class="py-3">
+                                                <p class="my-0">£{{ item.variant.price }}</p>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                <tr>
+                                    <td colspan="5" class="pt-5 text-end">
+                                        <h6><strong>Bag Total: £{{ total|floatformat:2 }}</strong></h6>
+                                        <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
+                                        <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+                                        {% if free_delivery_delta > 0 %}
+                                            <p class="mb-1 text-danger">
+                                                You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
+                                            </p>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="d-flex justify-content-between">
+                                            <a href="{% url 'products' %}" class="btn btn-primary text-center mt-2 shopping-button">
+                                                <i class="fas fa-chevron-left pe-2"></i>Keep Shopping
+                                            </a>
+                                            <a href="" class="btn btn-success text-center mt-2 shopping-button">
+                                                    <i class="fas fa-lock pe-2"></i>
+                                            
+                                                Secure Checkout
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     {% else %}
                         <div class="mx-auto text-center">                            
                             <p class="fw-bold">Your bag is empty. Hit the button below to add some items!</p>

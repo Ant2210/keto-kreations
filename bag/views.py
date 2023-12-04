@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 
-from products.models import Product, ProductVariant
-
 
 def view_bag(request):
     """ A view to return the bag contents page """
