@@ -50,7 +50,25 @@
                                                 {% endif %}
                                             </td>
                                             <td class="py-3 w-25">
-                                                <p class="my-0">{{ item.quantity }}</p>
+                                                <form class="form update-form" action="" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <button class="decrement-qty input-group-text" 
+                                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                                <i class="fa-solid fa-minus"></i>
+                                                            </button>
+                                                                <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                                data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                                                            <button class="increment-qty input-group-text"
+                                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                                <i class="fa-solid fa-plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <a class="update-link dark-blue float-start mt-1 text-decoration-none"><small>Update</small></a>
+                                                <a class="remove-item text-danger float-end mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                             </td>
                                             <td class="py-3">
                                                 <p class="my-0">£{{ item.product.price }}</p>
@@ -75,7 +93,25 @@
                                                 {% endif %}
                                             </td>
                                             <td class="py-3 w-25">
-                                                <p class="my-0">{{ item.quantity }}</p>
+                                                <form class="form update-form" action="" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <button class="decrement-qty input-group-text" 
+                                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                                <i class="fa-solid fa-minus"></i>
+                                                            </button>
+                                                                <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                                data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                                                            <button class="increment-qty input-group-text"
+                                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                                <i class="fa-solid fa-plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <a class="update-link dark-blue float-start mt-1 text-decoration-none"><small>Update</small></a>
+                                                <a class="remove-item text-danger float-end mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                             </td>
                                             <td class="py-3">
                                                 <p class="my-0">£{{ item.variant.price }}</p>
@@ -120,4 +156,87 @@
                 </div>
             </div>
         </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Disable +/- buttons outside 1-99 range
+    function handleEnableDisable(itemId) {
+        const currentValue = parseInt(document.getElementById(`id_qty_${itemId}`).value);
+        const minusDisabled = currentValue < 2;
+        const plusDisabled = currentValue > 98;
+        document.getElementById(`decrement-qty_${itemId}`).disabled = minusDisabled;
+        document.getElementById(`increment-qty_${itemId}`).disabled = plusDisabled;
+    }
+
+    // Ensure proper enabling/disabling of all inputs on page load
+    document.querySelectorAll('.qty_input').forEach((input) => {
+        const itemId = input.dataset.item_id;
+        handleEnableDisable(itemId);
+    });
+
+    // Check enable/disable every time the input is changed
+    document.querySelectorAll('.qty_input').forEach((input) => {
+        input.addEventListener('change', () => {
+            const itemId = input.dataset.item_id;
+            handleEnableDisable(itemId);
+        });
+    });
+
+    // Increment quantity
+    document.querySelectorAll('.increment-qty').forEach((button) => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const closestInput = button.closest('.input-group').querySelector('.qty_input');
+            // Get current value of input or if empty set to 0 so starting value on press is 1
+            const currentValue = parseInt(closestInput.value || 0);
+            closestInput.value = currentValue + 1;
+            const itemId = button.dataset.item_id;
+            handleEnableDisable(itemId);
+        });
+    });
+
+    // Decrement quantity
+    document.querySelectorAll('.decrement-qty').forEach((button) => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const closestInput = button.closest('.input-group').querySelector('.qty_input');
+            // Get current value of input or if empty set to 2 so starting value on press is 1
+            const currentValue = parseInt(closestInput.value) || 2;
+            closestInput.value = currentValue - 1;
+            const itemId = button.dataset.item_id;
+            handleEnableDisable(itemId);
+        });
+    });
+</script>
+<script>
+    // Update quantity on click
+    document.querySelectorAll('.update-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const form = link.previousElementSibling;
+            form.submit();
+        });
+    });
+
+    // Remove item on click
+    document.querySelectorAll('.remove-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const csrfToken = "{{ csrf_token }}";
+            const itemId = item.id.split('remove_')[1];
+            const url = `/bag/remove/${itemId}/`;
+            const data = { 'csrfmiddlewaretoken': csrfToken };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(() => location.reload());
+        });
+    });
+
+
+</script>
 {% endblock %}

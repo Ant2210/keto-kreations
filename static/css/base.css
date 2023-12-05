@@ -214,9 +214,22 @@ to {
     font-weight: normal;
 }
 
+.qty-selector-button:hover {
+    cursor: pointer;
+}
+
 /* Shopping Bag Page */
 .shopping-button {
     width: 48%;
+}
+
+.remove-item:hover {
+    color: #ff0000 !important;
+    cursor: pointer;
+}
+
+.update-link {
+    cursor: pointer;
 }
 
 /***** Media Queries *****/
