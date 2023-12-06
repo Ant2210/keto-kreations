@@ -18,6 +18,7 @@
             <div class="row mt-3">
                 <div class="col-12 col-md-8 mx-auto">
                     {% if bag_items %}
+                        {{ bag_items }}
                         <div class="table-responsive rounded">
                             <table class="table table-sm table-borderless">
                                 <thead class="text-black">
@@ -50,7 +51,7 @@
                                                 {% endif %}
                                             </td>
                                             <td class="py-3 w-25">
-                                                <form class="form update-form" action="" method="POST">
+                                                <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                                     {% csrf_token %}
                                                     <div class="form-group">
                                                         <div class="input-group">
@@ -66,8 +67,9 @@
                                                             </button>
                                                         </div>
                                                     </div>
+                                                    <button id="submit-{{ item.item_id }}" type="submit" class="d-none"></button>
                                                 </form>
-                                                <a class="update-link dark-blue float-start mt-1 text-decoration-none"><small>Update</small></a>
+                                                <a class="update-link dark-blue float-start mt-1 text-decoration-none" id="update_{{ item.item_id }}"><small>Update</small></a>
                                                 <a class="remove-item text-danger float-end mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                             </td>
                                             <td class="py-3">
@@ -93,7 +95,7 @@
                                                 {% endif %}
                                             </td>
                                             <td class="py-3 w-25">
-                                                <form class="form update-form" action="" method="POST">
+                                                <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                                     {% csrf_token %}
                                                     <div class="form-group">
                                                         <div class="input-group">
@@ -109,8 +111,10 @@
                                                             </button>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" name="variant" value="variant">
+                                                    <button id="submit-{{ item.item_id }}" type="submit" class="d-none"></button>
                                                 </form>
-                                                <a class="update-link dark-blue float-start mt-1 text-decoration-none"><small>Update</small></a>
+                                                <a class="update-link dark-blue float-start mt-1 text-decoration-none" id="update_{{ item.item_id }}"><small>Update</small></a>
                                                 <a class="remove-item text-danger float-end mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                             </td>
                                             <td class="py-3">
@@ -213,22 +217,26 @@
     // Update quantity on click
     document.querySelectorAll('.update-link').forEach(link => {
         link.addEventListener('click', (e) => {
-            const form = link.previousElementSibling;
-            form.submit();
+            const itemId = link.id.split('update_')[1];
+            document.querySelector(`#submit-${itemId}`).click();
+            
         });
     });
 
     // Remove item on click
+    // Assistance using CSRF token in fetch found here:
+    // https://stackoverflow.com/questions/73354115/how-do-i-add-a-csrf-token-to-a-json-fetch-in-js
     document.querySelectorAll('.remove-item').forEach(item => {
         item.addEventListener('click', () => {
             const csrfToken = "{{ csrf_token }}";
             const itemId = item.id.split('remove_')[1];
-            const url = `/bag/remove/${itemId}/`;
+            const url = `/bag/remove_from_bag/${itemId}/`;
             const data = { 'csrfmiddlewaretoken': csrfToken };
 
             fetch(url, {
                 method: 'POST',
                 headers: {
+                    'X-CSRFToken': '{{csrf_token}}',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),

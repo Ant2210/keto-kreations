@@ -25,7 +25,7 @@ def bag_contents(request):
             total += quantity * (variant.sale_price if variant.sale_price else variant.price) # NOQA
             product_count += quantity
             bag_items.append({
-                'item_id': variant_id,
+                'item_id': item_id,
                 'quantity': quantity,
                 'variant': variant,
                 'type': 'variant',

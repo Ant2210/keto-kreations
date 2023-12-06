@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import (
+    render, redirect, get_object_or_404, reverse, HttpResponse)
 from django.contrib import messages
 from products.models import Product, ProductVariant
 
@@ -65,3 +66,56 @@ def add_to_bag(request, item_id):
 
     request.session['bag'] = bag
     return redirect(redirect_url)
+
+
+def adjust_bag(request, item_id):
+    """
+    Adjust the quantity of the specified product to the specified amount
+    """
+
+    quantity = int(request.POST.get('quantity'))
+
+    if 'variant' in request.POST:
+        variant_id = int(item_id.split('_')[1])
+        product = get_object_or_404(ProductVariant, pk=variant_id)
+        current_stock = product.stock_count
+    else:
+        product = get_object_or_404(Product, pk=item_id)
+        current_stock = product.stock_count
+
+    bag = request.session.get('bag', {})
+
+    product_name_display = product.product.name if item_id.startswith(
+        'variant') else product.name
+
+    if quantity > current_stock:
+        print(request,
+              f"Sorry, there is not enough stock for \
+                {quantity} items. The maximum quantity for \
+                {product_name_display} - {product.size}\
+                ({product.size_unit}) is {current_stock}"
+              )
+        return redirect(reverse('view_bag'))
+
+    if quantity > 0:
+        bag[item_id] = quantity
+    else:
+        bag.pop(item_id)
+
+    request.session['bag'] = bag
+    return redirect(reverse('view_bag'))
+
+
+def remove_from_bag(request, item_id):
+    """
+    Adjust the quantity of the specified product to the specified amount
+    """
+    try:
+        bag = request.session.get('bag', {})
+
+        bag.pop(item_id)
+
+        request.session['bag'] = bag
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)
