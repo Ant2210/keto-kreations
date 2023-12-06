@@ -58,7 +58,7 @@
                                                             data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                                 <i class="fa-solid fa-minus"></i>
                                                             </button>
-                                                                <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                                <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99"
                                                                 data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
                                                             <button class="increment-qty input-group-text"
                                                             data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
@@ -106,7 +106,7 @@
                                                             data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                                 <i class="fa-solid fa-minus"></i>
                                                             </button>
-                                                                <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                                <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99"
                                                                 data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
                                                             <button class="increment-qty input-group-text"
                                                             data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
@@ -171,10 +171,10 @@
 
 {% block extra_js %}
 <script>
-    // Disable +/- buttons outside 1-99 range
+    // Disable +/- buttons outside 0-99 range
     function handleEnableDisable(itemId) {
         const currentValue = parseInt(document.getElementById(`id_qty_${itemId}`).value);
-        const minusDisabled = currentValue < 2;
+        const minusDisabled = currentValue < 1;
         const plusDisabled = currentValue > 98;
         document.getElementById(`decrement-qty_${itemId}`).disabled = minusDisabled;
         document.getElementById(`increment-qty_${itemId}`).disabled = plusDisabled;
@@ -251,7 +251,5 @@
             .then(() => location.reload());
         });
     });
-
-
 </script>
 {% endblock %}

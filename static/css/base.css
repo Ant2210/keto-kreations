@@ -152,7 +152,6 @@ footer {
     background-color: rgba(255, 255, 255, 0.8);
     font-weight: bold;
     font-size: 1.2rem;
-    width: 100vw;
   }
   
 .scroll-text {
@@ -189,6 +188,11 @@ to {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
 }
+}
+
+/* Home Page */
+.hero-text {
+    margin-top: 20vh;
 }
 
 /* Product Page */
