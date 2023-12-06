@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load bag_tools %}
 
 {% block title %} | Home{% endblock %}
 
@@ -18,7 +18,6 @@
             <div class="row mt-3">
                 <div class="col-12 col-md-8 mx-auto">
                     {% if bag_items %}
-                        {{ bag_items }}
                         <div class="table-responsive rounded">
                             <table class="table table-sm table-borderless">
                                 <thead class="text-black">
@@ -73,7 +72,11 @@
                                                 <a class="remove-item text-danger float-end mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                             </td>
                                             <td class="py-3">
-                                                <p class="my-0">£{{ item.product.price }}</p>
+                                                {% if item.product.sale_price %}
+                                                    <p class="my-0">£{{ item.product.sale_price | calc_subtotal:item.quantity }}</p>
+                                                {% else %}
+                                                    <p class="my-0">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                     {% elif item.type == 'variant' %}
@@ -118,7 +121,11 @@
                                                 <a class="remove-item text-danger float-end mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                             </td>
                                             <td class="py-3">
-                                                <p class="my-0">£{{ item.variant.price }}</p>
+                                                {% if item.variant.sale_price %}
+                                                    <p class="my-0">£{{ item.variant.sale_price | calc_subtotal:item.quantity }}</p>
+                                                {% else %}
+                                                    <p class="my-0">£{{ item.variant.price | calc_subtotal:item.quantity }}</p>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                     {% endif %}
