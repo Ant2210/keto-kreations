@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
-from django.db.models import Q, Value, DecimalField, Min
+from django.db.models import Q, Value, DecimalField, Min, Case, When, F
 from django.db.models.functions import Lower, Coalesce
 from .models import Product, Category
 
@@ -27,25 +27,24 @@ def all_products(request):
             if sortkey == 'price':
                 sortkey = 'lowest_price'
 
-                """
-                Found info on using Coalesce to handle null values here:
-                https://docs.djangoproject.com/en/4.2/ref/models/database-functions/
-                I compared the model field to a large number to ensure it
-                is not returned as the lowest price if that field has no
-                price, Value and DecimalField I figured out from the errors
-                in the browser.
-                """
-
                 products = products.annotate(
                     lowest_price=Min(
-                        Coalesce('price', Value(99999),
-                                 output_field=DecimalField()),
-                        Coalesce('productvariant__price', Value(
-                            99999), output_field=DecimalField()),
-                        Coalesce('sale_price', Value(99999),
-                                 output_field=DecimalField()),
-                        Coalesce('productvariant__sale_price',
-                                 Value(99999), output_field=DecimalField())
+                        Case(
+                            When(
+                                productvariant__sale_price__gt=0,
+                                then='productvariant__sale_price'
+                            ),
+                            When(
+                                productvariant__price__gt=0,
+                                then='productvariant__price'
+                            ),
+                            When(
+                                sale_price__gt=0,
+                                then='sale_price'
+                            ),
+                            default='price',
+                            output_field=DecimalField()
+                        )
                     )
                 )
 

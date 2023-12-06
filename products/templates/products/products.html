@@ -72,6 +72,7 @@
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0">
                         <div class="w-100 h-100">
+                            <p>Debug: {{ product.name }} - Lowest Price: {{ product.lowest_price }}</p>
                             {% if product.image %}
                             <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -108,23 +109,13 @@
                                         <span class="badge bg-warning text-dark">Out of stock</span>
                                     </a>
                                 {% else %}
-                                {% with sorted_variants=product.productvariant_set.all|dictsortreversed:'stock_count' %}
-                                    {% if sorted_variants.0.stock_count == 0 %}
-                                        <a class="text-decoration-none" href="{% url 'products' %}?out_of_stock">
-                                            <span class="badge bg-warning text-dark">Out of stock</span>
-                                        </a>
-                                    {% endif %}
-                                {% endwith %}
-                                    
-                                 
-                                 
-                                 <!-- {% for variant in product.productvariant_set.all %}
-                                        {% if variant in variants_out_of_stock %}
+                                    {% with sorted_variants=product.productvariant_set.all|dictsortreversed:'stock_count' %}
+                                        {% if sorted_variants.0.stock_count == 0 %}
                                             <a class="text-decoration-none" href="{% url 'products' %}?out_of_stock">
                                                 <span class="badge bg-warning text-dark">Out of stock</span>
                                             </a>
                                         {% endif %}
-                                    {% endfor %} -->
+                                    {% endwith %}
                                 {% endif %}                           
                             </p>
                         </div>
