@@ -232,6 +232,11 @@ to {
     cursor: pointer;
 }
 
+.decrement-qty:disabled,
+.increment-qty:disabled {
+   background-color: #e9ecef;
+}
+
 /***** Media Queries *****/
 /* Navbar */
 @media screen and (min-width: 320px) and (max-width: 375px) {
