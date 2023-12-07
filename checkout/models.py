@@ -1,5 +1,6 @@
 import uuid
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
@@ -76,12 +77,29 @@ class OrderLineItem(models.Model):
                                          editable=False
                                          )
 
+    def clean(self):
+        """
+        Ensures that either a product or a product variant is specified,
+        but not both. Found this solution here:
+        https://docs.djangoproject.com/en/4.2/ref/forms/validation/#
+        """
+        if not self.product and not self.product_variant:
+            raise ValidationError(
+                "Either a Product or a ProductVariant is required."
+            )
+
+        if self.product and self.product_variant:
+            raise ValidationError(
+                "You cannot specify both a Product and a ProductVariant."
+            )
+
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the lineitem total
         and update the order total
         """
 
+        self.clean()
         if self.product_variant:
             if self.product_variant.sale_price:
                 price = self.product_variant.sale_price
@@ -100,5 +118,8 @@ class OrderLineItem(models.Model):
         if self.product_variant:
             return f'SKU {self.product_variant.sku} \
                 on order {self.order.order_number}'
-        else:
+        elif self.product:
             return f'SKU {self.product.sku} on order {self.order.order_number}'
+        else:
+            return 'Invalid OrderLineItem \
+                (no product or product variant specified)'
