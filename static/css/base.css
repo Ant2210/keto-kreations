@@ -201,6 +201,13 @@ to {
 
 .custom-toast {
     overflow: visible;
+    background-color: #fff;
+}
+
+.bag-notification-wrapper {
+    height: 120px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* Home Page */

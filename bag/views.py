@@ -62,8 +62,17 @@ def add_to_bag(request, item_id):
                            )
         return redirect(redirect_url)
 
-    bag[item_id] = new_quantity
-    messages.success(request, f'Added {product_name_display} to your bag')
+    if item_id in list(bag.keys()):
+        bag[item_id] += quantity
+        messages.success(request, f'Updated {product_name_display} - \
+                            {product.size} ({product.size_unit}) quantity to \
+                            {bag[item_id]}'
+                         )
+    else:
+        bag[item_id] = quantity
+        messages.success(request, f'Added {product_name_display} - \
+                            {product.size} ({product.size_unit}) to your bag'
+                         )
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -105,6 +114,9 @@ def adjust_bag(request, item_id):
                         ({product.size_unit}) quantity to {bag[item_id]}')
     else:
         bag.pop(item_id)
+        messages.success(request,
+                         f'Removed {product_name_display} - {product.size}\
+                        ({product.size_unit}) from your bag')
 
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
@@ -114,12 +126,27 @@ def remove_from_bag(request, item_id):
     """
     Adjust the quantity of the specified product to the specified amount
     """
+
     try:
         bag = request.session.get('bag', {})
 
+        if item_id.startswith('variant'):
+            variant_id = int(item_id.split('_')[1])
+            product = get_object_or_404(ProductVariant, pk=variant_id)
+        else:
+            product = get_object_or_404(Product, pk=item_id)
+
+        product_name_display = product.product.name if item_id.startswith(
+            'variant') else product.name
+
         bag.pop(item_id)
+        messages.success(request,
+                         f'Removed {product_name_display} - {product.size}\
+                        ({product.size_unit}) from your bag')
 
         request.session['bag'] = bag
         return HttpResponse(status=200)
+
     except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
