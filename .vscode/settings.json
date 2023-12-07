@@ -4,6 +4,8 @@
         "csrfmiddlewaretoken",
         "forloop",
         "kreations",
+        "lineitem",
+        "lineitems",
         "offcanvas",
         "productvariant",
         "socialaccount"
