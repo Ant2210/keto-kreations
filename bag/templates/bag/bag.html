@@ -170,86 +170,87 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
-    // Disable +/- buttons outside 0-99 range
-    function handleEnableDisable(itemId) {
-        const currentValue = parseInt(document.getElementById(`id_qty_${itemId}`).value);
-        const minusDisabled = currentValue < 1;
-        const plusDisabled = currentValue > 98;
-        document.getElementById(`decrement-qty_${itemId}`).disabled = minusDisabled;
-        document.getElementById(`increment-qty_${itemId}`).disabled = plusDisabled;
-    }
+{{ block.super }}
+    <script>
+        // Disable +/- buttons outside 0-99 range
+        function handleEnableDisable(itemId) {
+            const currentValue = parseInt(document.getElementById(`id_qty_${itemId}`).value);
+            const minusDisabled = currentValue < 1;
+            const plusDisabled = currentValue > 98;
+            document.getElementById(`decrement-qty_${itemId}`).disabled = minusDisabled;
+            document.getElementById(`increment-qty_${itemId}`).disabled = plusDisabled;
+        }
 
-    // Ensure proper enabling/disabling of all inputs on page load
-    document.querySelectorAll('.qty_input').forEach((input) => {
-        const itemId = input.dataset.item_id;
-        handleEnableDisable(itemId);
-    });
-
-    // Check enable/disable every time the input is changed
-    document.querySelectorAll('.qty_input').forEach((input) => {
-        input.addEventListener('change', () => {
+        // Ensure proper enabling/disabling of all inputs on page load
+        document.querySelectorAll('.qty_input').forEach((input) => {
             const itemId = input.dataset.item_id;
             handleEnableDisable(itemId);
         });
-    });
 
-    // Increment quantity
-    document.querySelectorAll('.increment-qty').forEach((button) => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const closestInput = button.closest('.input-group').querySelector('.qty_input');
-            // Get current value of input or if empty set to 0 so starting value on press is 1
-            const currentValue = parseInt(closestInput.value || 0);
-            closestInput.value = currentValue + 1;
-            const itemId = button.dataset.item_id;
-            handleEnableDisable(itemId);
+        // Check enable/disable every time the input is changed
+        document.querySelectorAll('.qty_input').forEach((input) => {
+            input.addEventListener('change', () => {
+                const itemId = input.dataset.item_id;
+                handleEnableDisable(itemId);
+            });
         });
-    });
 
-    // Decrement quantity
-    document.querySelectorAll('.decrement-qty').forEach((button) => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const closestInput = button.closest('.input-group').querySelector('.qty_input');
-            // Get current value of input or if empty set to 2 so starting value on press is 1
-            const currentValue = parseInt(closestInput.value) || 2;
-            closestInput.value = currentValue - 1;
-            const itemId = button.dataset.item_id;
-            handleEnableDisable(itemId);
+        // Increment quantity
+        document.querySelectorAll('.increment-qty').forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const closestInput = button.closest('.input-group').querySelector('.qty_input');
+                // Get current value of input or if empty set to 0 so starting value on press is 1
+                const currentValue = parseInt(closestInput.value || 0);
+                closestInput.value = currentValue + 1;
+                const itemId = button.dataset.item_id;
+                handleEnableDisable(itemId);
+            });
         });
-    });
-</script>
-<script>
-    // Update quantity on click
-    document.querySelectorAll('.update-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const itemId = link.id.split('update_')[1];
-            document.querySelector(`#submit-${itemId}`).click();
-            
-        });
-    });
 
-    // Remove item on click
-    // Assistance using CSRF token in fetch found here:
-    // https://stackoverflow.com/questions/73354115/how-do-i-add-a-csrf-token-to-a-json-fetch-in-js
-    document.querySelectorAll('.remove-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const csrfToken = "{{ csrf_token }}";
-            const itemId = item.id.split('remove_')[1];
-            const url = `/bag/remove_from_bag/${itemId}/`;
-            const data = { 'csrfmiddlewaretoken': csrfToken };
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': '{{csrf_token}}',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(() => location.reload());
+        // Decrement quantity
+        document.querySelectorAll('.decrement-qty').forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const closestInput = button.closest('.input-group').querySelector('.qty_input');
+                // Get current value of input or if empty set to 2 so starting value on press is 1
+                const currentValue = parseInt(closestInput.value) || 2;
+                closestInput.value = currentValue - 1;
+                const itemId = button.dataset.item_id;
+                handleEnableDisable(itemId);
+            });
         });
-    });
-</script>
+    </script>
+    <script>
+        // Update quantity on click
+        document.querySelectorAll('.update-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const itemId = link.id.split('update_')[1];
+                document.querySelector(`#submit-${itemId}`).click();
+                
+            });
+        });
+
+        // Remove item on click
+        // Assistance using CSRF token in fetch found here:
+        // https://stackoverflow.com/questions/73354115/how-do-i-add-a-csrf-token-to-a-json-fetch-in-js
+        document.querySelectorAll('.remove-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const csrfToken = "{{ csrf_token }}";
+                const itemId = item.id.split('remove_')[1];
+                const url = `/bag/remove_from_bag/${itemId}/`;
+                const data = { 'csrfmiddlewaretoken': csrfToken };
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{csrf_token}}',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(() => location.reload());
+            });
+        });
+    </script>
 {% endblock %}

@@ -35,34 +35,35 @@ def add_to_bag(request, item_id):
         product = get_object_or_404(Product, pk=item_id)
         current_stock = product.stock_count
 
+    product_name_display = product.product.name if 'product-size' in \
+        request.POST else product.name
+
     if item_id in list(bag.keys()):
         new_quantity = bag[item_id] + quantity
     else:
         new_quantity = quantity
 
-    product_name_display = product.product.name if 'product-size' in \
-        request.POST else product.name
-
     if new_quantity > current_stock:
         if bag.get(item_id):
-            messages.warning(request,
-                             f"Sorry, there is not enough stock for \
+            messages.error(request,
+                           f"Sorry, there is not enough stock for \
                             {quantity} items. The maximum quantity for \
                             {product_name_display} - {product.size}\
                             ({product.size_unit}) is {current_stock} and \
                             you already have {new_quantity - quantity} \
                             in your bag."
-                             )
+                           )
         else:
-            messages.warning(request,
-                             f"Sorry, there is not enough stock for \
+            messages.error(request,
+                           f"Sorry, there is not enough stock for \
                             {quantity} items. The maximum quantity for \
                             {product_name_display} - {product.size}\
                             ({product.size_unit}) is {current_stock}."
-                             )
+                           )
         return redirect(redirect_url)
 
     bag[item_id] = new_quantity
+    messages.success(request, f'Added {product_name_display} to your bag')
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -89,16 +90,19 @@ def adjust_bag(request, item_id):
         'variant') else product.name
 
     if quantity > current_stock:
-        print(request,
-              f"Sorry, there is not enough stock for \
-                {quantity} items. The maximum quantity for \
-                {product_name_display} - {product.size}\
-                ({product.size_unit}) is {current_stock}"
-              )
+        messages.error(request,
+                       f"Sorry, there is not enough stock for \
+                        {quantity} items. The maximum quantity for \
+                        {product_name_display} - {product.size}\
+                        ({product.size_unit}) is {current_stock}."
+                       )
         return redirect(reverse('view_bag'))
 
     if quantity > 0:
         bag[item_id] = quantity
+        messages.success(request,
+                         f'Updated {product_name_display} - {product.size}\
+                        ({product.size_unit}) quantity to {bag[item_id]}')
     else:
         bag.pop(item_id)
 
