@@ -2,7 +2,7 @@
 {% load static %}
 {% load bag_tools %}
 
-{% block title %} | Home{% endblock %}
+{% block title %} | Shopping Bag{% endblock %}
 
 {% block content %}
     <div class="overlay"></div>
@@ -148,7 +148,7 @@
                                             <a href="{% url 'products' %}" class="btn btn-primary text-center mt-2 shopping-button">
                                                 <i class="fas fa-chevron-left pe-2"></i>Keep Shopping
                                             </a>
-                                            <a href="" id="secure-checkout-button" class="btn btn-success text-center mt-2 shopping-button">
+                                            <a href="{% url 'checkout' %}" id="secure-checkout-button" class="btn btn-success text-center mt-2 shopping-button">
                                                     <i class="fas fa-lock pe-2"></i>                                            
                                                 Secure Checkout
                                             </a>
