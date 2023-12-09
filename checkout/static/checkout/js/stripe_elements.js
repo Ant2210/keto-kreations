@@ -37,3 +37,58 @@ const card = elements.create('card', {style: style});
 card.mount('#card-element');
 
 document.querySelector('#card-element').classList.add('form-control');
+
+
+// Handle realtime validation errors on the card element
+card.addEventListener('change', (event) => {
+    const errorDiv = document.getElementById('card-errors');
+    
+    if (event.error) {
+        const html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times text-danger"></i>
+            </span>
+            <span>${event.error.message}</span>
+        `;
+        errorDiv.innerHTML = html;
+    } else {
+        errorDiv.textContent = '';
+    }
+});
+
+// Handle form submit
+const form = document.getElementById('payment-form');
+
+form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    card.update({ disabled: true });
+    document.getElementById('submit-button').disabled = true;
+
+    try {
+        const result = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+            },
+        });
+
+        if (result.error) {
+            const errorDiv = document.getElementById('card-errors');
+            const html = `
+                <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span>${result.error.message}</span>`;
+            errorDiv.innerHTML = html;
+
+            card.update({ disabled: false });
+            document.getElementById('submit-button').disabled = false;
+        } else {
+            if (result.paymentIntent.status === 'succeeded') {
+                form.submit();
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        // Handle the error as needed
+    }
+});
