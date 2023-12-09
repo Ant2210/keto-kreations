@@ -62,6 +62,11 @@ body {
     transform: scale(1.15);
 }
 
+.form-control::placeholder {
+    color: rgba(33, 37, 41, 0.5);
+    font-weight: 400;
+}
+
 /* Back to top button */
 .btt-button {
     height: 42px;
