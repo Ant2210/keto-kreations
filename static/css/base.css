@@ -100,7 +100,6 @@ body {
     box-shadow: 0px 0px 0px 0px;
 }
 
-
 /* Navbar */
 .navbar {
     background-color: #fff;
@@ -268,6 +267,27 @@ to {
 .decrement-qty:disabled,
 .increment-qty:disabled {
    background-color: #e9ecef;
+}
+
+/* All Auth */
+/* Login Page */
+form.login input {
+    margin-bottom: 20px !important;
+}
+
+/* Sign Up Page */
+form.signup input {
+    margin-bottom: 20px !important;
+}
+
+/* Password Reset Page */
+form.password_reset input {
+    margin-bottom: 20px !important;
+}
+
+/* Password Reset Form */
+form.new_password_form input {
+    margin-bottom: 20px !important;
 }
 
 /***** Media Queries *****/
