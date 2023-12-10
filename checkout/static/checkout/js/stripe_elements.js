@@ -58,12 +58,13 @@ card.addEventListener('change', (event) => {
 
 // Handle form submit
 const form = document.getElementById('payment-form');
+const loadingOverlay = document.getElementById('loading-overlay');
 
 form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
     card.update({ disabled: true });
     document.getElementById('submit-button').disabled = true;
-
+    loadingOverlay.classList.remove('d-none');
     try {
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -79,7 +80,7 @@ form.addEventListener('submit', async (ev) => {
                 </span>
                 <span>${result.error.message}</span>`;
             errorDiv.innerHTML = html;
-
+            loadingOverlay.classList.add('d-none');
             card.update({ disabled: false });
             document.getElementById('submit-button').disabled = false;
         } else {
