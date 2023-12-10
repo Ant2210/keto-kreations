@@ -35,7 +35,9 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'mb-3 profile-form-input'
+            self.fields[field].widget.attrs['class'] = (
+                'mb-3 profile-form-input'
+            )
             if field == 'default_country':
                 self.fields[field].widget.attrs['class'] += ' form-select'
             self.fields[field].label = False
