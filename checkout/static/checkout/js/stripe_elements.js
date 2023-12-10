@@ -59,30 +59,90 @@ card.addEventListener('change', (event) => {
 // Handle form submit
 const form = document.getElementById('payment-form');
 const loadingOverlay = document.getElementById('loading-overlay');
+const errorDiv = document.getElementById('card-errors');
+const submitButton = document.getElementById('submit-button');
 
 form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
     card.update({ disabled: true });
-    document.getElementById('submit-button').disabled = true;
+    submitButton.disabled = true;
     loadingOverlay.classList.remove('d-none');
+
+    const saveInfo = Boolean(document.getElementById('id-save-info').checked);
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    };
+    const url = '/checkout/cache_checkout_data/';
+
+
+
     try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData),
+        });
+
+        if (!response.ok) {
+            let html = `
+                    <span class="icon" role="alert">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>'There was an error processing your request. Please\
+                     try again.'</span>`;
+            errorDiv.innerHTML = html;
+            loadingOverlay.classList.add('d-none');
+            card.update({ disabled: false });
+            submitButton.disabled = false;
+        }
+
+
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
+                billing_details: {
+                    name: form.full_name.value.trim(),
+                    phone: form.phone_number.value.trim(),
+                    email: form.email.value.trim(),
+                    address: {
+                        line1: form.street_address1.value.trim(),
+                        line2: form.street_address2.value.trim(),
+                        city: form.town_or_city.value.trim(),
+                        country: form.country.value.trim(),
+                        state: form.county.value.trim(),
+                    }
+                }
+            },
+            shipping: {
+                name: form.full_name.value.trim(),
+                phone: form.phone_number.value.trim(),
+                address: {
+                    line1: form.street_address1.value.trim(),
+                    line2: form.street_address2.value.trim(),
+                    city: form.town_or_city.value.trim(),
+                    country: form.country.value.trim(),
+                    postal_code: form.postcode.value.trim(),
+                    state: form.county.value.trim(),
+                }
             },
         });
 
         if (result.error) {
-            const errorDiv = document.getElementById('card-errors');
-            const html = `
-                <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
+            let html = `
+                    <span class="icon" role="alert">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
             errorDiv.innerHTML = html;
             loadingOverlay.classList.add('d-none');
             card.update({ disabled: false });
-            document.getElementById('submit-button').disabled = false;
+            submitButton.disabled = false;
         } else {
             if (result.paymentIntent.status === 'succeeded') {
                 form.submit();
@@ -91,5 +151,6 @@ form.addEventListener('submit', async (ev) => {
     } catch (error) {
         console.error('Error:', error);
         // Handle the error as needed
+        location.reload();
     }
 });
