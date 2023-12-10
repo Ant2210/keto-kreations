@@ -62,7 +62,8 @@ body {
     transform: scale(1.15);
 }
 
-.btn:active {
+.btn:active,
+.btn:focus {
     color: #fff;
 }
 
