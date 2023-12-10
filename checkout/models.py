@@ -1,3 +1,4 @@
+from decimal import Decimal
 import uuid
 
 from django.core.exceptions import ValidationError
@@ -40,11 +41,11 @@ class Order(models.Model):
         """
 
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))[
-            'lineitem_total__sum']
+            'lineitem_total__sum'] or Decimal('0.00')
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = settings.STANDARD_DELIVERY_COST
         else:
-            self.delivery_cost = 0
+            self.delivery_cost = Decimal('0.00')
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
 

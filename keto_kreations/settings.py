@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from decimal import Decimal
 from pathlib import Path
 import os
 if os.path.isfile('env.py'):
@@ -177,7 +178,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Stripe
 FREE_DELIVERY_THRESHOLD = 20
-STANDARD_DELIVERY_COST = 3.95
+STANDARD_DELIVERY_COST = Decimal('3.95')
 STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
