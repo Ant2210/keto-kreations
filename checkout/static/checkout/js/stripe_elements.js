@@ -68,7 +68,11 @@ form.addEventListener('submit', async (ev) => {
     submitButton.disabled = true;
     loadingOverlay.classList.remove('d-none');
 
-    const saveInfo = Boolean(document.getElementById('id-save-info').checked);
+    let saveInfo = false;
+    const saveInfoElement = document.getElementById('id-save-info');
+    if (saveInfoElement) {
+        saveInfo = Boolean(saveInfoElement.checked);
+    }
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const postData = {
         'csrfmiddlewaretoken': csrfToken,
@@ -76,8 +80,6 @@ form.addEventListener('submit', async (ev) => {
         'save_info': saveInfo,
     };
     const url = '/checkout/cache_checkout_data/';
-
-
 
     try {
         const response = await fetch(url, {
