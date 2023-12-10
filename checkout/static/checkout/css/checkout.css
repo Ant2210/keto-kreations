@@ -24,6 +24,16 @@
     right: .5rem;
 }
 
+select, 
+select option {
+    color: #212529;
+}
+
+select:invalid,
+select option[value=""] {
+    color: rgba(33, 37, 41, 0.5);
+}
+
 #loading-overlay {
 	position: fixed;
   top: 0;
