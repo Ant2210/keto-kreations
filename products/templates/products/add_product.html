@@ -42,30 +42,5 @@
 
 {% block extra_js %}
 {{ block.super }}
-    <script>
-        // Hide the price, sale price, size, size unit and stock count fields if the product has variants
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkbox = document.getElementById('id_has_variants');
-            const priceDiv = document.getElementById('div_id_price');
-            const salePriceDiv = document.getElementById('div_id_sale_price');
-            const sizeDiv = document.getElementById('div_id_size');
-            const sizeUnitDiv = document.getElementById('div_id_size_unit');
-            const stockCountDiv = document.getElementById('div_id_stock_count');
-
-            // Function to toggle the class
-            const toggleVisibility = () => {
-                priceDiv.classList.toggle('d-none', checkbox.checked);
-                salePriceDiv.classList.toggle('d-none', checkbox.checked);
-                sizeDiv.classList.toggle('d-none', checkbox.checked);
-                sizeUnitDiv.classList.toggle('d-none', checkbox.checked);
-                stockCountDiv.classList.toggle('d-none', checkbox.checked);
-            };
-
-            // Add event listener to checkbox
-            checkbox.addEventListener('change', toggleVisibility);
-
-            // Initial execution to set the initial state
-            toggleVisibility();
-        });
-    </script>
+    <script src="{% static 'products/js/add_product.js' %}"></script>
 {% endblock %}

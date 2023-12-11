@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 
 
 class Category(models.Model):
@@ -26,6 +27,8 @@ class Product(models.Model):
     name = models.CharField(max_length=254)
     has_variants = models.BooleanField(default=False, null=False, blank=False)
     description = models.TextField()
+    new = models.BooleanField(default=False, null=False, blank=False)
+    on_sale = models.BooleanField(default=False, null=False, blank=False)
     ingredients = models.TextField()
     allergens = models.TextField()
     price = models.DecimalField(
@@ -38,7 +41,6 @@ class Product(models.Model):
     size_unit = models.CharField(max_length=20, null=True, blank=True)
     sale_price = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True, default=0)
-    new = models.BooleanField(default=False, null=False, blank=False)
     portion_size = models.IntegerField(default=1, null=False, blank=False)
     portion_unit = models.CharField(
         default='g', max_length=20, null=False, blank=False)
@@ -46,6 +48,31 @@ class Product(models.Model):
     nutritional_info = models.ForeignKey(
         'NutritionalInfo', null=True, blank=True, on_delete=models.SET_NULL,
         related_name='nutritional_infos')
+
+    def clean(self):
+        """
+        Custom validation to ensure a sale price is set on the main product
+        when there are no variants but item is marked as for sale. Also
+        a price must be set where there is no product variant.
+        """
+
+        if not self.has_variants and self.on_sale and self.sale_price <= 0:
+            raise ValidationError("Sale price must be greater than 0 when the \
+                                  product is on sale and has no variants."
+                                  )
+
+        if not self.has_variants and self.price <= 0:
+            raise ValidationError("Price must be greater than 0 when the \
+                                  product has no variants."
+                                  )
+
+    def save(self, *args, **kwargs):
+        """
+        Override the save method to run clean before saving.
+        """
+
+        self.clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -60,13 +87,32 @@ class ProductVariant(models.Model):
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE)
     sku = models.CharField(max_length=255, unique=True)
-    size = models.IntegerField(default=1, null=False, blank=False)
-    size_unit = models.CharField(max_length=20, null=True, blank=True)
+    size = models.IntegerField(default=0, null=False, blank=False)
+    size_unit = models.CharField(
+        default='g', max_length=20, null=False, blank=False)
     price = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, default=0)
     sale_price = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, default=0)
     stock_count = models.IntegerField(default=0)
+
+    def clean(self):
+        """
+        Custom validation to enforce business rules.
+        """
+        if self.product and self.product.on_sale and self.sale_price <= 0:
+            raise ValidationError("Sale price must be greater than 0 when the \
+                                  associated product is on sale."
+                                  )
+        if self.product and self.price <= 0:
+            raise ValidationError("Price must be greater than 0.")
+
+    def save(self, *args, **kwargs):
+        """
+        Override the save method to run full_clean() before saving.
+        """
+        self.clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.product.name} - {self.size}"

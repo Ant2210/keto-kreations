@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ValidationError
 from .models import Product, ProductVariant, Category
 
 
@@ -23,6 +24,8 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = [
             'has_variants',
+            'new',
+            'on_sale',
             'category',
             'sku',
             'name',
@@ -31,7 +34,6 @@ class ProductForm(forms.ModelForm):
             'allergens',
             'price',
             'sale_price',
-            'new',
             'image_url',
             'image',
             'size',
@@ -41,9 +43,10 @@ class ProductForm(forms.ModelForm):
             'stock_count',
         ]
         labels = {
-            'has_variants': '**IMPORTANT** Is this product a single item or\
+            'has_variants': 'Is this product a single item or\
                 will it have multiple variants?',
             'new': 'Is this a new product?',
+            'on_sale': 'Is this product on sale?',
         }
 
     def __init__(self, *args, **kwargs):
