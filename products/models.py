@@ -22,8 +22,9 @@ class Product(models.Model):
 
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
-    sku = models.CharField(max_length=254, null=True, blank=True)
+    sku = models.CharField(max_length=254, null=False, blank=False)
     name = models.CharField(max_length=254)
+    has_variants = models.BooleanField(default=False, null=False, blank=False)
     description = models.TextField()
     ingredients = models.TextField()
     allergens = models.TextField()
@@ -37,11 +38,11 @@ class Product(models.Model):
     size_unit = models.CharField(max_length=20, null=True, blank=True)
     sale_price = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True, default=0)
-    new = models.BooleanField(default=False, null=True, blank=True)
+    new = models.BooleanField(default=False, null=False, blank=False)
     portion_size = models.IntegerField(default=1, null=False, blank=False)
     portion_unit = models.CharField(
         default='g', max_length=20, null=False, blank=False)
-    stock_count = models.IntegerField(null=True, blank=True)
+    stock_count = models.IntegerField(null=True, blank=True, default=0)
     nutritional_info = models.ForeignKey(
         'NutritionalInfo', null=True, blank=True, on_delete=models.SET_NULL,
         related_name='nutritional_infos')

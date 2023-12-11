@@ -17,7 +17,11 @@
                     {% if item.type == 'product' %}
                     <div class="row">
                         <div class="col-3 my-1">
-                            <img class="product-detail-img w-100" src="{{ item.product.image.url }}">
+                            {% if item.product.image %}
+                                <img class="product-detail-img w-100" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            {% else %}
+                                <img class="product-detail-img w-100" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}">
+                            {% endif %}
                         </div>
                         <div class="col-9">
                             <p class="my-0"><strong>{{ item.product.name }} - {{ item.product.size }} ({{ item.product.size_unit}})</strong></p>
@@ -27,7 +31,11 @@
                     {% elif item.type == 'variant' %}
                     <div class="row">
                         <div class="col-3 my-1">
-                            <img class="product-detail-img w-100" src="{{ item.variant.product.image.url }}">
+                            {% if item.variant.product.image %}
+                                <img class="product-detail-img w-100" src="{{ item.variant.product.image.url }}" alt="{{ item.variant.product.name }}">
+                            {% else %}
+                                <img class="product-detail-img w-100" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.variant.product.name }}">
+                            {% endif %}
                         </div>
                         <div class="col-9">
                             <p class="my-0"><strong>{{ item.variant.product.name }} - {{ item.variant.size }} ({{ item.variant.size_unit}})</strong></p>

@@ -1,14 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
-from django.db.models import Q, Value, DecimalField, Min, Case, When, F
-from django.db.models.functions import Lower, Coalesce
-from .models import Product, Category
+from django.db.models import Q, DecimalField, Min, Case, When, Count
+from django.db.models.functions import Lower
+from .models import Product, Category, NutritionalInfo
+from .forms import ProductForm
 
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
-    products = Product.objects.all()
+    # Annotate products with the number of variants
+    products = Product.objects.annotate(num_variants=Count('productvariant'))
+
+    # Exclude products where has_variants is true but the variant count is
+    # less than 1
+    products = products.exclude(has_variants=True, num_variants__lt=1)
+
     query = None
     categories = None
     sort = None
@@ -114,3 +121,64 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+def product_management(request):
+    """ A view to show product management page """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    context = {}
+
+    return render(request, 'products/product_management.html', context)
+
+
+def add_product(request):
+    """ Add a product to the store """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+
+            product.save()
+
+            # Create NutritionalInfo
+            nutritional_info = NutritionalInfo.objects.create(
+                energy_kcal=int(request.POST.get('energy_kcal')),
+                energy_kj=int(request.POST.get('energy_kj')),
+                fat=int(request.POST.get('fat')),
+                saturated_fat=int(request.POST.get('saturated_fat')),
+                carbs=int(request.POST.get('carbs')),
+                sugar=int(request.POST.get('sugar')),
+                protein=int(request.POST.get('protein')),
+                fibre=int(request.POST.get('fibre')),
+                salt=int(request.POST.get('salt')),
+                product=product,
+            )
+
+            product.nutritional_info = nutritional_info
+            product.save()
+
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(
+                request,
+                'Failed to add product. Please ensure the form is valid.'
+            )
+    else:
+        form = ProductForm()
+
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
