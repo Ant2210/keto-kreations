@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Category
+from .models import Product, ProductVariant, Category
 
 
 class ProductForm(forms.ModelForm):
@@ -66,9 +66,50 @@ class ProductForm(forms.ModelForm):
         sku = self.cleaned_data.get('sku')
 
         # Check if a product with the same SKU already exists
-        if Product.objects.filter(sku=sku).exists():
+        if Product.objects.filter(sku=sku).exists(
+        ) or ProductVariant.objects.filter(sku=sku).exists():
             raise forms.ValidationError(
-                "This SKU is already in use. Please provide a unique SKU."
+                "This SKU is already in use. Please provide a unique SKU for \
+                    products and variants."
+            )
+
+        return sku
+
+
+class ProductVariantForm(forms.ModelForm):
+    """
+    Product variant form to add a new product variant to the store
+    """
+
+    class Meta:
+        model = ProductVariant
+        fields = [
+            'product',
+            'sku',
+            'size',
+            'size_unit',
+            'price',
+            'sale_price',
+            'stock_count',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'mb-3'
+        self.fields['product'].widget.attrs['class'] += ' form-select'
+        self.fields['product'].choices = Product.objects.filter(
+            has_variants=True).values_list('id', 'name')
+
+    def clean_sku(self):
+        sku = self.cleaned_data.get('sku')
+
+        # Check if the SKU already exists for products or variants
+        if Product.objects.filter(sku=sku).exists(
+        ) or ProductVariant.objects.filter(sku=sku).exists():
+            raise forms.ValidationError(
+                "This SKU is already in use. Please provide a unique SKU for \
+                    products and variants."
             )
 
         return sku

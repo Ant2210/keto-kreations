@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.db.models import Q, DecimalField, Min, Case, When, Count
 from django.db.models.functions import Lower
 from .models import Product, Category, NutritionalInfo
-from .forms import ProductForm
+from .forms import ProductForm, ProductVariantForm
 
 
 def all_products(request):
@@ -177,6 +177,38 @@ def add_product(request):
         form = ProductForm()
 
     template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def add_variant(request):
+    """ Add a variant to a product """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ProductVariantForm(request.POST, request.FILES)
+        if form.is_valid():
+            variant = form.save(commit=False)
+            variant.save()
+
+            messages.success(request, 'Successfully added variant!')
+            return redirect(
+                reverse('product_detail', args=[variant.product.id]))
+        else:
+            messages.error(
+                request,
+                'Failed to add variant. Please ensure the form is valid.'
+            )
+    else:
+        form = ProductVariantForm()
+
+    template = 'products/add_variant.html'
     context = {
         'form': form,
     }
