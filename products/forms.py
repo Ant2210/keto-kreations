@@ -67,10 +67,13 @@ class ProductForm(forms.ModelForm):
 
     def clean_sku(self):
         sku = self.cleaned_data.get('sku')
+        instance = getattr(self, 'instance', None)
 
         # Check if a product with the same SKU already exists
-        if Product.objects.filter(sku=sku).exists(
-        ) or ProductVariant.objects.filter(sku=sku).exists():
+        # (excluding the current instance)
+        if Product.objects.filter(
+            sku=sku).exclude(pk=instance.pk).exists() or \
+           ProductVariant.objects.filter(sku=sku).exists():
             raise forms.ValidationError(
                 "This SKU is already in use. Please provide a unique SKU for \
                     products and variants."
@@ -110,7 +113,7 @@ class ProductVariantForm(forms.ModelForm):
         # Check if the SKU already exists for products or variants
         if Product.objects.filter(sku=sku).exists(
         ) or ProductVariant.objects.filter(sku=sku).exists():
-            raise forms.ValidationError(
+            raise ValidationError(
                 "This SKU is already in use. Please provide a unique SKU for \
                     products and variants."
             )

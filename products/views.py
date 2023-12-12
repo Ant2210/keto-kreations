@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q, DecimalField, Min, Case, When, Count
 from django.db.models.functions import Lower
-from .models import Product, Category, NutritionalInfo
+from .models import Product, Category, NutritionalInfo, ProductVariant
 from .forms import ProductForm, ProductVariantForm
 
 
@@ -15,6 +15,12 @@ def all_products(request):
     # Exclude products where has_variants is true but the variant count is
     # less than 1
     products = products.exclude(has_variants=True, num_variants__lt=1)
+
+    # Exclude products where on_sale is true and at least one variant has a
+    # sale price less than or equal to 0
+    products = products.exclude(
+        Q(on_sale=True) & Q(productvariant__sale_price__lte=0)
+    )
 
     query = None
     categories = None
@@ -211,6 +217,80 @@ def add_variant(request):
     template = 'products/add_variant.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def edit_product(request, product_id):
+    """ Edit a product in the store """
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    # Fetch nutritional information associated with the product
+    nutritional_info = product.nutritional_info
+
+    # Create a dictionary to manually populate nutritional information fields
+    nutritional_info_data = {
+        'energy_kcal': nutritional_info.energy_kcal,
+        'energy_kj': nutritional_info.energy_kj,
+        'fat': nutritional_info.fat,
+        'saturated_fat': nutritional_info.saturated_fat,
+        'carbs': nutritional_info.carbs,
+        'sugar': nutritional_info.sugar,
+        'protein': nutritional_info.protein,
+        'fibre': nutritional_info.fibre,
+        'salt': nutritional_info.salt,
+    }
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            product = form.save(commit=False)
+
+            # Update nutritional information
+            nutritional_info.energy_kcal = request.POST.get('energy_kcal')
+            nutritional_info.energy_kj = request.POST.get('energy_kj')
+            nutritional_info.fat = request.POST.get('fat')
+            nutritional_info.saturated_fat = request.POST.get('saturated_fat')
+            nutritional_info.carbs = request.POST.get('carbs')
+            nutritional_info.sugar = request.POST.get('sugar')
+            nutritional_info.protein = request.POST.get('protein')
+            nutritional_info.fibre = request.POST.get('fibre')
+            nutritional_info.salt = request.POST.get('salt')
+            nutritional_info.save()
+
+            product.save()
+
+            # Delete variants if has_variants is set to False
+            if not product.has_variants:
+                ProductVariant.objects.filter(product=product).delete()
+
+            # If on_sale is set to False, set sale_price to 0 for product
+            # and variants
+            if not product.on_sale:
+                product.sale_price = 0
+                product.save()
+                ProductVariant.objects.filter(
+                    product=product).update(sale_price=0)
+
+            messages.success(request, f'Successfully updated {product.name}!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(
+                request,
+                'Failed to update product. Please ensure the form is valid.'
+            )
+    else:
+        # Create the ProductForm instance with the product and nutritional
+        # information data
+        form = ProductForm(instance=product, initial=nutritional_info_data)
+        messages.info(request, f'You are editing {product.name}')
+
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
     }
 
     return render(request, template, context)
