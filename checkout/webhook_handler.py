@@ -36,6 +36,20 @@ class StripeWH_Handler:
             [cust_email]
         )
 
+    def adjust_stock_levels(self, order):
+        """
+        Adjust stock levels based on the order
+        """
+        for line_item in order.lineitems.all():
+            if line_item.product_variant:
+                # Adjust stock for product variant
+                line_item.product_variant.stock_count -= line_item.quantity
+                line_item.product_variant.save()
+            elif line_item.product:
+                # Adjust stock for product
+                line_item.product.stock_count -= line_item.quantity
+                line_item.product.save()
+
     def handle_event(self, event):
         """
         Handle generic/unknown/unexpected webhook events
@@ -113,6 +127,7 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             self._send_confirmation_email(order)
+            self.adjust_stock_levels(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: \
                     Verified order already in database',
@@ -161,6 +176,7 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
+        self.adjust_stock_levels(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created \
                 order in webhook',
