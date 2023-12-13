@@ -144,6 +144,7 @@ def product_management(request):
     context = {
         'products': products,
         'variants': variants,
+        'on_product_management_page': True,
     }
 
     return render(request, 'products/product_management.html', context)
