@@ -12,14 +12,14 @@
         <div class="row">
             <div class="col text-center">
                 <h2 class="dark-blue">Product Management</h2>
-                <h5 class="text-muted">Add a Product Variant</h5>
+                <h5 class="text-muted">Edit a Product Variant</h5>
                 <hr class="w-50 mx-auto mb-3">                    
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-md-6 mx-auto">
-                <form action="{% url 'add_variant' %}" method="POST" class="form mb-2" enctype="multipart/form-data">
+                <form action="{% url 'edit_variant' variant.id %}" method="POST" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <div class="d-flex justify-content-between">
@@ -29,11 +29,12 @@
                         </a>
                         <button type="submit" class="btn btn-success text-center mt-2 shopping-button">
                             <i class="fa-solid fa-square-plus pe-2"></i>
-                            Add Product Variant
+                            Update Product Variant
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>        
+    </div>
+        
 {% endblock %}

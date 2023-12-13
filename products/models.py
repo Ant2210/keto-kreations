@@ -53,7 +53,8 @@ class Product(models.Model):
         """
         Custom validation to ensure a sale price is set on the main product
         when there are no variants but item is marked as for sale. Also
-        a price must be set where there is no product variant.
+        a price must be set where there is no product variant amd must not
+        be set if there are variants.
         """
 
         if not self.has_variants and self.on_sale and self.sale_price <= 0:
@@ -64,6 +65,11 @@ class Product(models.Model):
         if not self.has_variants and self.price <= 0:
             raise ValidationError("Price must be greater than 0 when the \
                                   product has no variants."
+                                  )
+
+        if self.has_variants and self.price > 0:
+            raise ValidationError("Price must not be set when the product \
+                                  has variants."
                                   )
 
     def save(self, *args, **kwargs):
@@ -100,10 +106,17 @@ class ProductVariant(models.Model):
         """
         Custom validation to enforce business rules.
         """
+
         if self.product and self.product.on_sale and self.sale_price <= 0:
             raise ValidationError("Sale price must be greater than 0 when the \
                                   associated product is on sale."
                                   )
+
+        if self.product and not self.product.on_sale and self.sale_price > 0:
+            raise ValidationError("Sale price must not be set when the \
+                                  associated product is not on sale."
+                                  )
+
         if self.product and self.price <= 0:
             raise ValidationError("Price must be greater than 0.")
 

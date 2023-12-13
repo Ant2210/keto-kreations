@@ -5,6 +5,8 @@ from django.db.models.functions import Lower
 from .models import Product, Category, NutritionalInfo, ProductVariant
 from .forms import ProductForm, ProductVariantForm
 
+from django.utils.html import format_html
+
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -274,8 +276,14 @@ def edit_product(request, product_id):
                 ProductVariant.objects.filter(
                     product=product).update(sale_price=0)
 
-            messages.success(request, f'Successfully updated {product.name}!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            product_detail_url = reverse(
+                "product_detail", args=[product.id])
+            success_message = f'Successfully updated {product}!\
+                <br>You can view the details \
+                <a href="{product_detail_url}">here</a>'
+            messages.success(request, format_html(success_message))
+
+            return redirect('product_management')
         else:
             messages.error(
                 request,
@@ -291,6 +299,43 @@ def edit_product(request, product_id):
     context = {
         'form': form,
         'product': product,
+    }
+
+    return render(request, template, context)
+
+
+def edit_variant(request, variant_id):
+    """ Edit a variant in the store """
+
+    variant = get_object_or_404(ProductVariant, pk=variant_id)
+
+    if request.method == 'POST':
+        form = ProductVariantForm(
+            request.POST, request.FILES, instance=variant)
+        if form.is_valid():
+            form.save()
+
+            product_detail_url = reverse(
+                "product_detail", args=[variant.product.id])
+            success_message = f'Successfully updated {variant}!\
+                <br>You can view the details \
+                <a href="{product_detail_url}">here</a>'
+            messages.success(request, format_html(success_message))
+
+            return redirect('product_management')
+        else:
+            messages.error(
+                request,
+                'Failed to update variant. Please ensure the form is valid.'
+            )
+    else:
+        form = ProductVariantForm(instance=variant)
+        messages.info(request, f'You are editing {variant}')
+
+    template = 'products/edit_variant.html'
+    context = {
+        'form': form,
+        'variant': variant,
     }
 
     return render(request, template, context)
