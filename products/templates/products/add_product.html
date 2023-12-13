@@ -22,7 +22,13 @@
                 <p class="text-danger">Products added that have multiple variants will not go live on the site until at least 1 variants has been added.</p>
                 <form action="{% url 'add_product' %}" method="POST" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
                     <div class="d-flex justify-content-between">
                         <a href="{% url 'product_management' %}" class="btn btn-danger text-center mt-2 shopping-button">
                             <i class="fa-solid fa-ban pe-2"></i>
@@ -43,4 +49,18 @@
 {% block extra_js %}
 {{ block.super }}
     <script src="{% static 'products/js/add_edit_product.js' %}"></script>
+    <script>
+        document.getElementById('new-image').addEventListener('change', (event) => {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+            const filenameElement = document.getElementById('filename');
+
+            if (file) {
+                filenameElement.textContent = `Image will be set to: ${file.name}`;
+            } else {
+                // Handle case where no file is selected, clear the filename
+                filenameElement.textContent = 'No image selected';
+            }
+        });
+    </script>
 {% endblock %}

@@ -291,6 +291,22 @@ form.new_password_form input {
     margin-bottom: 20px !important;
 }
 
+/* Product Form */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
 /***** Media Queries *****/
 /* Navbar */
 @media screen and (min-width: 320px) and (max-width: 375px) {

@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ValidationError
+from .widgets import CustomClearableFileInput
 from .models import Product, ProductVariant, Category
 
 
@@ -52,6 +53,9 @@ class ProductForm(forms.ModelForm):
             'new': 'Is this a new product?',
             'on_sale': 'Is this product on sale?',
         }
+
+    image = forms.ImageField(
+        label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
