@@ -12,4 +12,8 @@ urlpatterns = [
          views.edit_product, name='edit_product'),
     path('edit_variant/<int:variant_id>/',
          views.edit_variant, name='edit_variant'),
+    path('delete_product/<int:product_id>/',
+         views.delete_product, name='delete_product'),
+    path('delete_variant/<int:variant_id>/',
+         views.delete_variant, name='delete_variant'),
 ]

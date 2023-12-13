@@ -138,7 +138,13 @@ def product_management(request):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    context = {}
+    products = Product.objects.all()
+    variants = ProductVariant.objects.all()
+
+    context = {
+        'products': products,
+        'variants': variants,
+    }
 
     return render(request, 'products/product_management.html', context)
 
@@ -174,8 +180,14 @@ def add_product(request):
             product.nutritional_info = nutritional_info
             product.save()
 
-            messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            product_detail_url = reverse(
+                "product_detail", args=[product.id])
+            success_message = f'Successfully added product {product}!\
+                <br>You can view the details \
+                <a href="{product_detail_url}">here</a>'
+            messages.success(request, format_html(success_message))
+
+            return redirect('product_management')
         else:
             messages.error(
                 request,
@@ -205,9 +217,14 @@ def add_variant(request):
             variant = form.save(commit=False)
             variant.save()
 
-            messages.success(request, 'Successfully added variant!')
-            return redirect(
-                reverse('product_detail', args=[variant.product.id]))
+            product_detail_url = reverse(
+                "product_detail", args=[variant.product.id])
+            success_message = f'Successfully added variant {variant}!\
+                <br>You can view the details \
+                <a href="{product_detail_url}">here</a>'
+            messages.success(request, format_html(success_message))
+
+            return redirect('product_management')
         else:
             messages.error(
                 request,
@@ -339,3 +356,21 @@ def edit_variant(request, variant_id):
     }
 
     return render(request, template, context)
+
+
+def delete_product(request, product_id):
+    """ Delete a product from the store """
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, f'{ product.name } deleted!')
+    return redirect('product_management')
+
+
+def delete_variant(request, variant_id):
+    """ Delete a variant from the store """
+
+    variant = get_object_or_404(ProductVariant, pk=variant_id)
+    variant.delete()
+    messages.success(request, f'{ variant } deleted!')
+    return redirect('product_management')

@@ -18,11 +18,11 @@
         <div class="row">
             <div class="col-12 col-md-8 mx-auto">
                 <h5 class="text-muted text-center">Add <i class="fa-solid fa-plus ps-2"></i></h5>
-                <div class="d-flex justify-content-between">
-                    <a href="{% url 'add_product' %}" class="btn btn-success text-center mt-2 shopping-button">
+                <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
+                    <a href="{% url 'add_product' %}" class="btn btn-success product-management-button text-center d-flex align-items-center justify-content-center my-3 my-md-2">
                         Add Product
                     </a>
-                    <a href="{% url 'add_variant' %}" class="btn btn-success text-center mt-2 shopping-button">
+                    <a href="{% url 'add_variant' %}" class="btn btn-primary product-management-button text-center d-flex align-items-center justify-content-center my-3 my-md-2">
                         Add Product Variant
                     </a>
                 </div>
@@ -31,26 +31,136 @@
             
             <div class="col-12 col-md-8 mx-auto">
                 <h5 class="text-muted text-center">Edit <i class="fa-solid fa-pencil ps-2"></i></h5>
-                <div class="d-flex justify-content-between">
-                    <a href="" class="btn btn-primary text-center mt-2 shopping-button">
-                        Edit Product
-                    </a>
-                    <a href="" class="btn btn-primary text-center mt-2 shopping-button">
-                        Edit Product Variant
-                    </a>
+                <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
+                    <div class="dropdown-center">
+                        <button class=" btn btn-success w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
+                            Edit Product
+                        </button>
+                        <ul class="dropdown-menu select-product-dropdown">
+                            {% for product in products %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'edit_product' product.id %}">{{ product.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="dropdown-center">
+                        <button class="btn btn-primary w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
+                            Edit Product Variant
+                        </button>
+                        <ul class="dropdown-menu select-product-dropdown">
+                            {% for product in products %}
+                                {% if product.productvariant_set.all %}
+                                    <li>
+                                        <h6 class="dropdown-header fs-5">{{ product.name }}</h6>
+                                    </li>
+                                    {% for variant in product.productvariant_set.all %}
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'edit_variant' variant.id %}">{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
                 <hr class="w-100">
             </div>
 
             <div class="col-12 col-md-8 mx-auto">
                 <h5 class="text-muted text-center">Delete <i class="fa-solid fa-trash-can ps-2"></i></h5>
-                <div class="d-flex justify-content-between">
-                    <a href="" class="btn btn-danger text-center mt-2 shopping-button">
-                        Delete Product
-                    </a>
-                    <a href="" class="btn btn-danger text-center mt-2 shopping-button">
-                        Delete Product Variant
-                    </a>
+                <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
+                    <div class="dropdown-center">
+                        <button class=" btn btn-danger w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
+                            Delete Product
+                        </button>
+                        <ul class="dropdown-menu select-product-dropdown">
+                            {% for product in products %}
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ product.id }}">{{ product.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% for product in products %}
+                        <!-- Delete Product Modal -->
+                        <div class="modal fade" id="delete-modal-{{ product.id }}" tabindex="-1" aria-labelledby="delete-modal-{{ product.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="delete-modal-{{ product.id }}-label">Warning!</h1>
+                                <hr class="w-100">
+                                <div class="modal-body dark-blue text-center">
+                                    <p>
+                                        Deleting product <strong>{{ product.name }}</strong>.
+                                    </p>
+                                    <p>
+                                        If you delete this product you will also delete any and <strong>ALL</strong> product variants associated with it.
+                                    </p>
+                                    <p>
+                                        <strong>This action cannot be undone.</strong>
+                                    </p>
+                                    <p>
+                                        Are you sure you want to proceed?
+                                    </p>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel!</button>
+                                    <a href="{% url 'delete_product' product.id %}" class="btn btn-danger shopping-button">Yes, delete it!</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    <div class="dropdown-center">
+                        <button class="btn btn-danger w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
+                            Delete Product Variant
+                        </button>
+                        <ul class="dropdown-menu select-product-dropdown">
+                            {% for product in products %}
+                                {% if product.productvariant_set.all %}
+                                    <li>
+                                        <h6 class="dropdown-header fs-5">{{ product.name }}</h6>
+                                    </li>
+                                    {% for variant in product.productvariant_set.all %}
+                                        <li>
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete-variant-modal-{{ variant.id }}">{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% for product in products %}
+                    {% for variant in product.productvariant_set.all %}
+                        <!-- Delete Product Modal -->
+                        <div class="modal fade" id="delete-variant-modal-{{ variant.id }}" tabindex="-1" aria-labelledby="delete-variant-modal-{{ variant.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="delete-variant-modal-{{ variant.id }}-label">Warning!</h1>
+                                <hr class="w-100">
+                                <div class="modal-body dark-blue text-center">
+                                    <p>
+                                        Deleting variant <strong>{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</strong>.
+                                    </p>
+                                    <p>
+                                        <strong>This action cannot be undone.</strong>
+                                    </p>
+                                    <p>
+                                        Are you sure you want to proceed?
+                                    </p>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel!</button>
+                                    <a href="{% url 'delete_variant' variant.id %}" class="btn btn-danger shopping-button">Yes, delete it!</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% endfor %}
                 </div>
                 <hr class="w-100">
             </div>
@@ -58,7 +168,7 @@
             <div class="col-12 col-md-8 mx-auto">
                 <h5 class="text-muted text-center">Stock Management <i class="fa-solid fa-calculator ps-2"></i></h5>
                 <div class="text-center">
-                    <a href="" class="btn btn-secondary text-center mt-2 shopping-button">
+                    <a href="" class="btn btn-secondary product-management-button text-center d-flex align-items-center justify-content-center mx-auto my-3 my-md-2">
                         Stock Management
                     </a>
                 </div>

@@ -6,3 +6,34 @@ textarea {
     resize: none;
     height: 100px;
 }
+
+.select-product-dropdown {
+    height: 200px;
+    min-width: 100%;
+    max-width: 90vw;
+    overflow-y: scroll;
+}
+
+.dropdown-center {
+    width: 48%;
+}
+
+.product-management-button {
+    width: 48%;
+}
+
+@media screen and (max-width: 425px) {
+    .product-management-button,
+    .dropdown-center {
+        width: 100%;
+    }
+    
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .product-management-button,
+    .dropdown-center {
+        width: 400px;
+    }
+    
+}
