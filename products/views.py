@@ -375,3 +375,37 @@ def delete_variant(request, variant_id):
     variant.delete()
     messages.success(request, f'{ variant } deleted!')
     return redirect('product_management')
+
+
+def stock_management(request):
+    """ A view to show stock management page """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        for key, value in request.POST.items():
+            if key.startswith('variant_stock_count_'):
+                variant_id = key.split('_')[-1]
+                variant = get_object_or_404(ProductVariant, pk=variant_id)
+                variant.stock_count = value
+                variant.save()
+            elif key.startswith('product_stock_count_'):
+                product_id = key.split('_')[-1]
+                product = get_object_or_404(Product, pk=product_id)
+                product.stock_count = value
+                product.save()
+
+        messages.success(request, 'Stock count updated!')
+        return redirect('product_management')
+
+    products = Product.objects.all()
+    variants = ProductVariant.objects.all()
+
+    context = {
+        'products': products,
+        'variants': variants,
+    }
+
+    return render(request, 'products/stock_management.html', context)

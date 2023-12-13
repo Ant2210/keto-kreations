@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container-fluid clear-nav mb-3">
+        {% include 'includes/offer-banner.html' %}
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="dark-blue">Product Management</h2>
+                <h5 class="text-muted">Stock Management</h5>
+                <hr class="w-50 mx-auto mb-3">                    
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-12 col-md-8 mx-auto">
+                <label for="product-search">Search Products:</label>
+                <div class="input-group w-100 mb-3">
+                    <input type="text" id="product-search" class="form-control" placeholder="Start typing...">
+                    <span class="input-group-text px-2">
+                        <span class="icon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </span>
+                </div>
+                <div class="mb-3 text-end">
+                    <button type="button" class="btn btn-primary" id="expand-all-btn"><i class="fa-solid fa-square-plus pe-2"></i>Expand All</button>
+                    <button type="button" class="btn btn-primary ms-2" id="collapse-all-btn"><i class="fa-solid fa-square-minus pe-2"></i>Collapse All</button>
+                </div>
+                <form method="POST" action="{% url 'stock_management' %}" class="form">
+                    {% csrf_token %}
+                        {% for product in products|dictsort:"name" %}
+                        <div id="product-wrapper-{{ product.id }}">
+                            <a class="fs-5 collapse-heading d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                            href="#collapse-product-{{ product.id }}">
+                                {{ product.name }} <i class="fa-solid fa-chevron-down me-2"></i>
+                            </a>
+                            <div class="collapse my-3" id="collapse-product-{{ product.id }}">
+                                {% if product.variants.all %}
+                                    {% for variant in product.variants.all %}
+                                        <table class="table">
+                                            <tr>
+                                                <td class="w-50">{{ variant.product.name }} - {{ variant.size }}({{ variant.size_unit }})</td>
+                                                <td class="w-50">
+                                                    <input type="number" class="form-control" name="variant_stock_count_{{ variant.id }}" value="{{ variant.stock_count }}" min="0">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    {% endfor %}
+                                {% else %}
+                                    <table class="table">
+                                        <tr>
+                                            <td class="w-50">{{ product.name }} - {{ product.size }}({{ product.size_unit }})</td>
+                                            <td class="w-50">
+                                                <input type="number" class="form-control" name="product_stock_count_{{ product.id }}" value="{{ product.stock_count }}">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                {% endif %}
+                                </div>
+                        </div>
+                        {% endfor %}
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'product_management' %}" class="btn btn-danger text-center mt-2 shopping-button">
+                            <i class="fa-solid fa-ban pe-2"></i>
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-success text-center mt-2 shopping-button">
+                            <i class="fa-solid fa-check pe-2"></i>
+                            Submit Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const collapseHeadings = document.querySelectorAll('.collapse-heading');
+            const expandAllButton = document.getElementById('expand-all-btn');
+            const collapseAllButton = document.getElementById('collapse-all-btn');
+
+            // Add event listener to expand all button
+            expandAllButton.addEventListener('click', () => {
+                collapseHeadings.forEach(heading => {
+                    const collapseTargetId = heading.getAttribute('href').substring(1);
+                    const collapseTarget = document.getElementById(collapseTargetId);
+                    if (collapseTarget) {
+                        collapseTarget.classList.add('show');
+                    }
+                });
+            });
+
+            // Add event listener to collapse all button
+            collapseAllButton.addEventListener('click', () => {
+                collapseHeadings.forEach(heading => {
+                    const collapseTargetId = heading.getAttribute('href').substring(1);
+                    const collapseTarget = document.getElementById(collapseTargetId);
+                    if (collapseTarget) {
+                        collapseTarget.classList.remove('show');
+                    }
+                });
+            });
+
+            const productSearchInput = document.getElementById('product-search');
+            // Add event listener to search input field
+            productSearchInput.addEventListener('input', () => {
+                const searchTerm = productSearchInput.value.toUpperCase();
+
+                // Loop through all the collapse headings and check if the product name contains the search term
+                collapseHeadings.forEach(heading => {
+                    const productName = heading.textContent.toUpperCase();
+                    const shouldShow = productName.includes(searchTerm);
+
+                    // Add or remove the 'd-none' class based on the search result
+                    if (shouldShow) {
+                        heading.parentElement.classList.remove('d-none');                    
+                    } else {
+                        heading.parentElement.classList.add('d-none');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
