@@ -10,15 +10,19 @@ class ProductForm(forms.ModelForm):
     """
 
     # Nutritional info fields
-    energy_kcal = forms.IntegerField(label='Energy (kcal)', min_value=0)
-    energy_kj = forms.IntegerField(label='Energy (kj)', min_value=0)
-    fat = forms.IntegerField(label='Fat', min_value=0)
-    saturated_fat = forms.IntegerField(label='Saturated Fat', min_value=0)
-    carbs = forms.IntegerField(label='Carbs', min_value=0)
-    sugar = forms.IntegerField(label='Sugar', min_value=0)
-    protein = forms.IntegerField(label='Protein', min_value=0)
-    fibre = forms.IntegerField(label='Fibre', min_value=0)
-    salt = forms.IntegerField(label='Salt', min_value=0)
+    energy_kcal = forms.DecimalField(
+        label='Energy (kcal)', min_value=0, decimal_places=2)
+    energy_kj = forms.DecimalField(
+        label='Energy (kj)', min_value=0, decimal_places=2)
+    fat = forms.DecimalField(label='Fat', min_value=0, decimal_places=2)
+    saturated_fat = forms.DecimalField(
+        label='Saturated Fat', min_value=0, decimal_places=2)
+    carbs = forms.DecimalField(label='Carbs', min_value=0, decimal_places=2)
+    sugar = forms.DecimalField(label='Sugar', min_value=0, decimal_places=2)
+    protein = forms.DecimalField(
+        label='Protein', min_value=0, decimal_places=2)
+    fibre = forms.DecimalField(label='Fibre', min_value=0, decimal_places=2)
+    salt = forms.DecimalField(label='Salt', min_value=0, decimal_places=2)
 
     class Meta:
         model = Product

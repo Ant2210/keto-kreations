@@ -32,7 +32,7 @@ class Product(models.Model):
     ingredients = models.TextField()
     allergens = models.TextField()
     price = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True, default=0)
+        max_digits=6, decimal_places=2, null=True, blank=True)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
@@ -40,11 +40,11 @@ class Product(models.Model):
     size = models.CharField(max_length=254, null=True, blank=True)
     size_unit = models.CharField(max_length=20, null=True, blank=True)
     sale_price = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True, default=0)
+        max_digits=6, decimal_places=2, null=True, blank=True)
     portion_size = models.IntegerField(default=1, null=False, blank=False)
     portion_unit = models.CharField(
         default='g', max_length=20, null=False, blank=False)
-    stock_count = models.IntegerField(null=True, blank=True, default=0)
+    stock_count = models.IntegerField(null=True, blank=True)
     nutritional_info = models.ForeignKey(
         'NutritionalInfo', null=True, blank=True, on_delete=models.SET_NULL,
         related_name='nutritional_infos')
@@ -91,7 +91,9 @@ class ProductVariant(models.Model):
     """
 
     product = models.ForeignKey(
-        Product, null=False, blank=False, on_delete=models.CASCADE)
+        Product, null=False, blank=False, on_delete=models.CASCADE,
+        related_name='variants'
+        )
     sku = models.CharField(max_length=255, unique=True)
     size = models.IntegerField(default=0, null=False, blank=False)
     size_unit = models.CharField(
@@ -113,7 +115,7 @@ class ProductVariant(models.Model):
                                   )
 
         if self.product and not self.product.on_sale and self.sale_price > 0:
-            raise ValidationError("Sale price must not be set when the \
+            raise ValidationError("Sale price must be set to 0 when the \
                                   associated product is not on sale."
                                   )
 
@@ -140,15 +142,24 @@ class NutritionalInfo(models.Model):
     product = models.ForeignKey(
         'Product', null=True, blank=True, on_delete=models.CASCADE,
         related_name='nutritional_infos')
-    energy_kcal = models.IntegerField(null=True, blank=True)
-    energy_kj = models.IntegerField(null=True, blank=True)
-    fat = models.IntegerField(null=True, blank=True)
-    saturated_fat = models.IntegerField(null=True, blank=True)
-    carbs = models.IntegerField(null=True, blank=True)
-    sugar = models.IntegerField(null=True, blank=True)
-    protein = models.IntegerField(null=True, blank=True)
-    fibre = models.IntegerField(null=True, blank=True)
-    salt = models.IntegerField(null=True, blank=True)
+    energy_kcal = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    energy_kj = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    fat = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    saturated_fat = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    carbs = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    sugar = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    protein = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    fibre = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    salt = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return self.product.name

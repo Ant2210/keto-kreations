@@ -38,8 +38,8 @@
                             <a class="text-decoration-none" href="{% url 'products' %}?sale">
                                 <span class="badge bg-danger">Sale</span>
                             </a>
-                        {% elif product.productvariant_set.all %}
-                            {% with lowest_sale_price=product.productvariant_set.all|dictsort:'sale_price'|first %}
+                        {% elif product.variants.all %}
+                            {% with lowest_sale_price=product.variants.all|dictsort:'sale_price'|first %}
                                 {% if lowest_sale_price.sale_price > 0 %}
                                     <a class="text-decoration-none" href="{% url 'products' %}?sale">
                                         <span class="badge bg-danger">Sale</span>
@@ -49,8 +49,8 @@
                         {% endif %}
                     <!-- ***** PRICING ***** -->
                     </h2>
-                    {% if product.productvariant_set.all %}
-                        {% with lowest_price=product.productvariant_set.all|dictsort:'price'|first %}
+                    {% if product.variants.all %}
+                        {% with lowest_price=product.variants.all|dictsort:'price'|first %}
                             {% if lowest_price.sale_price > 0 %}
                                 <span class="font-weight-bold">
                                     <del id="product-price" class="text-muted">£{{ lowest_price.price }}</del>
@@ -96,7 +96,7 @@
                         {% csrf_token %}
                         <!-- ***** SELECT VARIANT ***** -->
                         <div class="form-row">
-                            {% if product.productvariant_set.exists %}
+                            {% if product.variants.exists %}
                                 <div class="col-12">
                                     <p><strong>Size:</strong></p>
                                     <select class="form-select w-100" name="product-size" id='product-size'>
@@ -105,7 +105,7 @@
                                         {% else %}
                                             <option value="" disabled selected>Select size</option>
                                         {% endif %}
-                                        {% for variant in product.productvariant_set.all %}
+                                        {% for variant in product.variants.all %}
                                             {% if variant.stock_count < 1 %}
                                                 <option value="{{ variant.size }}" data-variant-id="{{ variant.id }}" data-variant-price="{{ variant.price }}" data-variant-sale-price="{{ variant.sale_price}}" disabled>
                                                     {{ variant.size }}({{ variant.size_unit }}) - Out of stock
@@ -146,8 +146,8 @@
                                 </a>
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            {% if product.productvariant_set.exists %}
-                                <input type="hidden" name="selected_variant_id" id="selected_variant_id" value="{{ product.productvariant_set.first.id }}">
+                            {% if product.variants.exists %}
+                                <input type="hidden" name="selected_variant_id" id="selected_variant_id" value="{{ product.variants.first.id }}">
                             {% endif %}
                         </div>
                     </form>

@@ -12,7 +12,7 @@ def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     # Annotate products with the number of variants
-    products = Product.objects.annotate(num_variants=Count('productvariant'))
+    products = Product.objects.annotate(num_variants=Count('variants'))
 
     # Exclude products where has_variants is true but the variant count is
     # less than 1
@@ -21,7 +21,7 @@ def all_products(request):
     # Exclude products where on_sale is true and at least one variant has a
     # sale price less than or equal to 0
     products = products.exclude(
-        Q(on_sale=True) & Q(productvariant__sale_price__lte=0)
+        Q(on_sale=True) & Q(variants__sale_price__lte=0)
     )
 
     query = None
@@ -46,12 +46,12 @@ def all_products(request):
                     lowest_price=Min(
                         Case(
                             When(
-                                productvariant__sale_price__gt=0,
-                                then='productvariant__sale_price'
+                                variants__sale_price__gt=0,
+                                then='variants__sale_price'
                             ),
                             When(
-                                productvariant__price__gt=0,
-                                then='productvariant__price'
+                                variants__price__gt=0,
+                                then='variants__price'
                             ),
                             When(
                                 sale_price__gt=0,
@@ -79,14 +79,14 @@ def all_products(request):
         # https://docs.djangoproject.com/en/4.2/ref/models/querysets/#django.db.models.query.QuerySet.distinct
         if 'sale' in request.GET:
             products = products.filter(Q(sale_price__gt=0) | Q(
-                productvariant__sale_price__gt=0)).distinct()
+                variants__sale_price__gt=0)).distinct()
 
         if 'new' in request.GET:
             products = products.filter(new=True)
 
         if 'all_specials' in request.GET:
             products = products.filter(Q(sale_price__gt=0) | Q(
-                productvariant__sale_price__gt=0) | Q(
+                variants__sale_price__gt=0) | Q(
                     new=True)).distinct()
 
         if 'q' in request.GET:
@@ -119,7 +119,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     # Check if product stock count is less not null and less than 1
     product_out_of_stock = product.stock_count and product.stock_count < 1
-    variants_out_of_stock = product.productvariant_set.filter(
+    variants_out_of_stock = product.variants.filter(
         stock_count__gt=0).count() == 0
 
     context = {

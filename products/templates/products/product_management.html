@@ -51,11 +51,11 @@
                         </button>
                         <ul class="dropdown-menu select-product-dropdown">
                             {% for product in products %}
-                                {% if product.productvariant_set.all %}
+                                {% if product.variants.all %}
                                     <li>
                                         <h6 class="dropdown-header fs-5">{{ product.name }}</h6>
                                     </li>
-                                    {% for variant in product.productvariant_set.all %}
+                                    {% for variant in product.variants.all %}
                                         <li>
                                             <a class="dropdown-item" href="{% url 'edit_variant' variant.id %}">{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</a>
                                         </li>
@@ -120,11 +120,11 @@
                         </button>
                         <ul class="dropdown-menu select-product-dropdown">
                             {% for product in products %}
-                                {% if product.productvariant_set.all %}
+                                {% if product.variants.all %}
                                     <li>
                                         <h6 class="dropdown-header fs-5">{{ product.name }}</h6>
                                     </li>
-                                    {% for variant in product.productvariant_set.all %}
+                                    {% for variant in product.variants.all %}
                                         <li>
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete-variant-modal-{{ variant.id }}">{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</a>
                                         </li>
@@ -134,7 +134,7 @@
                         </ul>
                     </div>
                     {% for product in products %}
-                    {% for variant in product.productvariant_set.all %}
+                    {% for variant in product.variants.all %}
                         <!-- Delete Product Modal -->
                         <div class="modal fade" id="delete-variant-modal-{{ variant.id }}" tabindex="-1" aria-labelledby="delete-variant-modal-{{ variant.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
                             <div class="modal-dialog">

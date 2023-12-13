@@ -94,8 +94,8 @@
                                     <a class="text-decoration-none" href="{% url 'products' %}?sale">
                                         <span class="badge bg-danger">Sale</span>
                                     </a>
-                                {% elif product.productvariant_set.all %}
-                                    {% with lowest_sale_price=product.productvariant_set.all|dictsort:'sale_price'|first %}
+                                {% elif product.variants.all %}
+                                    {% with lowest_sale_price=product.variants.all|dictsort:'sale_price'|first %}
                                         {% if lowest_sale_price.sale_price > 0 %}
                                             <a class="text-decoration-none" href="{% url 'products' %}?sale">
                                                 <span class="badge bg-danger">Sale</span>
@@ -108,7 +108,7 @@
                                         <span class="badge bg-warning text-dark">Out of stock</span>
                                     </a>
                                 {% else %}
-                                    {% with sorted_variants=product.productvariant_set.all|dictsortreversed:'stock_count' %}
+                                    {% with sorted_variants=product.variants.all|dictsortreversed:'stock_count' %}
                                         {% if sorted_variants.0.stock_count == 0 %}
                                             <a class="text-decoration-none" href="{% url 'products' %}?out_of_stock">
                                                 <span class="badge bg-warning text-dark">Out of stock</span>
@@ -121,9 +121,9 @@
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
-                                    {% if product.productvariant_set.all %}
+                                    {% if product.variants.all %}
                                         <!-- Info on 'dictsort' found here: https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#std-templatefilter-dictsort -->
-                                        {% with lowest_price=product.productvariant_set.all|dictsort:'price'|first %}
+                                        {% with lowest_price=product.variants.all|dictsort:'price'|first %}
                                             {% if lowest_price.sale_price > 0 %}
                                                 <span class="font-weight-bold">From
                                                     <del class="text-muted">£{{ lowest_price.price }}</del>
