@@ -42,6 +42,35 @@ def checkout(request):
     if request.method == 'POST':
         bag = request.session.get('bag', {})
 
+        # Perform a stock check before creating the order
+        for item_id, quantity in bag.items():
+            try:
+                if item_id.startswith('variant_'):
+                    variant_id = int(item_id.split('_')[1])
+                    variant = get_object_or_404(ProductVariant, pk=variant_id)
+                    if variant.stock_count < quantity:
+                        messages.error(
+                            request, f"Sorry, there is not enough stock for \
+                            {variant.product.title}. Please update the \
+                            quantity in your bag."
+                        )
+                        return redirect(reverse('view_bag'))
+                else:
+                    product = get_object_or_404(Product, pk=item_id)
+                    if product.stock_count < quantity:
+                        messages.error(
+                            request, f"Sorry, there is not enough stock for \
+                            {product.title}. Please update the quantity in \
+                            your bag."
+                        )
+                        return redirect(reverse('view_bag'))
+            except (Product.DoesNotExist, ProductVariant.DoesNotExist):
+                messages.error(
+                    request, "One of the products in your bag wasn't found in \
+                    our database. Please call us for assistance!"
+                )
+                return redirect(reverse('view_bag'))
+
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
