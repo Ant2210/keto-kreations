@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q, DecimalField, Min, Case, When, Count
 from django.db.models.functions import Lower
 from .models import Product, Category, NutritionalInfo, ProductVariant
@@ -131,6 +132,7 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+@login_required
 def product_management(request):
     """ A view to show product management page """
 
@@ -150,6 +152,7 @@ def product_management(request):
     return render(request, 'products/product_management.html', context)
 
 
+@login_required
 def add_product(request):
     """ Add a product to the store """
 
@@ -205,6 +208,7 @@ def add_product(request):
     return render(request, template, context)
 
 
+@login_required
 def add_variant(request):
     """ Add a variant to a product """
 
@@ -242,8 +246,13 @@ def add_variant(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_product(request, product_id):
     """ Edit a product in the store """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
 
@@ -322,8 +331,13 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def edit_variant(request, variant_id):
     """ Edit a variant in the store """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     variant = get_object_or_404(ProductVariant, pk=variant_id)
 
@@ -359,8 +373,13 @@ def edit_variant(request, variant_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_product(request, product_id):
     """ Delete a product from the store """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
@@ -368,8 +387,13 @@ def delete_product(request, product_id):
     return redirect('product_management')
 
 
+@login_required
 def delete_variant(request, variant_id):
     """ Delete a variant from the store """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     variant = get_object_or_404(ProductVariant, pk=variant_id)
     variant.delete()
@@ -377,8 +401,13 @@ def delete_variant(request, variant_id):
     return redirect('product_management')
 
 
+@login_required
 def stock_management(request):
     """ A view to show stock management page """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
