@@ -36,7 +36,17 @@
                         <button class=" btn btn-success w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
                             Edit Product
                         </button>
-                        <ul class="dropdown-menu select-product-dropdown">
+                        <ul id="edit-product-list" class="dropdown-menu select-product-dropdown">
+                            <!-- Filter code found here: https://shorturl.at/empuU -->
+                            <div class="input-group p-2">
+                                <input type="text" class="form-control" placeholder="Start typing..." aria-label="Indices" autocomplete="off" 
+                                    aria-describedby="basic-addon1" id="edit-product-filter" onkeyup="filter('edit-product-list', 'edit-product-filter')">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </span>
+                            </div>
                             {% for product in products %}
                                 <li>
                                     <a class="dropdown-item" href="{% url 'edit_product' product.id %}">{{ product.name }}</a>
@@ -49,12 +59,19 @@
                         <button class="btn btn-primary w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
                             Edit Product Variant
                         </button>
-                        <ul class="dropdown-menu select-product-dropdown">
+                        <ul id="edit-variant-list" class="dropdown-menu select-product-dropdown">
+                            <!-- Filter code found here: https://shorturl.at/empuU -->
+                            <div class="input-group p-2">
+                                <input type="text" class="form-control" placeholder="Start typing..." aria-label="Indices" autocomplete="off" 
+                                    aria-describedby="basic-addon1" id="edit-variant-filter" onkeyup="filter('edit-variant-list', 'edit-variant-filter')">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </span>
+                            </div>
                             {% for product in products %}
                                 {% if product.variants.all %}
-                                    <li>
-                                        <h6 class="dropdown-header fs-5">{{ product.name }}</h6>
-                                    </li>
                                     {% for variant in product.variants.all %}
                                         <li>
                                             <a class="dropdown-item" href="{% url 'edit_variant' variant.id %}">{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</a>
@@ -75,7 +92,17 @@
                         <button class=" btn btn-danger w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
                             Delete Product
                         </button>
-                        <ul class="dropdown-menu select-product-dropdown">
+                        <ul id="delete-product-list" class="dropdown-menu select-product-dropdown">
+                            <!-- Filter code found here: https://shorturl.at/empuU -->
+                            <div class="input-group p-2">
+                                <input type="text" class="form-control" placeholder="Start typing..." aria-label="Indices" autocomplete="off" 
+                                    aria-describedby="basic-addon1" id="delete-product-filter" onkeyup="filter('delete-product-list', 'delete-product-filter')">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </span>
+                            </div>
                             {% for product in products %}
                                 <li>
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ product.id }}">{{ product.name }}</a>
@@ -118,12 +145,19 @@
                         <button class="btn btn-danger w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
                             Delete Product Variant
                         </button>
-                        <ul class="dropdown-menu select-product-dropdown">
+                        <ul id="delete-variant-list" class="dropdown-menu select-product-dropdown">
+                            <!-- Filter code found here: https://shorturl.at/empuU -->
+                            <div class="input-group p-2">
+                                <input type="text" class="form-control" placeholder="Start typing..." aria-label="Indices" autocomplete="off" 
+                                    aria-describedby="basic-addon1" id="delete-variant-filter" onkeyup="filter('delete-variant-list', 'delete-variant-filter')">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </span>
+                            </div>
                             {% for product in products %}
                                 {% if product.variants.all %}
-                                    <li>
-                                        <h6 class="dropdown-header fs-5">{{ product.name }}</h6>
-                                    </li>
                                     {% for variant in product.variants.all %}
                                         <li>
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete-variant-modal-{{ variant.id }}">{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</a>
@@ -176,4 +210,26 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+    <script>
+        // Filter code found here: https://shorturl.at/empuU
+        function filter(listId, filterId) {
+            input = document.getElementById(filterId).value.toUpperCase();
+
+            options = document.getElementById(listId);
+            elements = options.getElementsByTagName("a");
+            for (e of elements) {
+                txtValue = e.innerText;
+                if (!txtValue.toUpperCase().includes(input)) {
+                    e.style.display = "none";
+                }
+                else {
+                    e.style.display = "";
+                }
+            }
+        }
+    </script>
 {% endblock %}
