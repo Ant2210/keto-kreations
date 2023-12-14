@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEVELOPMENT', False)
 
-ALLOWED_HOSTS = ['keto-kreations-25ff0a2cbc9e.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['keto-kreations-25ff0a2cbc9e.herokuapp.com', '127.0.0.1']
 
 SESSION_COOKIE_AGE = 172800  # 48 hours in seconds
 

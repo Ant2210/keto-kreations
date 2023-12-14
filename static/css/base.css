@@ -224,6 +224,11 @@ to {
     margin-top: 20vh;
 }
 
+.hero-header {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 4px 4px rgba(255, 255, 255, 0.3);
+}
+
 /* Product Page */
 .card-img-top {
     object-fit: cover;
