@@ -87,9 +87,9 @@
                         </div>
                         <div class="card-body pb-0">
                             <p class="mb-0">
-                                {{ product.name }}
+                                <a class="text-decoration-none" href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                                 {% if product.new == True %}
-                                    <a class="text-decoration-none mx-1" href="{% url 'products' %}?new">
+                                    <a class="text-decoration-none" href="{% url 'products' %}?new">
                                         <span class="badge bg-primary">New</span>
                                     </a>
                                 {% endif %}

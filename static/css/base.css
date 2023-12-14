@@ -326,6 +326,11 @@ form.new_password_form input {
     .scroll-container {
         font-size: 0.95rem;
     }
+
+    .shopping-button {
+        width: 100%;
+        margin-top: 15px;
+    }
     
 }
 
