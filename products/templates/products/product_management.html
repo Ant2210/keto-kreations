@@ -47,7 +47,7 @@
                                     </span>
                                 </span>
                             </div>
-                            {% for product in products %}
+                            {% for product in products|dictsort:"name" %}
                                 <li>
                                     <a class="dropdown-item" href="{% url 'edit_product' product.id %}">{{ product.name }}</a>
                                 </li>
@@ -70,7 +70,7 @@
                                     </span>
                                 </span>
                             </div>
-                            {% for product in products %}
+                            {% for product in products|dictsort:"name" %}
                                 {% if product.variants.all %}
                                     {% for variant in product.variants.all %}
                                         <li>
@@ -103,7 +103,7 @@
                                     </span>
                                 </span>
                             </div>
-                            {% for product in products %}
+                            {% for product in products|dictsort:"name" %}
                                 <li>
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ product.id }}">{{ product.name }}</a>
                                 </li>
@@ -156,7 +156,7 @@
                                     </span>
                                 </span>
                             </div>
-                            {% for product in products %}
+                            {% for product in products|dictsort:"name" %}
                                 {% if product.variants.all %}
                                     {% for variant in product.variants.all %}
                                         <li>
