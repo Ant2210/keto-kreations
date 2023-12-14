@@ -112,6 +112,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+# Email settings
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'keto-kreations@example.com'
@@ -226,9 +227,6 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
-
-DEFAULT_FROM_EMAIL = 'ketokreations@example.com'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
