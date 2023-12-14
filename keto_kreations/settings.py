@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-jgr_f=7z22c+0h%*97fy)wa45qz-uc_sqmg-u1@!)ks_kc2lwl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['keto-kreations-25ff0a2cbc9e.herokuapp.com', 'localhost']
 
 SESSION_COOKIE_AGE = 172800  # 48 hours in seconds
 
