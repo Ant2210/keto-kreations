@@ -183,7 +183,7 @@
             {% endfor %}
         </div>
     </div>
-    <div class="btt-button text-center">
+    <div class="btt-button text-center d-none">
         <a id="btt-link" class="btt-link d-flex h-100">
             <i class="fa-solid fa-chevron-up btt-icon my-auto mx-auto"></i>
         </a>	
@@ -193,6 +193,17 @@
 {% block extra_js %}
 {{ block.super }}
     <script>
+        // Back to top button
+        const bttDiv = document.querySelector('.btt-button');
+
+        function toggleBackToTopButton() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                bttDiv.classList.remove('d-none');
+            } else {
+                bttDiv.classList.add('d-none');
+            }
+        }
+
         document.querySelector('#btt-link').addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -200,6 +211,8 @@
                 behavior: 'smooth'
             });
         });
+
+        window.addEventListener('scroll', toggleBackToTopButton);
     </script>
     <script>
         document.querySelector('#sort-selector').addEventListener('change', () => {

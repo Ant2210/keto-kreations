@@ -1,0 +1,15 @@
+{% if item.type == 'product' %}
+    {% if item.product.sale_price %}
+        <p class="my-0"><strong>Was: </strong><span class="text-decoration-line-through">£{{ item.product.price }}</span></p>
+        <p class="my-0"><strong>Now: </strong><span class="text-danger">£{{ item.product.sale_price }}</span></p>
+    {% else %}
+        <p class="my-0">£{{ item.product.price }}</p>
+    {% endif %}
+{% elif item.type == 'variant' %}
+    {% if item.variant.sale_price %}
+        <p class="my-0"><strong>Was: </strong><span class="text-decoration-line-through">£{{ item.variant.price }}</span></p>
+        <p class="my-0"><strong>Now: </strong><span class="text-danger">£{{ item.variant.sale_price }}</span></p>
+    {% else %}
+        <p class="my-0">£{{ item.variant.price }}</p>
+    {% endif %}
+{% endif %}

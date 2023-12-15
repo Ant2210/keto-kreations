@@ -1,0 +1,21 @@
+{% if item.type == 'product' %}
+    {% if item.product.image %}
+        <a href="{% url 'product_detail' item.product.id %}">
+            <img class="card-img-top product-detail-img" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+        </a>
+    {% else %}
+        <a href="{% url 'product_detail' item.product.id %}">
+            <img class="card-img-top product-detail-img" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}">
+        </a>
+    {% endif %}
+{% elif item.type == 'variant' %}
+    {% if item.variant.product.image %}
+        <a href="{% url 'product_detail' item.variant.product.id %}">
+            <img class="card-img-top product-detail-img" src="{{ item.variant.product.image.url }}" alt="{{ item.variant.product.name }}">
+        </a>
+    {% else %}
+        <a href="{% url 'product_detail' item.variant.product.id %}">
+            <img class="card-img-top product-detail-img" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.variant.product.name }}">
+        </a>
+    {% endif %}
+{% endif %}

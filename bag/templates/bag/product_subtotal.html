@@ -1,0 +1,15 @@
+{% load bag_tools %}
+
+{% if item.type == 'product' %}
+    {% if item.product.sale_price %}
+    <p class="my-0">£{{ item.product.sale_price | calc_subtotal:item.quantity }}</p>
+    {% else %}
+    <p class="my-0">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+    {% endif %}
+{% elif item.type == 'variant' %}
+    {% if item.variant.sale_price %}
+    <p class="my-0">£{{ item.variant.sale_price | calc_subtotal:item.quantity }}</p>
+    {% else %}
+    <p class="my-0">£{{ item.variant.price | calc_subtotal:item.quantity }}</p>
+    {% endif %}
+{% endif %}
