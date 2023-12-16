@@ -121,27 +121,31 @@
 {% block extra_js %}
 {{ block.super }}
     <script>
-        // Disable +/- buttons outside 0-99 range
-        function handleEnableDisable(itemId) {
-            const currentValue = parseInt(document.getElementById(`id_qty_${itemId}`).value);
-            const minusDisabled = currentValue < 1;
-            const plusDisabled = currentValue > 98;
-            document.getElementById(`decrement-qty_${itemId}`).disabled = minusDisabled;
-            document.getElementById(`increment-qty_${itemId}`).disabled = plusDisabled;
+        function handleEnableDisable() {
+            // Find all decrement buttons
+            document.querySelectorAll('.decrement-qty').forEach((button) => {
+                const closestInput = button.closest('.input-group').querySelector('.qty_input');
+                const currentValue = parseInt(closestInput.value);
+
+                // Disable the button if the closest input value is less than 1
+                button.disabled = currentValue < 1;
+            });
+            // Find all increment buttons
+            document.querySelectorAll('.increment-qty').forEach((button) => {
+                const closestInput = button.closest('.input-group').querySelector('.qty_input');
+                const currentValue = parseInt(closestInput.value);
+
+                // Disable the button if the closest input value is greater than 98
+                button.disabled = currentValue > 98;
+            });
         }
 
-        // Ensure proper enabling/disabling of all inputs on page load
-        document.querySelectorAll('.qty_input').forEach((input) => {
-            const itemId = input.dataset.item_id;
-            handleEnableDisable(itemId);
-        });
+        // Call handleEnableDisable on page load
+        handleEnableDisable();
 
-        // Check enable/disable every time the input is changed
+        // Add event listeners for input changes
         document.querySelectorAll('.qty_input').forEach((input) => {
-            input.addEventListener('change', () => {
-                const itemId = input.dataset.item_id;
-                handleEnableDisable(itemId);
-            });
+            input.addEventListener('change', handleEnableDisable);
         });
 
         // Increment quantity
@@ -153,7 +157,7 @@
                 const currentValue = parseInt(closestInput.value || 0);
                 closestInput.value = currentValue + 1;
                 const itemId = button.dataset.item_id;
-                handleEnableDisable(itemId);
+                handleEnableDisable();
             });
         });
 
@@ -166,7 +170,7 @@
                 const currentValue = parseInt(closestInput.value) || 2;
                 closestInput.value = currentValue - 1;
                 const itemId = button.dataset.item_id;
-                handleEnableDisable(itemId);
+                handleEnableDisable();
             });
         });
     </script>
@@ -174,8 +178,8 @@
         // Update quantity on click
         document.querySelectorAll('.update-link').forEach(link => {
             link.addEventListener('click', (e) => {
-                const itemId = link.id.split('update_')[1];
-                document.querySelector(`#submit-${itemId}`).click();
+                form = link.parentElement.parentElement
+                form.submit();
                 
             });
         });
@@ -186,7 +190,7 @@
         document.querySelectorAll('.remove-item').forEach(item => {
             item.addEventListener('click', () => {
                 const csrfToken = "{{ csrf_token }}";
-                const itemId = item.id.split('remove_')[1];
+                const itemId = item.dataset.item_id.split('remove_')[1];
                 const url = `/bag/remove_from_bag/${itemId}/`;
                 const data = { 'csrfmiddlewaretoken': csrfToken };
 

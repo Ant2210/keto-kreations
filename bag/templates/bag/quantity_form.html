@@ -3,46 +3,38 @@
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
-                <button class="decrement-qty input-group-text" 
-                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                <button class="decrement-qty input-group-text">
                     <i class="fa-solid fa-minus"></i>
                 </button>
-                    <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99"
-                    data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
-                <button class="increment-qty input-group-text"
-                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                <input id="" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99">
+                <button class="increment-qty input-group-text">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
         </div>
-        <button id="submit-{{ item.item_id }}" type="submit" class="d-none"></button>
+        <div class="d-flex justify-content-between">
+            <a class="update-link dark-blue mt-1 text-decoration-none"><small>Update</small></a>
+            <a class="remove-item text-danger mt-1 text-decoration-none" data-item_id="remove_{{ item.item_id }}"><small>Remove</small></a>
+        </div>
     </form>
-    <div class="d-flex justify-content-between">
-        <a class="update-link dark-blue mt-1 text-decoration-none" id="update_{{ item.item_id }}"><small>Update</small></a>
-        <a class="remove-item text-danger mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
-    </div>
 {% elif item.type == 'variant' %}
     <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
-                <button class="decrement-qty input-group-text" 
-                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                <button class="decrement-qty input-group-text">
                     <i class="fa-solid fa-minus"></i>
                 </button>
-                    <input id="id_qty_{{ item.item_id }}" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99"
-                    data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
-                <button class="increment-qty input-group-text"
-                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                <input id="" class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99">
+                <button class="increment-qty input-group-text">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
         </div>
         <input type="hidden" name="variant" value="variant">
-        <button id="submit-{{ item.item_id }}" type="submit" class="d-none"></button>
+        <div class="d-flex justify-content-between">
+            <a class="update-link dark-blue mt-1 text-decoration-none"><small>Update</small></a>
+            <a class="remove-item text-danger mt-1 text-decoration-none" data-item_id="remove_{{ item.item_id }}"><small>Remove</small></a>
+        </div>
     </form>
-    <div class="d-flex justify-content-between">
-        <a class="update-link dark-blue mt-1 text-decoration-none" id="update_{{ item.item_id }}"><small>Update</small></a>
-        <a class="remove-item text-danger mt-1 text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a>
-    </div>
 {% endif %}
