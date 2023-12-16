@@ -261,7 +261,7 @@ to {
     width: 48%;
 }
 
-.remove-item:hover {
+.remove-link:hover {
     color: #ff0000 !important;
     cursor: pointer;
 }
