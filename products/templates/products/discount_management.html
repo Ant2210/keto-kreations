@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container-fluid clear-nav mb-3">
+        {% include 'includes/offer-banner.html' %}
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="dark-blue">Product Management</h2>
+                <h5 class="text-muted">Discount Management</h5>
+                <hr class="w-50 mx-auto mb-3">                    
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-12 col-md-8 mx-auto">
+                <form method="POST" action="" class="form">
+                    {% csrf_token %}
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'product_management' %}" class="btn btn-danger text-center mt-2 shopping-button">
+                            <i class="fa-solid fa-ban pe-2"></i>
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-success text-center mt-2 shopping-button">
+                            <i class="fa-solid fa-check pe-2"></i>
+                            Submit Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const collapseHeadings = document.querySelectorAll('.collapse-heading');
+            const expandAllButton = document.getElementById('expand-all-btn');
+            const collapseAllButton = document.getElementById('collapse-all-btn');
+
+            // Add event listener to expand all button
+            expandAllButton.addEventListener('click', () => {
+                collapseHeadings.forEach(heading => {
+                    const collapseTargetId = heading.getAttribute('href').substring(1);
+                    const collapseTarget = document.getElementById(collapseTargetId);
+                    if (collapseTarget) {
+                        collapseTarget.classList.add('show');
+                    }
+                });
+            });
+
+            // Add event listener to collapse all button
+            collapseAllButton.addEventListener('click', () => {
+                collapseHeadings.forEach(heading => {
+                    const collapseTargetId = heading.getAttribute('href').substring(1);
+                    const collapseTarget = document.getElementById(collapseTargetId);
+                    if (collapseTarget) {
+                        collapseTarget.classList.remove('show');
+                    }
+                });
+            });
+
+            const productSearchInput = document.getElementById('product-search');
+            // Add event listener to search input field
+            productSearchInput.addEventListener('input', () => {
+                const searchTerm = productSearchInput.value.toUpperCase();
+
+                // Loop through all the collapse headings and check if the product name contains the search term
+                collapseHeadings.forEach(heading => {
+                    const productName = heading.textContent.toUpperCase();
+                    const shouldShow = productName.includes(searchTerm);
+
+                    // Add or remove the 'd-none' class based on the search result
+                    if (shouldShow) {
+                        heading.parentElement.classList.remove('d-none');                    
+                    } else {
+                        heading.parentElement.classList.add('d-none');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

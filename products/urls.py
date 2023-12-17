@@ -17,4 +17,6 @@ urlpatterns = [
     path('delete_variant/<int:variant_id>/',
          views.delete_variant, name='delete_variant'),
     path('stock_management/', views.stock_management, name='stock_management'),
+    path('discount_management/',
+         views.discount_management, name='discount_management'),
 ]

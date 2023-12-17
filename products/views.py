@@ -438,3 +438,18 @@ def stock_management(request):
     }
 
     return render(request, 'products/stock_management.html', context)
+
+
+@login_required
+def discount_management(request):
+    """ A view to show discount management page """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    context = {
+        
+    }
+
+    return render(request, 'products/discount_management.html', context)

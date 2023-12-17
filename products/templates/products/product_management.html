@@ -200,12 +200,19 @@
             </div>
 
             <div class="col-12 col-md-8 mx-auto">
-                <h5 class="text-muted text-center">Stock Management <i class="fa-solid fa-calculator ps-2"></i></h5>
-                <div class="text-center">
-                    <a href="{% url 'stock_management' %}" class="btn btn-secondary product-management-button text-center d-flex align-items-center justify-content-center mx-auto my-3 my-md-2">
-                        Stock Management
-                    </a>
-                </div>
+                <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
+                    <h5 class="text-muted text-center product-management-button">Stock Management <i class="fa-solid fa-calculator ps-2"></i></h5>
+                    <h5 class="text-muted text-center product-management-button">Discount Management <i class="fa-solid fa-tag ps-2"></i></h5>
+                    </div>
+
+                    <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
+                        <a href="{% url 'stock_management' %}" class="btn btn-secondary product-management-button text-center d-flex align-items-center justify-content-center mx-auto my-3 my-md-2">
+                            Stock Management
+                        </a>                
+                        <a href="{% url 'discount_management' %}" class="btn btn-secondary product-management-button text-center d-flex align-items-center justify-content-center mx-auto my-3 my-md-2">
+                            Discount Management
+                        </a>
+                    </div>
                 <hr class="w-100">
             </div>
         </div>
