@@ -37,6 +37,10 @@ class Order(models.Model):
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(
         max_length=254, null=False, blank=False, default='')
+    discount_code = models.ForeignKey(
+        'OrderDiscount', null=True, blank=True, on_delete=models.SET_NULL,
+        related_name='orders'
+    )
 
     def _generate_order_number(self):
         """
@@ -58,6 +62,20 @@ class Order(models.Model):
         else:
             self.delivery_cost = Decimal('0.00')
         self.grand_total = self.order_total + self.delivery_cost
+
+        if (
+            self.discount_code and
+            self.discount_code.active and
+            self.grand_total >= self.discount_code.min_spend
+        ):
+            if self.discount_code.percent:
+                self.grand_total = self.grand_total - \
+                    (self.grand_total * (self.discount_code.discount / 100))
+            else:
+                self.grand_total = (
+                    self.grand_total - self.discount_code.discount
+                )
+
         self.save()
 
     def save(self, *args, **kwargs):
@@ -135,3 +153,20 @@ class OrderLineItem(models.Model):
         else:
             return 'Invalid OrderLineItem \
                 (no product or product variant specified)'
+
+
+class OrderDiscount(models.Model):
+    """ Model to store discounts applied to orders """
+
+    # Display name for admin panel
+    class Meta:
+        verbose_name_plural = 'Discount Codes'
+
+    code = models.CharField(max_length=20, unique=True)
+    discount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    percent = models.BooleanField(default=False)
+    min_spend = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.code

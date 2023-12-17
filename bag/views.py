@@ -2,6 +2,8 @@ from django.shortcuts import (
     render, redirect, get_object_or_404, reverse, HttpResponse)
 from django.contrib import messages
 from products.models import Product, ProductVariant
+from checkout.models import OrderDiscount
+from .contexts import bag_contents
 
 
 def view_bag(request):
@@ -153,4 +155,61 @@ def remove_from_bag(request, item_id):
 
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
+        return HttpResponse(status=500)
+
+
+def apply_discount(request):
+    """ Apply a discount code """
+
+    discount_code = request.POST.get('discount_code').upper()
+    context = bag_contents(request)
+    total = context.get('total', 0)
+
+    # Check if the discount code exists in the database
+    try:
+        discount = OrderDiscount.objects.get(code__iexact=discount_code)
+    except OrderDiscount.DoesNotExist:
+        messages.error(request, f'The discount code {discount_code} \
+                       does not exist. Please try again.')
+        return redirect('view_bag')
+
+    # Check if the discount code is active
+    if not discount.active:
+        messages.error(request, f'The discount code {discount_code} \
+                       is not active. Please try again.')
+        return redirect('view_bag')
+
+    # Check discount code minimum spend against bag total
+    if discount.min_spend > total:
+        messages.error(request, f'You need to spend £{discount.min_spend} \
+                       to use the discount code {discount_code}. Please \
+                       add more items to your bag.')
+        return redirect('view_bag')
+
+    # Check if the discount code in the session matches the one entered
+    if 'discount_code' in request.session:
+        if request.session['discount_code'] == discount_code:
+            messages.error(request, f'The discount code {discount_code} \
+                           has already been applied to your bag.')
+            return redirect('view_bag')
+
+    request.session['discount_code'] = discount_code
+
+    messages.success(request, f'The discount code {discount_code} \
+                        has been applied to your bag.')
+
+    return redirect('view_bag')
+
+
+def remove_discount(request):
+    """ Remove a discount code """
+
+    try:
+        del request.session['discount_code']
+        messages.success(request, 'The discount code has been removed \
+                         from your bag.')
+        return redirect('view_bag')
+
+    except Exception as e:
+        messages.error(request, f'Error removing discount code: {e}')
         return HttpResponse(status=500)

@@ -2,6 +2,8 @@ from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product, ProductVariant
+from checkout.models import OrderDiscount
+from django.contrib import messages
 
 
 def bag_contents(request):
@@ -10,6 +12,7 @@ def bag_contents(request):
     total = 0
     product_count = 0
     bag = request.session.get('bag', {})
+    discount_code = request.session.get('discount_code', {})
 
     for item_id, quantity in bag.items():
         if item_id.startswith('variant_'):
@@ -22,7 +25,7 @@ def bag_contents(request):
 
             variant_id = int(item_id.split('_')[1])
             variant = get_object_or_404(ProductVariant, pk=variant_id)
-            total += quantity * (variant.sale_price if variant.sale_price else variant.price) # NOQA
+            total += quantity * (variant.sale_price if variant.sale_price else variant.price)  # NOQA
             product_count += quantity
             bag_items.append({
                 'item_id': item_id,
@@ -39,7 +42,7 @@ def bag_contents(request):
             """
 
             product = get_object_or_404(Product, pk=item_id)
-            total += quantity * (product.sale_price if product.sale_price else product.price) # NOQA
+            total += quantity * (product.sale_price if product.sale_price else product.price)  # NOQA
             product_count += quantity
             bag_items.append({
                 'item_id': item_id,
@@ -55,7 +58,31 @@ def bag_contents(request):
         delivery = 0
         free_delivery_delta = 0
 
-    grand_total = delivery + total
+    if discount_code:
+        discount_code = get_object_or_404(
+            OrderDiscount, code__iexact=discount_code)
+        if total >= discount_code.min_spend:
+            if discount_code.percent:
+                discount_total = (total * (discount_code.discount / 100))
+            else:
+                discount_total = discount_code.discount
+        else:
+            discount_total = 0
+
+        # Check if discount_total is 0 and remove discount_code from session
+        if discount_total == 0:
+            # message only if not on checkout_success page
+            if request.resolver_match.url_name != 'checkout_success':
+                messages.warning(
+                    request, f'The discount code {discount_code.code} \
+                    has been removed because the minimum spend requirement \
+                    was not met.'
+                )
+            del request.session['discount_code']
+    else:
+        discount_total = 0
+
+    grand_total = delivery + total - discount_total
 
     context = {
         'bag_items': bag_items,
@@ -64,6 +91,8 @@ def bag_contents(request):
         'delivery': delivery,
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+        'discount_code': discount_code,
+        'discount_total': discount_total,
         'grand_total': grand_total,
     }
 

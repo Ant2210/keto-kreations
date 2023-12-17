@@ -275,6 +275,10 @@ to {
    background-color: #e9ecef;
 }
 
+.discount-form {
+    width: 250px;
+}
+
 /* All Auth */
 /* Login Page */
 form.login input {
@@ -361,7 +365,6 @@ form.new_password_form input {
     .scroll-container {
         font-size: 1.1rem;
     }
-    
 }
 
 @media screen and (min-width: 992px) {

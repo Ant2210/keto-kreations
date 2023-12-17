@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.conf import settings
 
 from .forms import Order, OrderForm
-from .models import OrderLineItem
+from .models import OrderLineItem, OrderDiscount
 from products.models import Product, ProductVariant
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
@@ -88,6 +88,12 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
+            discount_code_str = request.session.get('discount_code')
+            if discount_code_str:
+                discount_code = get_object_or_404(
+                    OrderDiscount, code__iexact=discount_code_str
+                )
+                order.discount_code = discount_code
             order.save()
             for item_id, quantity in bag.items():
                 try:

@@ -1,5 +1,22 @@
 <h6><strong>Bag Total: £{{ total|floatformat:2 }}</strong></h6>
 <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
+<form action="{% url 'apply_discount' %}" method="POST" class="discount-form ms-md-auto">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="discount_code" placeholder="Discount Code" aria-label="discount code" aria-describedby="basic-addon1" required>
+        <span class="input-group-text" id="basic-addon1">
+            <input type="submit" class="btn p-0 m-0" value="Apply">
+        </span>
+    </div>
+</form>
+{% if discount_total > 0 %}
+    <p class="mb-1 text-danger fw-bold">
+        Discount: - £{{ discount_total|floatformat:2 }} 
+        <span>
+            <a href="{% url 'remove_discount' %}" title="Remove discount code"><i class="fa-solid fa-circle-xmark text-danger ps-2"></i></a>
+        </span>
+    </p>
+{% endif %}
 <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
 {% if free_delivery_delta > 0 %}
     <p class="mb-1 text-danger">
