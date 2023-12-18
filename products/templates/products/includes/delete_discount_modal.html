@@ -1,0 +1,29 @@
+<div class="modal fade" id="delete-discount-modal-{{ discount.id }}" tabindex="-1"
+    aria-labelledby="delete-discount-modal-{{ discount.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 text-danger text-center pt-3"
+                id="delete-discount-modal-{{ discount.id }}-label">Warning!</h1>
+            <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    Deleting discount <strong>{{ discount.code }}</strong>.
+                </p>
+                <p>
+                    <strong>This action cannot be undone.</strong>
+                </p>
+                <p>
+                    Are you sure you want to proceed?
+                </p>
+            </div>
+            <form action="{% url 'delete_discount' discount.id %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No,
+                        cancel!</button>
+                    <button type="submit" class="btn btn-danger shopping-button">Yes, delete it!</buttons>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

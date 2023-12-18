@@ -170,7 +170,7 @@
                         Nutritional Information <i class="fa-solid fa-chevron-down me-2"></i>
                     </a>
                     <div class="collapse" id="collapse-nutrition-table">
-                        {% if product.nutritional_infos.exists %}
+                        {% if product.nutritional_info %}
                             <table class="table table-striped table-hover mt-2">
                                 <thead>
                                 <tr>
@@ -180,39 +180,39 @@
                                 <tbody>
                                     <tr>
                                         <td>Energy (kcal)</td>
-                                        <td>{{ product.nutritional_infos.first.energy_kcal }}</td>
+                                        <td>{{ product.nutritional_info.energy_kcal }}</td>
                                     </tr>
                                     <tr>
                                         <td>Energy (kJ)</td>
-                                        <td>{{ product.nutritional_infos.first.energy_kj }}</td>
+                                        <td>{{ product.nutritional_info.energy_kj }}</td>
                                     </tr>
                                     <tr>
                                         <td>Fat (g)</td>
-                                        <td>{{ product.nutritional_infos.first.fat }}</td>
+                                        <td>{{ product.nutritional_info.fat }}</td>
                                     </tr>
                                     <tr>
                                         <td>Saturates (g)</td>
-                                        <td>{{ product.nutritional_infos.first.saturated_fat }}</td>
+                                        <td>{{ product.nutritional_info.saturated_fat }}</td>
                                     </tr>
                                     <tr>
                                         <td>Carbohydrates (g)</td>
-                                        <td>{{ product.nutritional_infos.first.carbs }}</td>
+                                        <td>{{ product.nutritional_info.carbs }}</td>
                                     </tr>
                                     <tr>
                                         <td>Sugars (g)</td>
-                                        <td>{{ product.nutritional_infos.first.sugar }}</td>
+                                        <td>{{ product.nutritional_info.sugar }}</td>
                                     </tr>
                                     <tr>
                                         <td>Protein (g)</td>
-                                        <td>{{ product.nutritional_infos.first.protein }}</td>
+                                        <td>{{ product.nutritional_info.protein }}</td>
                                     </tr>
                                     <tr>
                                         <td>Fibre (g)</td>
-                                        <td>{{ product.nutritional_infos.first.fibre }}</td>
+                                        <td>{{ product.nutritional_info.fibre }}</td>
                                     </tr>
                                     <tr>
                                         <td>Salt (g)</td>
-                                        <td>{{ product.nutritional_infos.first.salt }}</td>
+                                        <td>{{ product.nutritional_info.salt }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.db.models import Q, DecimalField, Min, Case, When, Count
 from django.db.models.functions import Lower
 from .models import Product, Category, NutritionalInfo, ProductVariant
+from checkout.models import OrderDiscount
 from .forms import ProductForm, ProductVariantForm
 
 from django.utils.html import format_html
@@ -142,10 +144,12 @@ def product_management(request):
 
     products = Product.objects.all()
     variants = ProductVariant.objects.all()
+    discounts = OrderDiscount.objects.all()
 
     context = {
         'products': products,
         'variants': variants,
+        'discounts': discounts,
         'on_product_management_page': True,
     }
 
@@ -374,6 +378,7 @@ def edit_variant(request, variant_id):
 
 
 @login_required
+@require_POST
 def delete_product(request, product_id):
     """ Delete a product from the store """
 
@@ -381,13 +386,15 @@ def delete_product(request, product_id):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    product = get_object_or_404(Product, pk=product_id)
-    product.delete()
-    messages.success(request, f'{ product.name } deleted!')
-    return redirect('product_management')
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=product_id)
+        product.delete()
+        messages.success(request, f'{ product.name } deleted!')
+        return redirect('product_management')
 
 
 @login_required
+@require_POST
 def delete_variant(request, variant_id):
     """ Delete a variant from the store """
 
@@ -395,19 +402,16 @@ def delete_variant(request, variant_id):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    variant = get_object_or_404(ProductVariant, pk=variant_id)
-    variant.delete()
-    messages.success(request, f'{ variant } deleted!')
-    return redirect('product_management')
+    if request.method == 'POST':
+        variant = get_object_or_404(ProductVariant, pk=variant_id)
+        variant.delete()
+        messages.success(request, f'{ variant } deleted!')
+        return redirect('product_management')
 
 
 @login_required
 def stock_management(request):
     """ A view to show stock management page """
-
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
@@ -441,15 +445,68 @@ def stock_management(request):
 
 
 @login_required
-def discount_management(request):
-    """ A view to show discount management page """
+def add_discount(request):
+    """ Add a discount to the store """
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    context = {
-        
-    }
+    if request.method == 'POST':
+        code = request.POST.get('code')
+        discount = request.POST.get('amount')
+        percent = request.POST.get('percent') == "true"
+        min_spend = request.POST.get('min_spend')
+        active = request.POST.get('active') == "true"
 
-    return render(request, 'products/discount_management.html', context)
+        OrderDiscount.objects.create(
+            code=code,
+            discount=discount,
+            percent=percent,
+            min_spend=min_spend,
+            active=active,
+        )
+
+        messages.success(request, f'Discount { code } successfully created!')
+        return redirect('product_management')
+
+    return redirect('product_management')
+
+
+@login_required
+@require_POST
+def edit_discount(request, discount_id):
+    """ Edit a discount in the store """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    discount = get_object_or_404(OrderDiscount, pk=discount_id)
+
+    if request.method == 'POST':
+        discount.code = request.POST.get('code')
+        discount.discount = request.POST.get('amount')
+        discount.percent = request.POST.get('percent') == "true"
+        discount.min_spend = request.POST.get('min_spend')
+        discount.active = request.POST.get('active') == "true"
+        discount.save()
+
+    messages.success(request, f'{ discount } successfully updated!')
+    return redirect('product_management')
+
+
+@login_required
+@require_POST
+def delete_discount(request, discount_id):
+    """ Delete a discount from the store """
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        discount = get_object_or_404(OrderDiscount, pk=discount_id)
+        discount.delete()
+        messages.success(request, f'{ discount } successfully deleted!')
+        return redirect('product_management')

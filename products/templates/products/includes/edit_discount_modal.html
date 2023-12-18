@@ -1,0 +1,53 @@
+<div class="modal fade" id="edit-discount-modal-{{ discount.id }}" tabindex="-1" aria-labelledby="edit-discount-modal-{{ discount.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 dark-blue text-center pt-3" id="edit-discount-modal-{{ discount.id }}-label">Edit Discount {{ discount.code }}</h1>
+            <hr class="w-100">
+            <div class="modal-body text-muted">
+                <form action="{% url 'edit_discount' discount.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="code" class="form-label">Discount Code</label>
+                        <input type="text" class="form-control" name="code" id="code" value="{{ discount.code }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Discount Amount</label>
+                        <input type="number" class="form-control" name="amount" id="amount" value="{{ discount.discount }}" min="0" max="100">
+                    </div>
+                    <div class="mb-3">
+                        <label for="percent" class="form-label">Is this a percentage discount?</label>
+                        <select class="form-select" id="percent" name="percent">
+                            {% if discount.percent %}
+                                <option value="true" selected>Yes</option>
+                                <option value="false" >No</option>
+                            {% else %}
+                                <option value="true">Yes</option>
+                                <option value="false" selected>No</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="min_spend" class="form-label">Minimum Spend</label>
+                        <input type="number" class="form-control" name="min_spend" id="min_spend" value="{{ discount.min_spend }}" min="0" max="100">
+                    </div>
+                    <div class="mb-3">
+                        <label for="active" class="form-label">Is this discount active?</label>
+                        <select class="form-select" id="" name="active">
+                            {% if discount.active %}
+                                <option value="true" selected>Yes</option>
+                                <option value="false">No</option>
+                            {% else %}
+                                <option value="true">Yes</option>
+                                <option value="false" selected>No</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success shopping-button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

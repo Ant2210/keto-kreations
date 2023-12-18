@@ -14,9 +14,75 @@
         </div> 
         <div class="row">
             <div class="col-12 col-md-8 mx-auto">
-                <form method="POST" action="" class="form">
+                <div class="mb-3 text-center">
+                    <button type="button" class="btn btn-primary" id="add-discount-btn"><i class="fa-solid fa-square-plus pe-2"></i>Add New Discount</button>
+                    <button type="button" class="btn btn-danger ms-2" id="delete-discount-btn"><i class="fa-solid fa-delete-left pe-2"></i>Delete A Discount</button>
+                </div>
+                <form method="POST" action="{% url 'edit_discounts' %}" class="form">
                     {% csrf_token %}
-                    
+                        {% for discount in discounts|dictsort:"code" %}
+                        <div id="discount-wrapper-{{ discount.code }}">
+                            <a class="fs-5 collapse-heading d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                            href="#collapse-discount-{{ discount.id }}">
+                                {{ discount.code }} <i class="fa-solid fa-chevron-down me-2"></i>
+                            </a>
+                            <div class="collapse my-3" id="collapse-discount-{{ discount.id }}">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <label for="code_{{ discount.id }}">Discount Code</label>
+                                            <input type="text" class="form-control" name="code_{{ discount.id }}" id="code_{{ discount.id }}" value="{{ discount.code }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="amount_{{ discount.id }}">Discount Amount</label>
+                                            <input type="number" class="form-control" name="amount_{{ discount.id }}" id="amount_{{ discount.id }}" value="{{ discount.discount }}" min="0" max="100">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="mb-3">
+                                                <label for="percent_{{ discount.id }}" class="form-label">Is this a percentage discount?</label>
+                                                <select class="form-select" id="percent_{{ discount.id }}" name="percent_{{ discount.id }}">
+                                                    {% if discount.percent %}
+                                                        <option value="true" selected>Yes</option>
+                                                        <option value="false">No</option>
+                                                    {% else %}
+                                                        <option value="true">Yes</option>
+                                                        <option value="false" selected>No</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="min_spend_{{ discount.id }}">Minimum Spend</label>
+                                            <input type="number" class="form-control" name="min_spend_{{ discount.id }}" id="min_spend_{{ discount.id }}" value="{{ discount.min_spend }}" min="0" max="100">
+                                        </td>
+                                    </tr>
+                                    <!-- Is Active? -->
+                                    <tr>
+                                        <td>
+                                            <div class="mb-3">
+                                                <label for="is_active_{{ discount.id }}" class="form-label">Is this discount active?</label>
+                                                <select class="form-select" id="is_active_{{ discount.id }}" name="is_active_{{ discount.id }}">
+                                                    {% if discount.active %}
+                                                        <option value="true" selected>Yes</option>
+                                                        <option value="false">No</option>
+                                                    {% else %}
+                                                        <option value="true">Yes</option>
+                                                        <option value="false" selected>No</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        {% endfor %}
                     <div class="d-flex justify-content-between">
                         <a href="{% url 'product_management' %}" class="btn btn-danger text-center mt-2 shopping-button">
                             <i class="fa-solid fa-ban pe-2"></i>
@@ -31,56 +97,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block extra_js %}
-{{ block.super }}
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const collapseHeadings = document.querySelectorAll('.collapse-heading');
-            const expandAllButton = document.getElementById('expand-all-btn');
-            const collapseAllButton = document.getElementById('collapse-all-btn');
-
-            // Add event listener to expand all button
-            expandAllButton.addEventListener('click', () => {
-                collapseHeadings.forEach(heading => {
-                    const collapseTargetId = heading.getAttribute('href').substring(1);
-                    const collapseTarget = document.getElementById(collapseTargetId);
-                    if (collapseTarget) {
-                        collapseTarget.classList.add('show');
-                    }
-                });
-            });
-
-            // Add event listener to collapse all button
-            collapseAllButton.addEventListener('click', () => {
-                collapseHeadings.forEach(heading => {
-                    const collapseTargetId = heading.getAttribute('href').substring(1);
-                    const collapseTarget = document.getElementById(collapseTargetId);
-                    if (collapseTarget) {
-                        collapseTarget.classList.remove('show');
-                    }
-                });
-            });
-
-            const productSearchInput = document.getElementById('product-search');
-            // Add event listener to search input field
-            productSearchInput.addEventListener('input', () => {
-                const searchTerm = productSearchInput.value.toUpperCase();
-
-                // Loop through all the collapse headings and check if the product name contains the search term
-                collapseHeadings.forEach(heading => {
-                    const productName = heading.textContent.toUpperCase();
-                    const shouldShow = productName.includes(searchTerm);
-
-                    // Add or remove the 'd-none' class based on the search result
-                    if (shouldShow) {
-                        heading.parentElement.classList.remove('d-none');                    
-                    } else {
-                        heading.parentElement.classList.add('d-none');
-                    }
-                });
-            });
-        });
-    </script>
 {% endblock %}

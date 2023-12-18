@@ -22,7 +22,7 @@
                     <a href="{% url 'add_product' %}" class="btn btn-success product-management-button text-center d-flex align-items-center justify-content-center my-3 my-md-2">
                         Add Product
                     </a>
-                    <a href="{% url 'add_variant' %}" class="btn btn-primary product-management-button text-center d-flex align-items-center justify-content-center my-3 my-md-2">
+                    <a href="{% url 'add_variant' %}" class="btn btn-success product-management-button text-center d-flex align-items-center justify-content-center my-3 my-md-2">
                         Add Product Variant
                     </a>
                 </div>
@@ -33,7 +33,7 @@
                 <h5 class="text-muted text-center">Edit <i class="fa-solid fa-pencil ps-2"></i></h5>
                 <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
                     <div class="dropdown-center">
-                        <button class=" btn btn-success w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
+                        <button class=" btn btn-primary w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
                             Edit Product
                         </button>
                         <ul id="edit-product-list" class="dropdown-menu select-product-dropdown">
@@ -111,33 +111,7 @@
                             </ul>
                         </div>
                         {% for product in products %}
-                        <!-- Delete Product Modal -->
-                        <div class="modal fade" id="delete-modal-{{ product.id }}" tabindex="-1" aria-labelledby="delete-modal-{{ product.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="delete-modal-{{ product.id }}-label">Warning!</h1>
-                                <hr class="w-100">
-                                <div class="modal-body dark-blue text-center">
-                                    <p>
-                                        Deleting product <strong>{{ product.name }}</strong>.
-                                    </p>
-                                    <p>
-                                        If you delete this product you will also delete any and <strong>ALL</strong> product variants associated with it.
-                                    </p>
-                                    <p>
-                                        <strong>This action cannot be undone.</strong>
-                                    </p>
-                                    <p>
-                                        Are you sure you want to proceed?
-                                    </p>
-                                </div>
-                                <div class="modal-footer text-center">
-                                    <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel!</button>
-                                    <a href="{% url 'delete_product' product.id %}" class="btn btn-danger shopping-button">Yes, delete it!</a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+                            {% include 'products/includes/delete_product_modal.html' %}
                         {% endfor %}
 
 
@@ -168,51 +142,84 @@
                         </ul>
                     </div>
                     {% for product in products %}
-                    {% for variant in product.variants.all %}
-                        <!-- Delete Product Modal -->
-                        <div class="modal fade" id="delete-variant-modal-{{ variant.id }}" tabindex="-1" aria-labelledby="delete-variant-modal-{{ variant.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="delete-variant-modal-{{ variant.id }}-label">Warning!</h1>
-                                <hr class="w-100">
-                                <div class="modal-body dark-blue text-center">
-                                    <p>
-                                        Deleting variant <strong>{{ variant.product.name }} - {{ variant.size }}({{variant.size_unit}})</strong>.
-                                    </p>
-                                    <p>
-                                        <strong>This action cannot be undone.</strong>
-                                    </p>
-                                    <p>
-                                        Are you sure you want to proceed?
-                                    </p>
-                                </div>
-                                <div class="modal-footer text-center">
-                                    <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel!</button>
-                                    <a href="{% url 'delete_variant' variant.id %}" class="btn btn-danger shopping-button">Yes, delete it!</a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+                        {% for variant in product.variants.all %}
+                            {% include 'products/includes/delete_variant_modal.html' %}
+                        {% endfor %}
                     {% endfor %}
                 </div>
                 <hr class="w-100">
             </div>
 
             <div class="col-12 col-md-8 mx-auto">
+                <h5 class="text-muted text-center">Discount Management <i class="fa-solid fa-tag ps-2"></i></h5>
                 <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
-                    <h5 class="text-muted text-center product-management-button">Stock Management <i class="fa-solid fa-calculator ps-2"></i></h5>
-                    <h5 class="text-muted text-center product-management-button">Discount Management <i class="fa-solid fa-tag ps-2"></i></h5>
+                    <a href="#" class="btn btn-success product-management-button text-center d-flex align-items-center justify-content-center my-3 my-md-2" href="" data-bs-toggle="modal" data-bs-target="#add-discount-modal">
+                        Add Discount
+                    </a>
+                    {% include 'products/includes/add_discount_modal.html' %}
+                    <div class="dropdown-center mx-md-2">
+                        <button class=" btn btn-primary w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
+                            Edit Discount
+                        </button>
+                        <ul id="edit-discount-list" class="dropdown-menu select-product-dropdown">
+                            <!-- Filter code found here: https://shorturl.at/empuU -->
+                            <div class="input-group p-2">
+                                <input type="text" class="form-control" placeholder="Start typing..." aria-label="Indices" autocomplete="off" 
+                                    aria-describedby="basic-addon1" id="edit-discount-filter" onkeyup="filter('edit-discount-list', 'edit-discount-filter')">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            {% for discount in discounts|dictsort:"code" %}
+                                <li>
+                                    <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#edit-discount-modal-{{ discount.id }}">{{ discount.code }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% for discount in discounts %}
+                            {% include 'products/includes/edit_discount_modal.html' %}
+                        {% endfor %}
                     </div>
 
-                    <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
-                        <a href="{% url 'stock_management' %}" class="btn btn-secondary product-management-button text-center d-flex align-items-center justify-content-center mx-auto my-3 my-md-2">
-                            Stock Management
-                        </a>                
-                        <a href="{% url 'discount_management' %}" class="btn btn-secondary product-management-button text-center d-flex align-items-center justify-content-center mx-auto my-3 my-md-2">
-                            Discount Management
-                        </a>
-                    </div>
+                    <div class="dropdown-center">
+                        <button class=" btn btn-danger w-100 text-center d-flex align-items-center justify-content-center my-3 my-md-2" type="button" data-bs-toggle="dropdown">
+                            Delete Discount
+                        </button>
+                        <ul id="delete-discount-list" class="dropdown-menu select-product-dropdown">
+                            <!-- Filter code found here: https://shorturl.at/empuU -->
+                            <div class="input-group p-2">
+                                <input type="text" class="form-control" placeholder="Start typing..." aria-label="Indices" autocomplete="off" 
+                                    aria-describedby="basic-addon1" id="delete-discount-filter" onkeyup="filter('delete-discount-list', 'delete-discount-filter')">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            {% for discount in discounts|dictsort:"code" %}
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete-discount-modal-{{ discount.id }}">{{ discount.code }}</a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% for discount in discounts %}
+                            {% include 'products/includes/delete_discount_modal.html' %}
+                        {% endfor %}
+
+                </div>
+                <hr class="w-100">
+            </div>
+
+            <div class="col-12 col-md-8 mx-auto text-center">                
+                    <h5 class="text-muted text-center product-management-button mx-auto">
+                        Stock Management <i class="fa-solid fa-calculator ps-2"></i>
+                    </h5>                                 
+                    <a href="{% url 'stock_management' %}" class="btn btn-secondary product-management-button text-center d-flex align-items-center justify-content-center mx-auto my-3 my-md-2">
+                        Stock Management
+                    </a>
                 <hr class="w-100">
             </div>
         </div>

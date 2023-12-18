@@ -32,7 +32,7 @@ class Product(models.Model):
     ingredients = models.TextField()
     allergens = models.TextField()
     price = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
+        max_digits=6, decimal_places=2, null=False, blank=False, default=0)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
@@ -40,7 +40,7 @@ class Product(models.Model):
     size = models.CharField(max_length=254, null=True, blank=True)
     size_unit = models.CharField(max_length=20, null=True, blank=True)
     sale_price = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
+        max_digits=6, decimal_places=2, null=False, blank=False, default=0)
     portion_size = models.IntegerField(default=1, null=False, blank=False)
     portion_unit = models.CharField(
         default='g', max_length=20, null=False, blank=False)
@@ -136,9 +136,8 @@ class NutritionalInfo(models.Model):
     class Meta:
         verbose_name_plural = 'Nutritional Info'
 
-    product = models.ForeignKey(
-        'Product', null=True, blank=True, on_delete=models.CASCADE,
-        related_name='nutritional_infos')
+    product = models.OneToOneField(
+        'Product', null=True, blank=True, on_delete=models.CASCADE, related_name='nutritional_info')
     energy_kcal = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
     energy_kj = models.DecimalField(
