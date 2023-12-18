@@ -7,6 +7,24 @@ from django.contrib import messages
 
 
 def bag_contents(request):
+    """
+    A context processor so that the contents of the bag are available
+    across the whole website
+    """
+
+    # Check if discount code is present in session and is valid in the database
+    discount_code = request.session.get('discount_code', None)
+    if discount_code:
+        try:
+            discount_code = OrderDiscount.objects.get(
+                code__iexact=discount_code, active=True)
+        except OrderDiscount.DoesNotExist:
+            del request.session['discount_code']
+            messages.warning(
+                request, 'The discount code has been removed from your bag \
+                    as it is no longer valid. Please check back for future \
+                    deals.'
+            )
 
     bag_items = []
     total = 0
