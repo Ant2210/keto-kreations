@@ -1,5 +1,10 @@
 .order-history {
-    max-height: 416px;
+    max-height: 532px;
+    overflow-y: auto;
+}
+
+.reviews {
+    max-height: 532px;
     overflow-y: auto;
 }
 

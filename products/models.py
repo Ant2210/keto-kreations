@@ -1,5 +1,7 @@
 from django.db import models
 from django.forms import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -69,6 +71,19 @@ class Product(models.Model):
                                   has variants."
                                   )
 
+    def update_rating(self):
+        """
+        Update the rating for the product based on all reviews
+        """
+
+        reviews = self.reviews.all()
+        if len(reviews) > 0:
+            total = 0
+            for review in reviews:
+                total += review.rating
+            self.rating = total / len(reviews)
+            self.save()
+
     def save(self, *args, **kwargs):
         """
         Override the save method to run clean before saving.
@@ -90,7 +105,7 @@ class ProductVariant(models.Model):
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE,
         related_name='variants'
-        )
+    )
     sku = models.CharField(max_length=255, unique=True)
     size = models.IntegerField(default=0, null=False, blank=False)
     size_unit = models.CharField(
@@ -137,7 +152,8 @@ class NutritionalInfo(models.Model):
         verbose_name_plural = 'Nutritional Info'
 
     product = models.OneToOneField(
-        'Product', null=True, blank=True, on_delete=models.CASCADE, related_name='nutritional_info')
+        'Product', null=True, blank=True, on_delete=models.CASCADE,
+        related_name='nutritional_info')
     energy_kcal = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
     energy_kj = models.DecimalField(
@@ -159,3 +175,25 @@ class NutritionalInfo(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+class Review(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='reviews'
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True,
+    )
+    # Validator info found here:
+    # https://docs.djangoproject.com/en/3.2/ref/validators/#minvaluevalidator
+    rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)])
+    comment = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.product.update_rating()
+
+    def __str__(self):
+        return f"{self.user.username}'s Review for {self.product.name}"
