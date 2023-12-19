@@ -43,7 +43,8 @@ def bag_contents(request):
 
             variant_id = int(item_id.split('_')[1])
             variant = get_object_or_404(ProductVariant, pk=variant_id)
-            total += quantity * (variant.sale_price if variant.sale_price else variant.price)  # NOQA
+            total += (quantity * (
+                variant.sale_price if variant.sale_price else variant.price))
             product_count += quantity
             bag_items.append({
                 'item_id': item_id,
@@ -81,7 +82,9 @@ def bag_contents(request):
             OrderDiscount, code__iexact=discount_code)
         if total >= discount_code.min_spend:
             if discount_code.percent:
-                discount_total = (total * (discount_code.discount / 100))
+                discount_total = (
+                    (total + delivery) * (discount_code.discount / 100)
+                )
             else:
                 discount_total = discount_code.discount
         else:

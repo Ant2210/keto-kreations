@@ -39,6 +39,15 @@ def profile(request):
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
+    discount_amount = 0
+    if order.discount_code:
+        if order.discount_code.percent:
+            discount_amount = (
+                order.order_total + order.delivery_cost) * (
+                    order.discount_code.discount / 100)
+        else:
+            discount_amount = order.discount_code.discount
+
     messages.info(request, (
         f'This is a past confirmation for order number { order.order_number }.'
         ' A confirmation email was sent on the order date'
@@ -48,6 +57,7 @@ def order_history(request, order_number):
     context = {
         'order': order,
         'from_profile': True,
+        'discount_amount': discount_amount,
     }
 
     return render(request, template, context)

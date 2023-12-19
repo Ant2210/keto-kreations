@@ -212,6 +212,15 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
+        discount_amount = 0
+        if order.discount_code:
+            if order.discount_code.percent:
+                discount_amount = (
+                    order.order_total + order.delivery_cost) * (
+                        order.discount_code.discount / 100)
+            else:
+                discount_amount = order.discount_code.discount
+
     messages.success(request, f'Order successfully processed! Your order \
                     number is {order_number}. A confirmation email will be \
                     sent to {order.email}.'
@@ -223,6 +232,7 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'discount_amount': discount_amount,
     }
 
     return render(request, template, context)
