@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
 
 {% block title %} | Products{% endblock %}
 
@@ -12,51 +17,65 @@
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
                     {% if product.image %}
-                        <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top product-detail-img" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
+                    <a href="{{ product.image.url }}" target="_blank">
+                        <img class="card-img-top product-detail-img" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </a>
                     {% else %}
-                        <a href="">
-                            <img class="card-img-top product-detail-img" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}">
-                        </a>
+                    <a href="">
+                        <img class="card-img-top product-detail-img" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}">
+                    </a>
                     {% endif %}
                 </div>
                 <!-- Review carousel -->
-                <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                    <button data-bs-toggle="modal" data-bs-target="#review-modal">ADD REVIEWS</button>
-                    <p>
-                        <form action="{% url 'add_review' product.id %}" method="POST">
-                            {% csrf_token %}
-                            {{ form.errors }}
-                            {{ form|crispy }}
-                            <button id="review-form-submit-btn" type="submit" >Submit</button>
-                        </form>
-                    </p>
-                    <!-- On Sale Modals -->
-                    <div class="modal fade" id="review-modal" tabindex="-1" aria-labelledby="review-modal-label" aria-hidden="true" data-bs-backdrop='static'>
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <h1 class="modal-title fs-4 dark-blue text-center pt-3" id="review-modal-label">Review for {{ product.name }}</h1>
-                            <hr class="w-100">
-                            <div class="modal-body dark-blue">
-                                <p>
-                                    <form action="{% url 'add_review' product.id %}" method="POST">
-                                        {% csrf_token %}
-                                        {{ form|crispy }}
-                                        <!-- Hidden submit button -->
-                                        <button id="review-form-submit-btn" type="submit" ></button>
-                                    </form>
-                                </p>
+                <div class="col-12">
+                    {% if product.reviews.all|length > 0 %}
+                        {% if user.is_authenticated %}
+                            <p class="text-center">Why not tell us about your own experience by clicking <a href="#" data-bs-toggle="modal" data-bs-target="#review-modal">here</a>?</p>
+                        {% else %}
+                            <p class="text-center">Why not <a href="{% url 'account_login' %}">login</a> or <a href="{% url 'account_signup' %}">register</a> to tell us about your own experience?</p>
+                        {% endif %}
+                        <div id="carouselExampleFade" class="carousel slide carousel-fade my-3">
+                            <div class="carousel-inner">
+                                {% for review in product.reviews.all %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %} text-center">
+                                    <div class="card review-card w-100">
+                                        <div class="card-body d-flex flex-column">
+                                            <div class="my-auto">
+                                                <h5 class="card-title">
+                                                    {% for star in "12345" %}
+                                                    {% if star|add:0 <= review.rating %} <i class="fa-solid fa-star text-warning"></i>
+                                                        {% else %}
+                                                        <i class="fa-solid fa-star text-secondary"></i>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </h5>
+                                                <p class="card-text pt-2 px-5">{{ review.comment }}</p>
+                                                <p class="card-text">{{ review.user }}<br><span class="review-date">{{review.created_date|date:"d/m/Y" }}</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
                             </div>
-                            <div class="modal-footer text-center">
-                                <button type="button" class="btn btn-success shopping-button" onclick="submitReviewForm()">Submit Review</button>
-                                <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">Cancel</button>
-                            </div>
+                            <button class="carousel-control-prev dark-blue" type="button" data-bs-target="#carouselExampleFade"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        </div>
-                    </div>
-
+                    {% else %}
+                        {% if user.is_authenticated %}
+                            <p class="text-center">No reviews yet why not tell us about your experience by clicking <a href="#" data-bs-toggle="modal" data-bs-target="#review-modal">here</a>?</p>
+                        {% else %}
+                            <p class="text-center">No reviews yet, why not <a href="{% url 'account_login' %}">login</a> or <a href="{% url 'account_signup' %}">register</a> to tell us about your experience?</p>
+                        {% endif %}
+                    {% endif %}
                 </div>
+                {% include 'products/includes/review_modal.html' %}
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="product-details-container mb-5 mt-md-5">
@@ -116,7 +135,7 @@
                     {% endif %}
                     <br>
                     {% if product.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                        <small class="text-muted"><i class="fas fa-star text-warning pe-1"></i>{{ product.rating }} / 5</small>
                     {% else %}
                         <small class="text-muted">No rating yet</small>
                     {% endif %}
