@@ -22,4 +22,6 @@ urlpatterns = [
          views.edit_discount, name='edit_discount'),
     path('delete_discount/<int:discount_id>/',
          views.delete_discount, name='delete_discount'),
+    path('add_review/<int:product_id>/', views.add_review,
+         name='add_review')
 ]

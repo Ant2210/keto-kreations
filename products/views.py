@@ -6,7 +6,7 @@ from django.db.models import Q, DecimalField, Min, Case, When, Count
 from django.db.models.functions import Lower
 from .models import Product, Category, NutritionalInfo, ProductVariant
 from checkout.models import OrderDiscount
-from .forms import ProductForm, ProductVariantForm
+from .forms import ProductForm, ProductVariantForm, ReviewForm
 
 from django.utils.html import format_html
 
@@ -125,10 +125,13 @@ def product_detail(request, product_id):
     variants_out_of_stock = product.variants.filter(
         stock_count__gt=0).count() == 0
 
+    form = ReviewForm(user=request.user, product=product)
+
     context = {
         'product': product,
         'product_out_of_stock': product_out_of_stock,
         'variants_out_of_stock': variants_out_of_stock,
+        'form': form,
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -510,3 +513,38 @@ def delete_discount(request, discount_id):
         discount.delete()
         messages.success(request, f'{ discount } successfully deleted!')
         return redirect('product_management')
+
+
+@login_required
+@require_POST
+def add_review(request, product_id):
+    """ Add a review to a product """
+
+    if not request.user.is_authenticated:
+        messages.error(
+            request,
+            'Sorry, only registered users can do that. Please login or \
+                register to leave a review.'
+        )
+        return redirect('product_detail', product_id)
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    form = ReviewForm(user=request.user, product=product, data=request.POST)
+    print(f"Form data: {form.data}")
+    print(f"Form errors: {form.errors}")
+    if form.is_valid():
+        review = form.save(commit=False)
+        review.product = product
+        review.user = request.user
+        review.save()
+        messages.success(request, 'Review successfully added!')
+        return redirect('product_detail', product_id)
+    else:
+        print("Form is not valid")
+        print(form.errors)
+        messages.error(
+            request,
+            'Failed to add review. Please try again or contact us for help.'
+        )
+        return redirect('product_detail', product_id)

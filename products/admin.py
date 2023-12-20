@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, NutritionalInfo, ProductVariant
+from .models import Category, Product, NutritionalInfo, ProductVariant, Review
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -62,7 +62,22 @@ class ProductVariantAdmin(admin.ModelAdmin):
     ordering = ('product',)
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    """ Review admin - to adjust how it is displayed in the admin panel"""
+
+    list_display = (
+        'product',
+        'user',
+        'rating',
+        'created_date',
+        'comment',
+    )
+
+    ordering = ('product',)
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(NutritionalInfo, NutritionalInfoAdmin)
 admin.site.register(ProductVariant, ProductVariantAdmin)
+admin.site.register(Review, ReviewAdmin)

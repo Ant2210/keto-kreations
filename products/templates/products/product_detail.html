@@ -21,6 +21,42 @@
                         </a>
                     {% endif %}
                 </div>
+                <!-- Review carousel -->
+                <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+                    <button data-bs-toggle="modal" data-bs-target="#review-modal">ADD REVIEWS</button>
+                    <p>
+                        <form action="{% url 'add_review' product.id %}" method="POST">
+                            {% csrf_token %}
+                            {{ form.errors }}
+                            {{ form|crispy }}
+                            <button id="review-form-submit-btn" type="submit" >Submit</button>
+                        </form>
+                    </p>
+                    <!-- On Sale Modals -->
+                    <div class="modal fade" id="review-modal" tabindex="-1" aria-labelledby="review-modal-label" aria-hidden="true" data-bs-backdrop='static'>
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <h1 class="modal-title fs-4 dark-blue text-center pt-3" id="review-modal-label">Review for {{ product.name }}</h1>
+                            <hr class="w-100">
+                            <div class="modal-body dark-blue">
+                                <p>
+                                    <form action="{% url 'add_review' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ form|crispy }}
+                                        <!-- Hidden submit button -->
+                                        <button id="review-form-submit-btn" type="submit" ></button>
+                                    </form>
+                                </p>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-success shopping-button" onclick="submitReviewForm()">Submit Review</button>
+                                <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="product-details-container mb-5 mt-md-5">
@@ -300,5 +336,11 @@
             const newValue = Math.max(currentValue - 1, 1);
             qtyInput.value = newValue;
         });
+    </script>
+    <script>
+        // Submit review form
+        function submitReviewForm() {
+            document.querySelector('#review-form-submit-btn').click();
+        }
     </script>
 {% endblock %}

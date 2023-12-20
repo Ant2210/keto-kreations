@@ -195,5 +195,9 @@ class Review(models.Model):
         super().save(*args, **kwargs)
         self.product.update_rating()
 
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+        self.product.update_rating()
+
     def __str__(self):
         return f"{self.user.username}'s Review for {self.product.name}"

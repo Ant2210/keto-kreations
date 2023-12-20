@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ValidationError
 from .widgets import CustomClearableFileInput
-from .models import Product, ProductVariant, Category
+from .models import Product, ProductVariant, Category, Review
 
 
 class ProductForm(forms.ModelForm):
@@ -130,3 +130,38 @@ class ProductVariantForm(forms.ModelForm):
             )
 
         return sku
+
+
+class ReviewForm(forms.ModelForm):
+    """
+    Form for the product review page.
+    """
+
+    class Meta:
+        model = Review
+        fields = ('rating', 'comment')
+        labels = {
+            'comment': 'Please provide a brief comment about your experience',
+        }
+
+    # Define choices for the rating field
+    RATING_CHOICES = [
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    ]
+
+    rating = forms.ChoiceField(
+        choices=RATING_CHOICES,
+        label='Please select a rating between 1 and 5'
+    )
+
+    def __init__(self, user, product, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'mb-3'
+            if field == 'rating':
+                self.fields[field].widget.attrs['class'] += ' form-select'
