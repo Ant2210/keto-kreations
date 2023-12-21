@@ -168,3 +168,4 @@ class ReviewForm(forms.ModelForm):
                 self.fields[field].widget.attrs['class'] += ' form-select'
             if field == 'comment':
                 self.fields[field].widget.attrs['maxlength'] = '300'
+                self.fields[field].widget.attrs['minlength'] = '5'

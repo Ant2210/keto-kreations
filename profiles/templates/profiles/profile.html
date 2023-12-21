@@ -121,16 +121,17 @@
                                             Edit/Delete:
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editReviewModal{{ review.id }}">
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#edit-review-modal-{{ review.id }}">
                                     
                                                 Edit
                                             </button>
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteReviewModal{{ review.id }}">
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-review-modal-{{ review.id }}">
                                    
                                                 Delete
                                             </button>
                                         </td>
                                     </tr>
+                                    {% include 'profiles/includes/edit_review_modal.html' %}
                             {% endfor %}
                         </tbody>
                     </table>

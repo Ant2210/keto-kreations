@@ -1,0 +1,29 @@
+<div class="modal fade" id="edit-review-modal-{{ review.id }}" tabindex="-1" aria-labelledby="edit-review-modal-{{ review.id }}-label" aria-hidden="true" data-bs-backdrop='static'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 dark-blue text-center pt-3" id="edit-review-modal-{{ review.id }}-label">Edit Review for {{ review.product }}</h1>
+            <hr class="w-100">
+            <div class="modal-body text-muted">
+                <form action="{% url 'edit_review' review.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Please select a rating between 1 and 5*</label>
+                        <select class="form-select" id="rating" name="rating" required>
+                            {% for i in "12345" %}
+                                <option value="{{ i }}" {% if i == review.rating|stringformat:"s" %}selected{% endif %}>{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Please provide a brief comment about your experience (max 300 characters)*</label>
+                        <textarea name="comment" cols="40" rows="10" class="textarea form-control" minlength="5" maxlength="300" id="comment" required>{{ review.comment }}</textarea>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="submit" class="btn btn-success shopping-button">Submit</button>
+                        <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

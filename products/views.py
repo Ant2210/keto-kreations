@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.db.models import Q, DecimalField, Min, Case, When, Count
 from django.db.models.functions import Lower
-from .models import Product, Category, NutritionalInfo, ProductVariant
+from .models import Product, Category, NutritionalInfo, ProductVariant, Review
 from checkout.models import OrderDiscount
 from .forms import ProductForm, ProductVariantForm, ReviewForm
 
@@ -531,8 +531,6 @@ def add_review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
     form = ReviewForm(user=request.user, product=product, data=request.POST)
-    print(f"Form data: {form.data}")
-    print(f"Form errors: {form.errors}")
     if form.is_valid():
         review = form.save(commit=False)
         review.product = product
@@ -541,10 +539,38 @@ def add_review(request, product_id):
         messages.success(request, 'Review successfully added!')
         return redirect('product_detail', product_id)
     else:
-        print("Form is not valid")
-        print(form.errors)
         messages.error(
             request,
             'Failed to add review. Please try again or contact us for help.'
         )
         return redirect('product_detail', product_id)
+
+
+@login_required
+@require_POST
+def edit_review(request, review_id):
+    """ Edit a review in the store """
+
+    if not request.user.is_authenticated:
+        messages.error(
+            request,
+            'Sorry, only registered users can do that. Please login or \
+                register to edit a review.'
+        )
+        return redirect('home')
+
+    review = get_object_or_404(Review, pk=review_id)
+
+    form = ReviewForm(user=request.user, product=review.product,
+                      data=request.POST, instance=review)
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Review successfully updated!')
+        return redirect('profile')
+    else:
+        messages.error(
+            request,
+            'Failed to update review. Please try again or contact us for help.'
+        )
+        return redirect('profile')
