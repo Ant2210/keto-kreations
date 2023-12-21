@@ -574,3 +574,22 @@ def edit_review(request, review_id):
             'Failed to update review. Please try again or contact us for help.'
         )
         return redirect('profile')
+
+
+@login_required
+@require_POST
+def delete_review(request, review_id):
+    """ Delete a review from the store """
+
+    if not request.user.is_authenticated:
+        messages.error(
+            request,
+            'Sorry, only registered users can do that. Please login or \
+                register to delete a review.'
+        )
+        return redirect('home')
+
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    messages.success(request, 'Review successfully deleted!')
+    return redirect('profile')
