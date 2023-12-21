@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} | 404 - Page Not Found{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container-fluid clear-nav mb-3">
+        {% include 'includes/offer-banner.html' %}
+        <div class="row">
+            <div class="col-12 col-md-6 mx-auto text-center px-3">
+                <h2 class="dark-blue">404 - Page Not Found</h2>
+                <h5>Uh oh! Looks like that page can't be found!</h5>
+                <hr class="w-100 mx-auto mb-0">  
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 mx-auto text-center">
+                <img class="w-75 d-block mx-auto" src="{{ MEDIA_URL }}404.webp" alt="404 image">
+                <a href="{% url 'home' %}" class="btn btn-primary shopping-button"><i class="fas fa-chevron-left pe-2"></i>Take me back home!</a>
+            </div>
+        </div>
+    </div>
+        
+{% endblock %}
