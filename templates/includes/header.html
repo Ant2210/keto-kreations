@@ -102,7 +102,7 @@
                                 <a class="nav-link" href="#" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="text-center hover-blue">
                                         <div><i class="fas fa-user fa-lg icon"></i></div>
-                                        <p class="my-0">My Account</p>
+                                        <p class="my-0">Account</p>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu border-0" aria-labelledby="user-options">
@@ -132,6 +132,16 @@
                                     </div>
                                 </a>
                             </li>
+                            <li class="list-inline-item account-and-bag">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contact-modal">
+                                    <div class="text-center hover-blue">
+                                        <div><i class="fas fa-envelope fa-lg icon"></i></div>
+                                        <p class="my-0">
+                                            Contact
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -147,3 +157,4 @@
         </div>
     </nav>
 </header>
+{% include 'includes/contact_modal.html' %}

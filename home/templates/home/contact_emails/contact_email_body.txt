@@ -1,0 +1,16 @@
+Hello!
+
+You have received a new customer enquiry:
+
+Customer name: 
+{{ name }}
+
+Customer email:
+{{ email }}
+
+Customer message:
+{{ message }}
+
+Sincerely,
+
+Keto Kreations

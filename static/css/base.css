@@ -134,12 +134,17 @@ a:focus,
 
 .account-and-bag {
     display: inline-block;
-    width: 75px;
-    margin: 0 10px;
+    width: 70px;
+    font-size: 16px;
 }
 
 .dropdown-menu {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.contact-form-text-area {
+    resize: none;
+    height: 150px;
 }
 
 /* Footer */

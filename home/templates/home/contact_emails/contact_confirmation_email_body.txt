@@ -1,0 +1,21 @@
+Hello {{ name }}!
+
+We have received your enquiry and will get back to you as soon as possible.
+
+We reply to most enquiries within 24 hours, so if you still haven't received a reply within 48 hours, please check your spam folder or you can contact us directly at
+{{ store_email }}
+
+A copy of your message is below for your records.
+
+Customer name: 
+{{ name }}
+
+Customer email:
+{{ email }}
+
+Customer message:
+{{ message }}
+
+Sincerely,
+
+Keto Kreations
