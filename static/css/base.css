@@ -350,6 +350,18 @@ form.new_password_form input {
     .scroll-container {
         font-size: 1.05rem;
     }
+
+    .shopping-button {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+    .shopping-button {
+        width: 100%;
+        margin-top: 15px;
+    }
 }
 
 @media screen and (min-width: 425px) and (max-width: 991px) {
