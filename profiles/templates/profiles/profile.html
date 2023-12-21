@@ -79,38 +79,58 @@
                 <hr>
                 <h2 class="dark-blue fs-4">Reviews <span class="ms-5"></h2>
                 <div class="reviews table-responsive">
-                    <table class="table table-sm table-borderless">
-                        <thead>
-                            <tr>
-                                <td>Product</td>
-                                <td>Review Text</td>
-                                <td>Rating</td>
-                            </tr>
-                        </thead>
+                    <table class="table table-borderless">
                         <tbody>
-                            {% for order in orders %}
+                            {% for review in reviews %}
                                 <tr>
                                     <td>
-                                        <a href="{% url 'order_history' order.order_number %}"
-                                        title="{{ order.order_number }}">
-                                        {{ order.order_number|truncatechars:6 }}
-                                        </a>
+                                        Product:
                                     </td>
                                     <td>
-                                        <ul class="list-unstyled">
-                                            {% for item in order.lineitems.all %}
-                                                <li class="small">
-                                                    {% if item.product %}
-                                                        {{ item.product.name }} - {{ item.product.size }}({{ item.product.size_unit }}) x {{ item.quantity }}
-                                                    {% else %}
-                                                        {{ item.product_variant.product.name }} - {{ item.product_variant.size }}({{ item.product_variant.size_unit }}) x {{ item.quantity }}
-                                                    {% endif %}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+                                        <a href="{% url 'product_detail' review.product.id %}">
+                                            {{ review.product }}
+                                        </a>
                                     </td>
-                                    <td>£{{ order.grand_total }}</td>
                                 </tr>
+                                    <tr>
+                                        <td>
+                                            Comment:
+                                        </td>
+                                        <td>
+                                            {{ review.comment }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Rating:
+                                        </td>
+                                        <td>
+                                            <small class="text-muted"><i class="fas fa-star pe-1 text-warning"></i></small>{{ review.rating }} / 5
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Date:
+                                        </td>
+                                        <td>
+                                            {{ review.created_date|date:"d/m/Y" }}
+                                        </td>
+                                    </tr>
+                                    <tr class="review-table-edit-row">
+                                        <td class="align-middle">
+                                            Edit/Delete:
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editReviewModal{{ review.id }}">
+                                    
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteReviewModal{{ review.id }}">
+                                   
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
                             {% endfor %}
                         </tbody>
                     </table>

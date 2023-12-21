@@ -2,7 +2,6 @@ from django import forms
 from django.forms import ValidationError
 from .widgets import CustomClearableFileInput
 from .models import Product, ProductVariant, Category, Review
-from django.core.validators import MaxLengthValidator
 
 
 class ProductForm(forms.ModelForm):
@@ -142,7 +141,8 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ('rating', 'comment')
         labels = {
-            'comment': 'Please provide a brief comment about your experience (max 300 characters)',
+            'comment': 'Please provide a brief comment about your experience \
+                (max 300 characters)',
         }
 
     # Define choices for the rating field
