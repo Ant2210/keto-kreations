@@ -1,88 +1,88 @@
 <!-- Product Variant Modals -->
 <div class="modal fade" id="uncheck-variants-modal" tabindex="-1" aria-labelledby="uncheck-variants-label" aria-hidden="true" data-bs-backdrop='static'>
     <div class="modal-dialog">
-    <div class="modal-content">
-        <h1 class="modal-title fs-4 text-danger text-center pt-3" id="uncheck-variants-label">Warning!</h1>
-        <hr class="w-100">
-        <div class="modal-body dark-blue text-center">
-            <p>
-                By unchecking this box <strong>ALL</strong> product variants associated with this product will be <strong>DELETED</strong> on form submission.
-            </p>
-            <p>
-                This operation <strong>CANNOT</strong> be undone.
-            </p>
-            <p>
-                Are you sure you want to proceed?
-            </p>
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="uncheck-variants-label">Warning!</h1>
+            <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By unchecking this box <strong>ALL</strong> product variants associated with this product will be <strong>DELETED</strong> on form submission.
+                </p>
+                <p>
+                    This operation <strong>CANNOT</strong> be undone.
+                </p>
+                <p>
+                    Are you sure you want to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-uncheck-variants" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
         </div>
-        <div class="modal-footer text-center">
-            <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
-            <button id="undo-uncheck-variants" type="button" class="btn btn-primary shopping-button">No, cancel</button>
-        </div>
-    </div>
     </div>
 </div>
 
 <div class="modal fade" id="check-variants-modal" tabindex="-1" aria-labelledby="check-variants-label" aria-hidden="true" data-bs-backdrop='static'>
     <div class="modal-dialog">
-    <div class="modal-content">
-            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="check-variants-label">Warning!</h1>
-            <hr class="w-100">
-        <div class="modal-body dark-blue text-center">
-            <p>
-                By checking this box you understand this product will no longer show in the store until at least 1 product variant is added and associated with this product.
-            </p>
-            <p>
-                Are you sure you wish to proceed?
-            </p>
+        <div class="modal-content">
+                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="check-variants-label">Warning!</h1>
+                <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By checking this box you understand this product will no longer show in the store until at least 1 product variant is added and associated with this product.
+                </p>
+                <p>
+                    Are you sure you wish to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-check-variants" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
         </div>
-        <div class="modal-footer text-center">
-            <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
-            <button id="undo-check-variants" type="button" class="btn btn-primary shopping-button">No, cancel</button>
-        </div>
-    </div>
     </div>
 </div>
 
 <!-- On Sale Modals -->
 <div class="modal fade" id="uncheck-on-sale-modal" tabindex="-1" aria-labelledby="uncheck-on-sale-label" aria-hidden="true" data-bs-backdrop='static'>
     <div class="modal-dialog">
-    <div class="modal-content">
-        <h1 class="modal-title fs-4 text-danger text-center pt-3" id="uncheck-on-sale-label">Warning!</h1>
-        <hr class="w-100">
-        <div class="modal-body dark-blue text-center">
-            <p>
-                By unchecking this box, on form submission, this product and/or <strong>ALL</strong> product variants associated with this product, will have their sale price set to <strong>£0</strong> and will need to be reset if you decide to put the product back on sale.
-            </p>
-            <p>
-                Are you sure you want to proceed?
-            </p>
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="uncheck-on-sale-label">Warning!</h1>
+            <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By unchecking this box, on form submission, this product and/or <strong>ALL</strong> product variants associated with this product, will have their sale price set to <strong>£0</strong> and will need to be reset if you decide to put the product back on sale.
+                </p>
+                <p>
+                    Are you sure you want to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-uncheck-on-sale" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
         </div>
-        <div class="modal-footer text-center">
-            <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
-            <button id="undo-uncheck-on-sale" type="button" class="btn btn-primary shopping-button">No, cancel</button>
-        </div>
-    </div>
     </div>
 </div>
 
 <div class="modal fade" id="check-on-sale-modal" tabindex="-1" aria-labelledby="check-on-sale-label" aria-hidden="true" data-bs-backdrop='static'>
     <div class="modal-dialog">
-    <div class="modal-content">
-        <h1 class="modal-title fs-4 text-danger text-center pt-3" id="check-on-sale-label">Warning!</h1>
-        <hr class="w-100">
-        <div class="modal-body dark-blue text-center">
-            <p>
-                By checking this box, on form submission, if this product has <strong>ANY</strong> product variants associated with it, this product will not be visible on the website until you have updated the sale price on <strong>ALL</strong> product variants.
-            </p>
-            <p>
-                Are you sure you want to proceed?
-            </p>
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="check-on-sale-label">Warning!</h1>
+            <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By checking this box, on form submission, if this product has <strong>ANY</strong> product variants associated with it, this product will not be visible on the website until you have updated the sale price on <strong>ALL</strong> product variants.
+                </p>
+                <p>
+                    Are you sure you want to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-check-on-sale" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
         </div>
-        <div class="modal-footer text-center">
-            <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
-            <button id="undo-check-on-sale" type="button" class="btn btn-primary shopping-button">No, cancel</button>
-        </div>
-    </div>
     </div>
 </div>

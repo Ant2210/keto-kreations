@@ -63,7 +63,7 @@
                                         </tr>
                                     </table>
                                 {% endif %}
-                                </div>
+                            </div>
                         </div>
                         {% endfor %}
                     <div class="d-flex justify-content-between flex-column flex-md-row">
@@ -85,6 +85,7 @@
 {% block extra_js %}
 {{ block.super }}
     <script>
+        // Handle expand/collapse all buttons
         document.addEventListener('DOMContentLoaded', () => {
             const collapseHeadings = document.querySelectorAll('.collapse-heading');
             const expandAllButton = document.getElementById('expand-all-btn');
@@ -111,7 +112,7 @@
                     }
                 });
             });
-
+            // Handle product search
             const productSearchInput = document.getElementById('product-search');
             // Add event listener to search input field
             productSearchInput.addEventListener('input', () => {

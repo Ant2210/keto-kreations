@@ -2,12 +2,20 @@
     <p class="my-0">
         <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none"><strong>{{ item.product.name }}</strong></a>
     </p>                                            
-    <p class="my-0"><strong>Size: </strong>{% if item.product.size %}{{ item.product.size|upper }} ({{ item.product.size_unit}}){% else %}N/A{% endif %}</p>
-    <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+    <p class="my-0"><strong>
+        Size: </strong>{% if item.product.size %}{{ item.product.size|upper }} ({{ item.product.size_unit}}){% else %}N/A{% endif %}
+    </p>
+    <p class="my-0 small text-muted">
+        SKU: {{ item.product.sku|upper }}
+    </p>
 {% elif item.type == 'variant' %}
     <p class="my-0">
         <a href="{% url 'product_detail' item.variant.product.id %}" class="text-decoration-none"><strong>{{ item.variant.product.name }}</strong></a>
     </p>                                            
-    <p class="my-0"><strong>Size: </strong>{% if item.variant.size %}{{ item.variant.size|upper }} ({{ item.variant.size_unit}}){% else %}N/A{% endif %}</p>
-    <p class="my-0 small text-muted">SKU: {{ item.variant.sku|upper }}</p>
+    <p class="my-0"><strong>
+        Size: </strong>{% if item.variant.size %}{{ item.variant.size|upper }} ({{ item.variant.size_unit}}){% else %}N/A{% endif %}
+    </p>
+    <p class="my-0 small text-muted">
+        SKU: {{ item.variant.sku|upper }}
+    </p>
 {% endif %}

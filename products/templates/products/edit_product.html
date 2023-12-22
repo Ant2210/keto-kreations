@@ -54,6 +54,7 @@
 {{ block.super }}
     <script src="{% static 'products/js/add_edit_product.js' %}"></script>
     <script>
+        // Handle the file input change event, to display the filename
         document.getElementById('new-image').addEventListener('change', (event) => {
             const fileInput = event.target;
             const file = fileInput.files[0];

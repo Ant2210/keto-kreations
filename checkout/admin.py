@@ -13,6 +13,10 @@ class OrderLineItemAdminInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
+    """
+    This class allows us to customize the admin interface for orders.
+    """
+
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ('order_number', 'date',
@@ -33,6 +37,10 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 class OrderDiscountAdmin(admin.ModelAdmin):
+    """
+    This class allows us to customize the admin interface for order discounts.
+    """
+
     fields = ('code', 'discount', 'percent', 'min_spend', 'active',)
 
     list_display = (

@@ -21,7 +21,9 @@
 
         <div class="row">
             <div class="col-12 col-md-6 mx-auto">
-                <p class="text-danger">Products added that have multiple variants will not go live on the site until at least 1 variants has been added.</p>
+                <p class="text-danger">
+                    Products added that have multiple variants will not go live on the site until at least 1 variants has been added.
+                </p>
                 <form action="{% url 'add_product' %}" method="POST" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
@@ -52,6 +54,7 @@
 {{ block.super }}
     <script src="{% static 'products/js/add_edit_product.js' %}"></script>
     <script>
+        // Handle the file input change event, to display the filename
         document.getElementById('new-image').addEventListener('change', (event) => {
             const fileInput = event.target;
             const file = fileInput.files[0];

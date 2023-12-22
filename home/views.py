@@ -9,12 +9,16 @@ from django.utils.html import format_html
 
 def index(request):
     """ A view to return the index page """
+
     return render(request, 'home/index.html')
 
 
 @require_POST
 def contact(request):
-    """ A view to send an email to the store """
+    """
+    A view to send an email to the store and a confirmation
+    email back to the customer
+    """
 
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -48,7 +52,7 @@ def contact(request):
             messages.success(
                 request, 'Your message has been sent! We will get back to you \
                     as soon as possible.'
-                )
+            )
         except Exception as e:  # NOQA
             print(e)
             error_message = f'Sorry, your message could not be sent. Please \

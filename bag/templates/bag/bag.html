@@ -61,26 +61,26 @@
                                 <!-- Remove Modal Smaller Screens -->
                                 <div class="modal fade" id="mobile-remove-modal-{{ item.item_id }}" tabindex="-1" aria-labelledby="mobile-remove-modal-{{ item.item_id }}-label" aria-hidden="true" data-bs-backdrop='static'>
                                     <div class="modal-dialog">
-                                    <div class="modal-content">
-                                            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="moblie-remove-modal-{{ item.item_id }}-label">
-                                                Remove 
-                                                {% if item.type == 'variant' %}
-                                                    {{ item.variant }}({{ item.variant.size_unit}})
-                                                {% else %}
-                                                    {{ item.product }} - {{ item.product.size|upper }}({{ item.product.size_unit}})
-                                                {% endif %}
-                                            </h1>
-                                            <hr class="w-100">
-                                        <div class="modal-body dark-blue text-center">
-                                            <p>
-                                                Are you sure you wish to proceed?
-                                            </p>
+                                        <div class="modal-content">
+                                                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="moblie-remove-modal-{{ item.item_id }}-label">
+                                                    Remove 
+                                                    {% if item.type == 'variant' %}
+                                                        {{ item.variant }}({{ item.variant.size_unit}})
+                                                    {% else %}
+                                                        {{ item.product }} - {{ item.product.size|upper }}({{ item.product.size_unit}})
+                                                    {% endif %}
+                                                </h1>
+                                                <hr class="w-100">
+                                            <div class="modal-body dark-blue text-center">
+                                                <p>
+                                                    Are you sure you wish to proceed?
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer text-center">
+                                                <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel</button>
+                                                <a class="btn btn-danger shopping-button remove-item" data-item_id="remove_{{ item.item_id }}">Yes, remove</a>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer text-center">
-                                            <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel</button>
-                                            <a class="btn btn-danger shopping-button remove-item" data-item_id="remove_{{ item.item_id }}">Yes, remove</a>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -117,26 +117,26 @@
                                     <!-- Remove Modal Larger Screens -->
                                     <div class="modal fade" id="remove-modal-{{ item.item_id }}" tabindex="-1" aria-labelledby="remove-modal-{{ item.item_id }}-label" aria-hidden="true" data-bs-backdrop='static'>
                                         <div class="modal-dialog">
-                                        <div class="modal-content">
-                                                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="remove-modal-{{ item.item_id }}-label">
-                                                    Remove 
-                                                    {% if item.type == 'variant' %}
-                                                        {{ item.variant }}({{ item.variant.size_unit}})
-                                                    {% else %}
-                                                        {{ item.product }} - {{ item.product.size|upper }}({{ item.product.size_unit}})
-                                                    {% endif %}
-                                                </h1>
-                                                <hr class="w-100">
-                                            <div class="modal-body dark-blue text-center">
-                                                <p>
-                                                    Are you sure you wish to proceed?
-                                                </p>
+                                            <div class="modal-content">
+                                                    <h1 class="modal-title fs-4 text-danger text-center pt-3" id="remove-modal-{{ item.item_id }}-label">
+                                                        Remove 
+                                                        {% if item.type == 'variant' %}
+                                                            {{ item.variant }}({{ item.variant.size_unit}})
+                                                        {% else %}
+                                                            {{ item.product }} - {{ item.product.size|upper }}({{ item.product.size_unit}})
+                                                        {% endif %}
+                                                    </h1>
+                                                    <hr class="w-100">
+                                                <div class="modal-body dark-blue text-center">
+                                                    <p>
+                                                        Are you sure you wish to proceed?
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer text-center">
+                                                    <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel</button>
+                                                    <a class="btn btn-danger shopping-button remove-item" data-item_id="remove_{{ item.item_id }}">Yes, remove</a>
+                                                </div>
                                             </div>
-                                            <div class="modal-footer text-center">
-                                                <button type="button" class="btn btn-primary shopping-button" data-bs-dismiss="modal">No, cancel</button>
-                                                <a class="btn btn-danger shopping-button remove-item" data-item_id="remove_{{ item.item_id }}">Yes, remove</a>
-                                            </div>
-                                        </div>
                                         </div>
                                     </div>
                                 {% endfor %}

@@ -13,6 +13,8 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """ Model to store order information """
+
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(
         UserProfile, on_delete=models.SET_NULL,
@@ -93,6 +95,8 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """ Model to store each line item for the order """
+
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
                               related_name='lineitems'
@@ -130,6 +134,8 @@ class OrderLineItem(models.Model):
         """
 
         self.clean()
+        # Determine the price based on whether a product or product variant
+        # and whether a sale price is set
         if self.product_variant:
             if self.product_variant.sale_price:
                 price = self.product_variant.sale_price

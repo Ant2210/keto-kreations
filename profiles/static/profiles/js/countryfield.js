@@ -1,3 +1,6 @@
+/* 
+Load country list and set default country if there is one
+*/
 let countrySelect = document.getElementById('id_default_country');
 let countrySelected = countrySelect.value;
 

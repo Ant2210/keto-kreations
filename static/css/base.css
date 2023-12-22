@@ -45,6 +45,7 @@ body {
     background-color: #fff;
 }
 
+/* Badges and Tags */
 .badge {
     transition: all 0.2s ease-in-out;
 }
@@ -62,17 +63,18 @@ body {
     transform: scale(1.15);
 }
 
-.btn:active,
-.btn:focus {
-    color: #fff;
-}
-
+/* Forms */
 .form-control::placeholder {
     color: rgba(33, 37, 41, 0.5);
     font-weight: 400;
 }
 
-/* Back to top button */
+/* Buttons */
+.btn:active,
+.btn:focus {
+    color: #fff;
+}
+
 .btt-button {
     height: 42px;
     width: 42px;

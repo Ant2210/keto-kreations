@@ -4,7 +4,7 @@ from .models import Order
 
 class OrderForm(forms.ModelForm):
     """
-    Form for the checkout page.
+    Order form for the checkout page.
     """
 
     class Meta:

@@ -18,6 +18,8 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    """ Cache checkout data for stripe """
+
     try:
         json_data = json.loads(request.body.decode('utf-8'))
         pid = json_data.get('client_secret').split('_secret')[0]
@@ -36,6 +38,14 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    Handles the checkout process by creating an order and order line items.
+    It also checks the stock for each item in the bag and displays an error
+    message if there's not enough stock. It also checks if the user is
+    authenticated and pre-fills the order form with the user's default
+    information then renders the checkout page with the order form.
+    """
+
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -188,6 +198,7 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
+
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 

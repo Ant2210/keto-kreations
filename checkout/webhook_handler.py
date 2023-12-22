@@ -40,6 +40,7 @@ class StripeWH_Handler:
         """
         Adjust stock levels based on the order
         """
+
         for line_item in order.lineitems.all():
             if line_item.product_variant:
                 # Adjust stock for product variant
@@ -54,6 +55,7 @@ class StripeWH_Handler:
         """
         Handle generic/unknown/unexpected webhook events
         """
+
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)

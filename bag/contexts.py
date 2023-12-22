@@ -78,6 +78,8 @@ def bag_contents(request):
         free_delivery_delta = 0
 
     if discount_code:
+        # Get discount code from database and calculate discount total
+        # based on whether discount is a percentage or a fixed amount
         discount_code = get_object_or_404(
             OrderDiscount, code__iexact=discount_code)
         if total >= discount_code.min_spend:

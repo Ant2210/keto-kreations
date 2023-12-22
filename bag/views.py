@@ -35,7 +35,7 @@ def add_to_bag(request, item_id):
         product = get_object_or_404(ProductVariant, pk=variant_id)
         current_stock = product.stock_count
     else:
-        """ If no product size is selected, add the product y it's ID """
+        """ If no product size is selected, add the product by it's ID """
 
         item_id = item_id
         product = get_object_or_404(Product, pk=item_id)
@@ -129,9 +129,7 @@ def adjust_bag(request, item_id):
 
 
 def remove_from_bag(request, item_id):
-    """
-    Adjust the quantity of the specified product to the specified amount
-    """
+    """ Remove the item from the shopping bag """
 
     try:
         bag = request.session.get('bag', {})
@@ -159,7 +157,7 @@ def remove_from_bag(request, item_id):
 
 
 def apply_discount(request):
-    """ Apply a discount code """
+    """ Apply a discount code to the shopping bag """
 
     discount_code = request.POST.get('discount_code').upper()
     context = bag_contents(request)

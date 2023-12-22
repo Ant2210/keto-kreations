@@ -178,6 +178,8 @@ class NutritionalInfo(models.Model):
 
 
 class Review(models.Model):
+    """ The review model for the products app """
+
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name='reviews'
     )
