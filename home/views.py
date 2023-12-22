@@ -30,32 +30,25 @@ def contact(request):
              'store_email': store_email})
 
         try:
-            try:
-                # Send customer message to store owner
-                send_mail(
-                    'New Customer Enquiry',
-                    enquiry_body,
-                    store_email,
-                    [store_email],
-                )
-            except Exception as e:  # NOQA
-                messages.error(request, f'{e}')
+            # Send customer message to store owner
+            send_mail(
+                'New Customer Enquiry',
+                enquiry_body,
+                store_email,
+                [store_email],
+            )
 
-            try:
-                # Send confirmation email to customer
-                send_mail(
-                    'Thank you for your enquiry',
-                    confirmation_body,
-                    store_email,
-                    [cust_email],
-                )
-            except Exception as e:  # NOQA
-                messages.error(request, f'{e}')
-
+            # Send confirmation email to customer
+            send_mail(
+                'Thank you for your enquiry',
+                confirmation_body,
+                store_email,
+                [cust_email],
+            )
             messages.success(
                 request, 'Your message has been sent! We will get back to you \
                     as soon as possible.'
-            )
+                )
         except Exception as e:  # NOQA
             print(e)
             error_message = f'Sorry, your message could not be sent. Please \
