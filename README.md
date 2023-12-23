@@ -1127,7 +1127,10 @@ The database schema flow charts were created using [Figma](https://www.figma.com
 <hr>
 
 - An intuitive stock management system which checks stock values before allowing a user to place an order in case someone else has made an order since they added the product to their cart, as well updating the stock counts dynamically as and when orders are placed.
+
   <img src="readme_and_testing_media/stockerror.png" alt="Not enough stock error message">
+
+<hr>
 
 
 ### Future Features
