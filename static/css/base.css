@@ -266,6 +266,7 @@ to {
 /* Shopping Bag Page */
 .shopping-button {
     width: 48%;
+    min-width: fit-content;
 }
 
 .remove-link:hover {
