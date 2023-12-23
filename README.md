@@ -509,3 +509,16 @@ The main considerations for the font were aesthetics and accessibility. I chose 
 <br>
 
 All other imagery on the website are basic icons obtained from Font Awesome which can be found [here](https://fontawesome.com/).
+
+
+### Wireframes
+The wireframes were creates using [Figma](https://www.figma.com/). I have deviated somewhat from my original wireframes, but this was mainly design preference and ensuring a good responsive layout on smaller screens.
+
+I did not create separate wireframes for mobile and tablet as the layout is identical.
+
+- ##### Desktop Wireframes
+<img src="readme_and_testing_media/desktopwireframes.png" alt="Website desktop wireframes">
+
+
+- ##### Tablet & Mobile Wireframes
+<img src="readme_and_testing_media/tablet&mobilewireframes.png" alt="Website tablet & mobile wireframes">
