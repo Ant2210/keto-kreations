@@ -356,24 +356,24 @@ The main considerations for the font were aesthetics and accessibility. I chose 
 
 #### Imagery
 
- - ##### Logo
+  - ##### Logo
     The Keto Kreations logo was created using Logo.com which can be found [here](https://logo.com/).
     <img src="media/logo.webp" alt="Keto Kreations Logo">
 
-- ##### Welcome Image
+  - ##### Welcome Image
     The welcome/hero image was found at Freepik [here](https://www.freepik.com/free-photo/ketogenic-low-carbs-diet-food-selection-white-wall_12757333.htm#query=keto%20food%20transparent&position=26&from_view=search&track=ais&uuid=6594cbc6-5c09-4e67-925f-dfdfc7f00692)
     <img src="media/hero.webp" alt="Welcome/hero image">
     Attribution - <a href="https://www.freepik.com/free-photo/ketogenic-low-carbs-diet-food-selection-white-wall_12757333.htm#query=keto%20food%20transparent&position=26&from_view=search&track=ais&uuid=6594cbc6-5c09-4e67-925f-dfdfc7f00692">Image by master1305</a> on Freepik
 
-- ##### 404 Image
+  - ##### 404 Image
     The image used on the 404 page was found at Freepik [here](https://www.freepik.com/free-vector/error-404-concept-landing-page_4660894.htm#query=404%20image&position=9&from_view=search&track=ais&uuid=b78a78a6-bfe8-4b6a-a66f-7ce0423dbe75)
     <img src="media/404.webp" alt="404 Image">
     Attribution - <a href="https://www.freepik.com/free-vector/error-404-concept-landing-page_4660894.htm#query=404%20image&position=9&from_view=search&track=ais&uuid=b78a78a6-bfe8-4b6a-a66f-7ce0423dbe75">Image by pikisuperstar</a> on Freepik
 
-- #### Product Images
+  - #### Product Images
     All product images were also sourced from Freepik, all of the attributions for these images are in the below table.
 
-<table>
+  <table>
   <thead>
     <tr>
       <th>Product</th>
@@ -521,15 +521,18 @@ The wireframes were creates using [Figma](https://www.figma.com/). I have deviat
 
 I did not create separate wireframes for mobile and tablet as the layout is identical.
 
-- ##### Desktop Wireframes
-<img src="readme_and_testing_media/desktopwireframes.png" alt="Website desktop wireframes">
+  - #### Desktop Wireframes
+
+  <img src="readme_and_testing_media/desktopwireframes.png" alt="Website desktop wireframes">
 
 
-- ##### Tablet & Mobile Wireframes
-<img src="readme_and_testing_media/tablet&mobilewireframes.png" alt="Website tablet & mobile wireframes">
+  - #### Tablet & Mobile Wireframes
+
+  <img src="readme_and_testing_media/tablet&mobilewireframes.png" alt="Website tablet & mobile wireframes">
   
 ### Database Schema
 The database schema flow charts were created using [Figma](https://www.figma.com/).
+
 <img src="readme_and_testing_media/dbschema.png" alt="Database schema chart">
 
 
@@ -537,105 +540,241 @@ The database schema flow charts were created using [Figma](https://www.figma.com
 
 ### Features
 
--   Fully responsive across all screen sizes.
+- Fully responsive across all screen sizes.
 
     #### Laptop / Desktop
 
-    <img src="./documentation/responsiveness/laptopscreenshot1.webp" alt="Screenshot of welcome screen on laptop">
-    <img src="./documentation/responsiveness/laptopscreenshot2.webp" alt="Screenshot of log in screen on laptop">
-    <img src="./documentation/responsiveness/laptopscreenshot3.webp" alt="Screenshot of budgets screen on laptop">
-    <img src="./documentation/responsiveness/laptopscreenshot4.webp" alt="Screenshot of budget screen on laptop">
-    <img src="./documentation/responsiveness/laptopscreenshot5.webp" alt="Screenshot of pie chart on laptop">
-    <img src="./documentation/responsiveness/laptopscreenshot6.webp" alt="Screenshot of bar chart on laptop">
-    <img src="./documentation/responsiveness/laptopscreenshot7.webp" alt="Screenshot of add transaction modal on laptop">
+    <img src="readme_and_testing_media/welcome-desktop.png" alt="Screenshot of welcome screen on laptop">
+    <img src="readme_and_testing_media/products-desktop.png" alt="Screenshot of products page on laptop">
+    <img src="readme_and_testing_media/productdeatil1-dekstop.png" alt="Screenshot of product details page on laptop">
+    <img src="readme_and_testing_media/productdetail2-dekstop.png" alt="Screenshot of product details page on laptop">
+    <img src="readme_and_testing_media/bag-desktop.png" alt="Screenshot of shopping bag page on laptop">
+    <img src="readme_and_testing_media/checkout-desktop.png" alt="Screenshot of checkout page on laptop">
+    <img src="readme_and_testing_media/checkout2-desktop.png" alt="Screenshot of checkout page on laptop">
+    <img src="readme_and_testing_media/checkoutsuccess-desktop.png" alt="Screenshot of checkout success page on laptop">
+    <img src="readme_and_testing_media/profile1-desktop.png" alt="Screenshot of profile page on laptop">
+    <img src="readme_and_testing_media/profile2-desktop.png" alt="Screenshot of profile page on laptop">
+    <img src="readme_and_testing_media/productmanagement-desktop.png" alt="Screenshot of product management page on laptop">
+    <img src="readme_and_testing_media/addproduct1-desktop.png" alt="Screenshot of add product page on laptop">
+    <img src="readme_and_testing_media/addproduct2-desktop.png" alt="Screenshot of add product page on laptop">
+    <img src="readme_and_testing_media/addvariant-dekstop.png" alt="Screenshot of add variant page on laptop">
+    <img src="readme_and_testing_media/editproduct1-desktop.png" alt="Screenshot of edit product page on laptop">
+    <img src="readme_and_testing_media/editproduct2-desktop.png" alt="Screenshot of edit product page on laptop">
+    <img src="readme_and_testing_media/editvariant-desktop.png" alt="Screenshot of edit variant page on laptop">
+    <img src="readme_and_testing_media/productmanagementmodal1-desktop.png" alt="Screenshot of product management modal on product management page laptop">
+    <img src="readme_and_testing_media/productmanagementmodal2-desktop.png" alt="Screenshot of product management modal on product management page laptop">
+    <img src="readme_and_testing_media/stockmanagement1-desktop.png" alt="Screenshot of stock management page laptop">
+    <img src="readme_and_testing_media/stockmanagement2-desktop.png" alt="Screenshot of stock management page laptop">
+    <img src="readme_and_testing_media/login-desktop.png" alt="Screenshot of login page laptop">
+    <img src="readme_and_testing_media/logout-desktop.png" alt="Screenshot of logout page laptop">
+    <img src="readme_and_testing_media/register-desktop.png" alt="Screenshot of register page laptop">
 
     #### Tablet
 
-    <img src="./documentation/responsiveness/tabletscreenshot1.webp" alt="Screenshot of welcome screen on tablet">
-    <img src="./documentation/responsiveness/tabletscreenshot2.webp" alt="Screenshot of log in screen on tablet">
-    <img src="./documentation/responsiveness/tabletscreenshot3.webp" alt="Screenshot of budgets screen on tablet">
-    <img src="./documentation/responsiveness/tabletscreenshot4.webp" alt="Screenshot of sidenav on tablet">
-    <img src="./documentation/responsiveness/tabletscreenshot5.webp" alt="Screenshot of budget screen on tablet">
-    <img src="./documentation/responsiveness/tabletscreenshot6.webp" alt="Screenshot of pie chart on tablet">
-    <img src="./documentation/responsiveness/tabletscreenshot7.webp" alt="Screenshot of bar chart on tablet">
-    <img src="./documentation/responsiveness/tabletscreenshot8.webp" alt="Screenshot of add transaction modal on tablet">
+    <img src="readme_and_testing_media/welcome-tablet.png" alt="Screenshot of welcome screen on tablet">
+    <img src="readme_and_testing_media/products-tablet.png" alt="Screenshot of products page on tablet">
+    <img src="readme_and_testing_media/productdetail1-tablet.png" alt="Screenshot of product details page on tablet">
+    <img src="readme_and_testing_media/productdetail2-tablet.png" alt="Screenshot of product details page on tablet">
+    <img src="readme_and_testing_media/bag-tablet.png" alt="Screenshot of shopping bag page on tablet">
+    <img src="readme_and_testing_media/checkout1-tablet.png" alt="Screenshot of checkout page on tablet">
+    <img src="readme_and_testing_media/checkout2-tablet.png" alt="Screenshot of checkout page on tablet">
+    <img src="readme_and_testing_media/checkoutsuccess-tablet.png" alt="Screenshot of checkout success page on tablet">
+    <img src="readme_and_testing_media/profile1-tablet.png" alt="Screenshot of profile page on tablet">
+    <img src="readme_and_testing_media/profile2-tablet.png" alt="Screenshot of profile page on tablet">
+    <img src="readme_and_testing_media/profile3-tablet.png" alt="Screenshot of profile page on tablet">
+    <img src="readme_and_testing_media/productmanagement1-tablet.png" alt="Screenshot of product management page on tablet">
+    <img src="readme_and_testing_media/productmanagment2-tablet.png" alt="Screenshot of product management page on tablet">
+    <img src="readme_and_testing_media/addproduct1-tablet.png" alt="Screenshot of add product page on tablet">
+    <img src="readme_and_testing_media/addproduct2-tablet.png" alt="Screenshot of add product page on tablet">
+    <img src="readme_and_testing_media/addvariant1-tablet.png" alt="Screenshot of add variant page on tablet">
+    <img src="readme_and_testing_media/addvariant2-tablet.png" alt="Screenshot of add variant page on tablet">
+    <img src="readme_and_testing_media/editproduct1-tablet.png" alt="Screenshot of edit product page on tablet">
+    <img src="readme_and_testing_media/editproduct2-tablet.png" alt="Screenshot of edit product page on tablet">
+    <img src="readme_and_testing_media/editvariant1-tablet.png" alt="Screenshot of edit variant page on tablet">
+    <img src="readme_and_testing_media/editvariant2-tablet.png" alt="Screenshot of edit variant page on tablet">
+    <img src="readme_and_testing_media/productmanagementmodal1-tablet.png" alt="Screenshot of product management modal on product management page tablet">
+    <img src="readme_and_testing_media/productmanagementmodal2-tablet.png" alt="Screenshot of product management modal on product management page tablet">
+    <img src="readme_and_testing_media/stockmanagement1-tablet.png" alt="Screenshot of stock management page tablet">
+    <img src="readme_and_testing_media/stockmanagement2-tablet.png" alt="Screenshot of stock management page tablet">
+    <img src="readme_and_testing_media/login-tablet.png" alt="Screenshot of login page tablet">
+    <img src="readme_and_testing_media/logout-tablet.png" alt="Screenshot of logout page tablet">
+    <img src="readme_and_testing_media/register-tablet.png" alt="Screenshot of register page tablet">
+    <img src="readme_and_testing_media/sidenav-tablet.png" alt="Screenshot of sidenav tablet">
 
     #### Mobile
 
-    <img src="./documentation/responsiveness/mobilescreenshot1.webp" alt="#Screenshot of welcome screen on mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot2.webp" alt="#Screenshot of log in screen on mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot3.webp" alt="#Screenshot of budgets screen on mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot4.webp" alt="#Screenshot of budgets screen on smaller mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot5.webp" alt="#Screenshot of sidenav on mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot6.webp" alt="#Screenshot of budget screen on mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot7.webp" alt="#Screenshot of pie chart on mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot8.webp" alt="#Screenshot of bar chart on mobile">
-    <img src="./documentation/responsiveness/mobilescreenshot9.webp" alt="#Screenshot of add transaction modal on mobile">
-    
+    <img src="readme_and_testing_media/welcome-mobile.png" alt="Screenshot of welcome screen on mobile">
+    <img src="readme_and_testing_media/products-mobile.png" alt="Screenshot of products page on mobile">
+    <img src="readme_and_testing_media/products2-mobile.png" alt="Screenshot of products page on mobile">
+    <img src="readme_and_testing_media/productdetail1-mobile.png" alt="Screenshot of product details page on mobile">
+    <img src="readme_and_testing_media/productdetail2-mobile.png" alt="Screenshot of product details page on mobile">
+    <img src="readme_and_testing_media/bag1-mobile.png" alt="Screenshot of shopping bag page on mobile">
+    <img src="readme_and_testing_media/bag2-mobile.png" alt="Screenshot of shopping bag page on mobile">
+    <img src="readme_and_testing_media/checkout1-mobile.png" alt="Screenshot of checkout page on mobile">
+    <img src="readme_and_testing_media/checkout2-mobile.png" alt="Screenshot of checkout page on mobile">
+    <img src="readme_and_testing_media/checkoutsuccess1-mobile.png" alt="Screenshot of checkout success page on mobile">
+    <img src="readme_and_testing_media/checkoutsuccess2-mobile.png" alt="Screenshot of checkout success page on mobile">
+    <img src="readme_and_testing_media/profile1-mobile.png" alt="Screenshot of profile page on mobile">
+    <img src="readme_and_testing_media/profile2-mobile.png" alt="Screenshot of profile page on mobile">
+    <img src="readme_and_testing_media/profile3-mobile.png" alt="Screenshot of profile page on mobile">
+    <img src="readme_and_testing_media/productmanagement1-mobile.png" alt="Screenshot of product management page on mobile">
+    <img src="readme_and_testing_media/productmanagement2-mobile.png" alt="Screenshot of product management page on mobile">
+    <img src="readme_and_testing_media/addproduct1-mobile.png" alt="Screenshot of add product page on mobile">
+    <img src="readme_and_testing_media/addproduct2-mobile.png" alt="Screenshot of add product page on mobile">
+    <img src="readme_and_testing_media/addvariant1-mobile.png" alt="Screenshot of add variant page on mobile">
+    <img src="readme_and_testing_media/addvariant2-mobile.png" alt="Screenshot of add variant page on mobile">
+    <img src="readme_and_testing_media/editproduct1-mobile.png" alt="Screenshot of edit product page on mobile">
+    <img src="readme_and_testing_media/editproduct2-mobile.png" alt="Screenshot of edit product page on mobile">
+    <img src="readme_and_testing_media/editvariant1-mobile.png" alt="Screenshot of edit variant page on mobile">
+    <img src="readme_and_testing_media/editvariant2-mobile.png" alt="Screenshot of edit variant page on mobile">
+    <img src="readme_and_testing_media/productmanagementmodal1-mobile.png" alt="Screenshot of product management modal on product management page mobile">
+    <img src="readme_and_testing_media/productmanagementmodal2-mobile.png" alt="Screenshot of product management modal on product management page mobile">
+    <img src="readme_and_testing_media/stockamanagement1-mobile.png" alt="Screenshot of stock management page mobile">
+    <img src="readme_and_testing_media/stockmanagement2-mobile.png" alt="Screenshot of stock management page tablet">
+    <img src="readme_and_testing_media/login-mobile.png" alt="Screenshot of login page mobile">
+    <img src="readme_and_testing_media/logout-mobile.png" alt="Screenshot of logout page mobile">
+    <img src="readme_and_testing_media/register-mobile.png" alt="Screenshot of register page mobile">
+    <img src="readme_and_testing_media/sidenav-mobile.png" alt="Screenshot of sidenav mobile">
+<hr>
 
--   Intuitive and easy to navigate using the top navbar on larger screens and sidenav on smaller screens. There are various appropriately marked buttons as well as instructions on what to do where it maybe isn't so clear to the user. 
+- Intuitive and easy to navigate using the top navbar on larger screens and sidenav on smaller screens which present different options to the user depending on whether or not they are logged in, and if they are a 'super user' as well as if there are products currently in their shopping bag. 
 
-    <img src="./documentation/features/navbar.webp" alt="Screenshot of navbar">
-    <img src="./documentation/features/sidenav.webp" alt="Screenshot of sidenav">
-    <img src="./documentation/features/budgetmanagement.webp" alt="Screenshort of budgetmangement section">
+	There is also a search function allowing the customer to search for the exact products they need .There are also various appropriately marked buttons throughout the site making navigation easy.
 
--   The ability to log in to an existing account or register a new one, and log out once logged in.
+  <img src="readme_and_testing_media/navbar.png" alt="Navbar">
+  <img src="readme_and_testing_media/mobilenav.png" alt="Mobile navbar">
+  <img src="readme_and_testing_media/sidenav.png" alt="Sidenav">
+  <img src="readme_and_testing_media/buttons.png" alt="Navigation buttons">
+<hr>
 
-    <img src="./documentation/features/login.webp" alt="Screenshot of login form">
-    <img src="./documentation/features/register.webp" alt="Screenshot of registration form">
-    <img src="./documentation/features/logout.webp" alt="Screenshot of log out modal">
+- Full account management including the ability to...
+	- Sign in
+	- Sign out
+	- Sign up
+	- Reset forgotten passwords
 
--   A dynamic "homepage", for users thats are logged out they are presented with a "Welcome screen" and for users that are logged in they are taken to their list of budgets where they can select to view or add new budgets.
+	The main functionality for account management is provided by AllAuth built into Django but the pages have been restyled to fit in with the page design and be fully responsive.
 
-    <img src="./documentation/features/welcomescreen.webp" alt="Screenshot of welcome screen">
-    <img src="./documentation/features/budgetsscreen.webp" alt="Screenshot of budgets screen">
+  <img src="readme_and_testing_media/login-desktop.png" alt="Login page">
+  <img src="readme_and_testing_media/logout-desktop.png" alt="Logout page">
+  <img src="readme_and_testing_media/register-desktop.png" alt="Register page">
+  <img src="readme_and_testing_media/passwordreset.png" alt="Password reset page">
+<hr>
 
--   A budget management section where the user is presented with helpful instructions on how to add, edit or delete transactions as well as rename or delete their budget. They can use the various buttons, or click on an existing transaction in order to edit or delete it.
+- A homepage designed to convey straight away exactly what the site is about to the user.
 
-    <img src="./documentation/features/budgetmanagement.webp" alt="Screenshot of budget management section">
+  <img src="readme_and_testing_media/welcome-desktop.png" alt="Password reset page">
+<hr>
 
--   The ability to add, edit or delete transactions as well as rename or delete their budget.
+- A contact button which is always visible in the navbar or sidenav, giving users a quick and convenient way to contact the store with any queries.
 
-    <img src="./documentation/features/addtransactionmodal.webp" alt="Screenshot of add transaction modal">
-    <img src="./documentation/features/edittransactionmodal.webp" alt="Screenshot of edit transaction modal">
-    <img src="./documentation/features/deletetransactionmodal.webp" alt="Screenshot of delete transaction modal">
-    <img src="./documentation/features/renamebudgetmodal.webp" alt="Screenshot of rename budget modal">
-    <img src="./documentation/features/deletebudgetmodal.webp" alt="Screenshot of delete budget modal">
+  <img src="readme_and_testing_media/navbar.png" alt="Navbar">
+  <img src="readme_and_testing_media/sidenav.png" alt="Sidenav">
+<hr>
 
--   A full budget table showing all the users income and outgoings that they have added to that specific budget.
+- A product page offering basic product information and pictures as well as various filtering and sorting options allowing the user to easily navigate the products available in the store. 
 
-    <img src="./documentation/features/budgettable.webp" alt="Screenshot of budget table">
+  <img src="readme_and_testing_media/products-desktop.png" alt="Products page">
+  <img src="readme_and_testing_media/productsort.png" alt="Products sort dropdown">
 
--   Handy insights into the users budget, conveniently presented in both a pie chart which shows the percentage of their total income that is being spent in each transaction category, and a bar chart which shoes the total amount that is being spent on each transaction category. The user is able to hover over each colour for further info or use the key button to show which colour represents which category
+<hr>
 
-    <img src="./documentation/features/insights1.webp" alt="Screenshot of insights with key closed">
-    <img src="./documentation/features/insights2.webp" alt="Screenshot of insights with key open">
+- Conveniently placed badges and tags on products giving instant feedback to the user as to whether a product is new, on sale or out of stock as well as which category it belongs to.
 
--   The user is provided numerous ways to get in touch for help via social media links placed in the footer or by submitting a web form by clicking the email icon in the footer or the support link in the navbar. Once a support message is sent the user is also sent an auto reply via email to advise of the current response times.
+  <img src="readme_and_testing_media/badges.png" alt="Product badges">
+  <img src="readme_and_testing_media/badges2.png" alt="Product badges">
+<hr>
 
-    <img src="./documentation/features/footer.webp" alt="Screenshot of footer">
-    <img src="./documentation/features/supportmodal.webp" alt="Screenshot of footer">
+- A product details page giving more in depth information about the product such as the description, stock availability, reviews, ingredients, allergens and nutritional information.
 
--   A profile page is provided where the user can either change their password or delete their account entirely.
+	It also shows any reviews that have been left for the product as well as giving registered users the ability to leave their own reviews.
 
-    <img src="./documentation/features/profile.webp" alt="Screenshort of profile page">
-    <img src="./documentation/features/deleteaccountmodal.webp" alt="Screenshort of delete account modal">
+  <img src="readme_and_testing_media/productdeatil1-dekstop.png" alt="Product details page">
+  <img src="readme_and_testing_media/productdetail2-dekstop.png" alt="Product details page">
+<hr>
 
--   A custom 404 page that informs the user the page they are looking for hasn't been found and then automatically redirects them back to the homepage. 
+- A product selector on each product page where the product has different variants such as different package sizes, which also shows how many of each variant is currently in stock for purchase. When selected the price on the page is dynamically updated.
 
-    <img src="./documentation/features/404page.webp" alt="Screenshort of 404 page">
+  <img src="readme_and_testing_media/sizeselector.png" alt="Product size selector">
+<hr>
 
--   Defensive programming has been used throughout the development of the application, to prompt users when they are either about to permanently delete something that cannot be done such as a transaction, full budget or their account as well as to stop users accessing pages they aren't authorised to access, for instance any page that requires a user to be logged in, or other users budgets and profiles whether logged in or not.
+- The ability to store items in the shopping bag for purchase as well as the ability to update the quantity required or remove them all together.
 
-    <img src="./documentation/features/defensive1.webp" alt="Screenshot of user being denied access to another users budget by entering the username in the URL">
+  <img src="readme_and_testing_media/bag-desktop.png" alt="Bag page">
+  <img src="readme_and_testing_media/qtyselector.png" alt="Quantity selector">
+  
+<hr>
 
-    <img src="./documentation/features/defensive2.webp" alt="Screenshot of user being denied access to a page that requires the user to be logged in">
+- The ability to add available discount codes to your order.
 
-    <img src="./documentation/features/deleteaccountmodal.webp" alt="Screenshot of user being prompted to enter their password when trying to delete their account">
+  <img src="readme_and_testing_media/discountbox.png" alt="Discount box">
+<hr>
 
-    <img src="./documentation/features/deletebudgetmodal.webp" alt="Screenshot of user being asked to confirm they wish to delete their budget along with all associated transactions">
+- A secure checkout page powered by Stripe payments which shows a summary of the order and also give the user the ability to save their details for future orders if they are already registered.
 
-    <img src="./documentation/features/deletetransactionmodal.webp" alt="Screenshot of user being asked to confirm they wish to delete a transaction">
+  <img src="readme_and_testing_media/checkout-desktop.png" alt="Checkout Page">
+  <img src="readme_and_testing_media/checkout2-desktop.png" alt="Checkout Page">
+  <img src="readme_and_testing_media/saveinfo.png" alt="Save info selector">
+  <img src="readme_and_testing_media/stripe.png" alt="Stripe payment box">
+<hr>
+
+- A checkout success page with give confirmation of the current order as well as a summary of the order.
+
+  <img src="readme_and_testing_media/checkoutsuccess-desktop.png" alt="Stripe payment box">
+<hr>
+
+- A user profile page which give users the ability to view and update their default delivery information, as well as an order history section, giving the user the ability to view details of all their past orders. 
+
+  There is also a reviews section which give the user the ability to see the past reviews as well as being able to edit or delete those reviews.
+  
+  <img src="readme_and_testing_media/profile1-desktop.png" alt="Profile page">
+  <img src="readme_and_testing_media/profile2-desktop.png" alt="Profile page">
+<hr>
+
+- For super users the is a product management section which provides the ability to do the following...
+		- Add, edit and delete products and product variants
+		- Add, edit and delete discount codes
+		- Manage the stock levels of the store
+
+    <img src="readme_and_testing_media/productmanagement-desktop.png" alt="Product management page">
+<hr>
+
+- Custom success, warning and error messages giving customers feedback on their actions as they navigate the site, as well as a preview of their shopping carts when changes are made to their current 'bag items'.
+
+    <img src="readme_and_testing_media/successmessage.png" alt="Success message">
+    <img src="readme_and_testing_media/errormessage.png" alt="Error message">
+    <img src="readme_and_testing_media/shoppingbagpreview.png" alt="Shopping bag preview">
+<hr>
+
+- Confirmation emails sent for all orders made as well as when the custom makes contact with the store via the 'Contact' modal on the site.
+
+  <img src="readme_and_testing_media/contactmodal.png" alt="Contact modal">
+  <img src="readme_and_testing_media/messagesent.png" alt="Message sent success message">
+  <img src="readme_and_testing_media/enquiryemail.png" alt="Customer enquiry email">
+  <img src="readme_and_testing_media/confirmationemail.png" alt="Customer enquiry confirmation email">
+  <img src="readme_and_testing_media/checkoutsuccess.png" alt="Checkout success">
+  <img src="readme_and_testing_media/orderconfirmationemail.png" alt="Order confirmation email">
+<hr>
+
+- A custom 404 page that informs the user the page they are looking for hasn't been found with a button directing them back to the homepage.
+
+    <img src="readme_and_testing_media/404.png" alt="404 page">
+<hr>
+
+- A back to top button on the products page which only appears when the customer begins scrolling down.
+
+  <img src="readme_and_testing_media/bttbutton.png" alt="Back to top button">
+<hr>
+
+- Defensive programming has been used throughout the development of the application, to prompt users when they are either about to permanently delete something that cannot be done such as a product or discount code, as well as to stop users accessing pages they aren't authorised to access, for instance any page that requires a user to be logged in or for a user to be a super user.
+
+  <img src="readme_and_testing_media/deleteproductmodal.png" alt="Delete product modal">
+  <img src="readme_and_testing_media/defensiveerror.png" alt="Not super user error message">
+
+<hr>
+
+- An intuitive stock management system which checks stock values before allowing a user to place an order in case someone else has made an order since they added the product to their cart, as well updating the stock counts dynamically as and when orders are placed.
+  <img src="readme_and_testing_media/stockerror.png" alt="Not enough stock error message">
 
 
 ### Future Features
