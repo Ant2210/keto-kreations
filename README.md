@@ -222,6 +222,11 @@ Keto Kreations was created as my fourth and final milestone project for the Code
       <td>See what discounts have been applied to my order</td>
       <td>Identify the total cost of my purchase after discounts are applied</td>
     </tr>
+        <tr>
+      <td>Shopper</td>
+      <td>See at a glance if there are any items in my shopping basket</td>
+      <td>See quickly at a glance if there are any items already in my basket</td>
+    </tr>
     <tr>
       <td>Shopper</td>
       <td>Be informed if the store doesn't have enough stock to fulfill the amount I need</td>
