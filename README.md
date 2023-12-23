@@ -544,97 +544,450 @@ The database schema flow charts were created using [Figma](https://www.figma.com
 
     #### Laptop / Desktop
 
-    <img src="readme_and_testing_media/welcome-desktop.png" alt="Screenshot of welcome screen on laptop">
-    <img src="readme_and_testing_media/products-desktop.png" alt="Screenshot of products page on laptop">
-    <img src="readme_and_testing_media/productdeatil1-dekstop.png" alt="Screenshot of product details page on laptop">
-    <img src="readme_and_testing_media/productdetail2-dekstop.png" alt="Screenshot of product details page on laptop">
-    <img src="readme_and_testing_media/bag-desktop.png" alt="Screenshot of shopping bag page on laptop">
-    <img src="readme_and_testing_media/checkout-desktop.png" alt="Screenshot of checkout page on laptop">
-    <img src="readme_and_testing_media/checkout2-desktop.png" alt="Screenshot of checkout page on laptop">
-    <img src="readme_and_testing_media/checkoutsuccess-desktop.png" alt="Screenshot of checkout success page on laptop">
-    <img src="readme_and_testing_media/profile1-desktop.png" alt="Screenshot of profile page on laptop">
-    <img src="readme_and_testing_media/profile2-desktop.png" alt="Screenshot of profile page on laptop">
-    <img src="readme_and_testing_media/productmanagement-desktop.png" alt="Screenshot of product management page on laptop">
-    <img src="readme_and_testing_media/addproduct1-desktop.png" alt="Screenshot of add product page on laptop">
-    <img src="readme_and_testing_media/addproduct2-desktop.png" alt="Screenshot of add product page on laptop">
-    <img src="readme_and_testing_media/addvariant-dekstop.png" alt="Screenshot of add variant page on laptop">
-    <img src="readme_and_testing_media/editproduct1-desktop.png" alt="Screenshot of edit product page on laptop">
-    <img src="readme_and_testing_media/editproduct2-desktop.png" alt="Screenshot of edit product page on laptop">
-    <img src="readme_and_testing_media/editvariant-desktop.png" alt="Screenshot of edit variant page on laptop">
-    <img src="readme_and_testing_media/productmanagementmodal1-desktop.png" alt="Screenshot of product management modal on product management page laptop">
-    <img src="readme_and_testing_media/productmanagementmodal2-desktop.png" alt="Screenshot of product management modal on product management page laptop">
-    <img src="readme_and_testing_media/stockmanagement1-desktop.png" alt="Screenshot of stock management page laptop">
-    <img src="readme_and_testing_media/stockmanagement2-desktop.png" alt="Screenshot of stock management page laptop">
-    <img src="readme_and_testing_media/login-desktop.png" alt="Screenshot of login page laptop">
-    <img src="readme_and_testing_media/logout-desktop.png" alt="Screenshot of logout page laptop">
-    <img src="readme_and_testing_media/register-desktop.png" alt="Screenshot of register page laptop">
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">Desktop</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Welcome page</td>
+            <td><img height=300 src="readme_and_testing_media/welcome-desktop.png"
+                    alt="Screenshot of welcome screen on laptop"></td>
+        </tr>
+        <tr>
+            <td>Products page</td>
+            <td><img height=300 src="readme_and_testing_media/products-desktop.png"
+                    alt="Screenshot of products page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Product details page</td>
+            <td><img height=300 src="readme_and_testing_media/productdeatil1-dekstop.png"
+                    alt="Screenshot of product details page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Product details page</td>
+            <td><img height=300 src="readme_and_testing_media/productdetail2-dekstop.png"
+                    alt="Screenshot of product details page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Shopping bag page</td>
+            <td><img height=300 src="readme_and_testing_media/bag-desktop.png"
+                    alt="Screenshot of shopping bag page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Checkout page</td>
+            <td><img height=300 src="readme_and_testing_media/checkout-desktop.png"
+                    alt="Screenshot of checkout page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Checkout page</td>
+            <td><img height=300 src="readme_and_testing_media/checkout2-desktop.png"
+                    alt="Screenshot of checkout page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Checkout success page</td>
+            <td><img height=300 src="readme_and_testing_media/checkoutsuccess-desktop.png"
+                    alt="Screenshot of checkout success page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile1-desktop.png"
+                    alt="Screenshot of profile page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile2-desktop.png"
+                    alt="Screenshot of profile page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Product management page</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagement-desktop.png"
+                    alt="Screenshot of product management page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Add product page</td>
+            <td><img height=300 src="readme_and_testing_media/addproduct1-desktop.png"
+                    alt="Screenshot of add product page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Add product page</td>
+            <td><img height=300 src="readme_and_testing_media/addproduct2-desktop.png"
+                    alt="Screenshot of add product page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Add variant page</td>
+            <td><img height=300 src="readme_and_testing_media/addvariant-dekstop.png"
+                    alt="Screenshot of add variant page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Edit product page</td>
+            <td><img height=300 src="readme_and_testing_media/editproduct1-desktop.png"
+                    alt="Screenshot of edit product page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Edit product page</td>
+            <td><img height=300 src="readme_and_testing_media/editproduct2-desktop.png"
+                    alt="Screenshot of edit product page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Edit variant page</td>
+            <td><img height=300 src="readme_and_testing_media/editvariant-desktop.png"
+                    alt="Screenshot of edit variant page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Product management modal</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagementmodal1-desktop.png"
+                    alt="Screenshot of product management modal on product management page laptop"></td>
+        </tr>
+        <tr>
+            <td>Product management modal</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagementmodal2-desktop.png"
+                    alt="Screenshot of product management modal on product management page laptop"></td>
+        </tr>
+        <tr>
+            <td>Stock management page</td>
+            <td><img height=300 src="readme_and_testing_media/stockmanagement1-desktop.png"
+                    alt="Screenshot of stock management page laptop"></td>
+        </tr>
+        <tr>
+            <td>Login page</td>
+            <td><img height=300 src="readme_and_testing_media/login-desktop.png" alt="Screenshot of login page laptop">
+            </td>
+        </tr>
+        <tr>
+            <td>Logout page</td>
+            <td><img height=300 src="readme_and_testing_media/logout-desktop.png"
+                    alt="Screenshot of logout page laptop"></td>
+        </tr>
+        <tr>
+            <td>Register page</td>
+            <td><img height=300 src="readme_and_testing_media/register-desktop.png"
+                    alt="Screenshot of register page laptop"></td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="2">Tablet</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Welcome page</td>
+            <td><img height=300 src="readme_and_testing_media/welcome-tablet.png"
+                    alt="Screenshot of welcome screen on tablet"></td>
+        </tr>
+        <tr>
+            <td>Products page</td>
+            <td><img height=300 src="readme_and_testing_media/products-tablet.png"
+                    alt="Screenshot of products page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Product details page</td>
+            <td><img height=300 src="readme_and_testing_media/productdetail1-tablet.png"
+                    alt="Screenshot of product details page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Product details page</td>
+            <td><img height=300 src="readme_and_testing_media/productdetail2-tablet.png"
+                    alt="Screenshot of product details page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Shopping bag page</td>
+            <td><img height=300 src="readme_and_testing_media/bag-tablet.png"
+                    alt="Screenshot of shopping bag page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Checkout page</td>
+            <td><img height=300 src="readme_and_testing_media/checkout1-tablet.png"
+                    alt="Screenshot of checkout page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Checkout page</td>
+            <td><img height=300 src="readme_and_testing_media/checkout2-tablet.png"
+                    alt="Screenshot of checkout page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Checkout success page</td>
+            <td><img height=300 src="readme_and_testing_media/checkoutsuccess-tablet.png"
+                    alt="Screenshot of checkout success page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile1-tablet.png"
+                    alt="Screenshot of profile page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile2-tablet.png"
+                    alt="Screenshot of profile page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile3-tablet.png"
+                    alt="Screenshot of profile page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Product management page</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagement1-tablet.png"
+                    alt="Screenshot of product management page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Product management page</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagment2-tablet.png"
+                    alt="Screenshot of product management page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Add product page</td>
+            <td><img height=300 src="readme_and_testing_media/addproduct1-tablet.png"
+                    alt="Screenshot of add product page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Add product page</td>
+            <td><img height=300 src="readme_and_testing_media/addproduct2-tablet.png"
+                    alt="Screenshot of add product page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Add variant page</td>
+            <td><img height=300 src="readme_and_testing_media/addvariant1-tablet.png"
+                    alt="Screenshot of add variant page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Add variant page</td>
+            <td><img height=300 src="readme_and_testing_media/addvariant2-tablet.png"
+                    alt="Screenshot of add variant page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Edit product page</td>
+            <td><img height=300 src="readme_and_testing_media/editproduct1-tablet.png"
+                    alt="Screenshot of edit product page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Edit product page</td>
+            <td><img height=300 src="readme_and_testing_media/editproduct2-tablet.png"
+                    alt="Screenshot of edit product page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Edit variant page</td>
+            <td><img height=300 src="readme_and_testing_media/editvariant1-tablet.png"
+                    alt="Screenshot of edit variant page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Edit variant page</td>
+            <td><img height=300 src="readme_and_testing_media/editvariant2-tablet.png"
+                    alt="Screenshot of edit variant page on tablet"></td>
+        </tr>
+        <tr>
+            <td>Product management modal</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagementmodal1-tablet.png"
+                    alt="Screenshot of product management modal on product management page tablet"></td>
+        </tr>
+        <tr>
+            <td>Product management modal</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagementmodal2-tablet.png"
+                    alt="Screenshot of product management modal on product management page tablet"></td>
+        </tr>
+        <tr>
+            <td>Stock management page</td>
+            <td><img height=300 src="readme_and_testing_media/stockmanagement1-tablet.png"
+                    alt="Screenshot of stock management page tablet"></td>
+        </tr>
+        <tr>
+            <td>Stock management page</td>
+            <td><img height=300 src="readme_and_testing_media/stockmanagement2-tablet.png"
+                    alt="Screenshot of stock management page tablet"></td>
+        </tr>
+        <tr>
+            <td>Login page</td>
+            <td><img height=300 src="readme_and_testing_media/login-tablet.png" alt="Screenshot of login page tablet">
+            </td>
+        </tr>
+        <tr>
+            <td>Logout page</td>
+            <td><img height=300 src="readme_and_testing_media/logout-tablet.png" alt="Screenshot of logout page tablet">
+            </td>
+        </tr>
+        <tr>
+            <td>Register page</td>
+            <td><img height=300 src="readme_and_testing_media/register-tablet.png"
+                    alt="Screenshot of register page tablet"></td>
+        </tr>
+        <tr>
+            <td>Sidenav</td>
+            <td><img height=300 src="readme_and_testing_media/sidenav-tablet.png" alt="Screenshot of sidenav tablet">
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="2">Mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Welcome page</td>
+            <td><img height=300 src="readme_and_testing_media/welcome-mobile.png"
+                    alt="Screenshot of welcome screen on mobile"></td>
+        </tr>
+        <tr>
+            <td>Products page</td>
+            <td><img height=300 src="readme_and_testing_media/products-mobile.png"
+                    alt="Screenshot of products page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Products page</td>
+            <td><img height=300 src="readme_and_testing_media/products2-mobile.png"
+                    alt="Screenshot of products page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Product details page</td>
+            <td><img height=300 src="readme_and_testing_media/productdetail1-mobile.png"
+                    alt="Screenshot of product details page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Product details page</td>
+            <td><img height=300 src="readme_and_testing_media/productdetail2-mobile.png"
+                    alt="Screenshot of product details page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Shopping bag page</td>
+            <td><img height=300 src="readme_and_testing_media/bag1-mobile.png"
+                    alt="Screenshot of shopping bag page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Shopping bag page</td>
+            <td><img height=300 src="readme_and_testing_media/bag2-mobile.png"
+                    alt="Screenshot of shopping bag page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Checkout page</td>
+            <td><img height=300 src="readme_and_testing_media/checkout1-mobile.png"
+                    alt="Screenshot of checkout page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Checkout page</td>
+            <td><img height=300 height=300 src="readme_and_testing_media/checkout2-mobile.png"
+                    alt="Screenshot of checkout page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Checkout success page</td>
+            <td><img height=300 src="readme_and_testing_media/checkoutsuccess1-mobile.png"
+                    alt="Screenshot of checkout success page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Checkout success page</td>
+            <td><img height=300 src="readme_and_testing_media/checkoutsuccess2-mobile.png"
+                    alt="Screenshot of checkout success page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile1-mobile.png"
+                    alt="Screenshot of profile page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile2-mobile.png"
+                    alt="Screenshot of profile page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Profile page</td>
+            <td><img height=300 src="readme_and_testing_media/profile3-mobile.png"
+                    alt="Screenshot of profile page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Product management page</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagement1-mobile.png"
+                    alt="Screenshot of product management page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Product management page</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagement2-mobile.png"
+                    alt="Screenshot of product management page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Add product page</td>
+            <td><img height=300 src="readme_and_testing_media/addproduct1-mobile.png"
+                    alt="Screenshot of add product page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Add product page</td>
+            <td><img height=300 src="readme_and_testing_media/addproduct2-mobile.png"
+                    alt="Screenshot of add product page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Add variant page</td>
+            <td><img height=300 src="readme_and_testing_media/addvariant1-mobile.png"
+                    alt="Screenshot of add variant page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Add variant page</td>
+            <td><img height=300 src="readme_and_testing_media/addvariant2-mobile.png"
+                    alt="Screenshot of add variant page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Edit product page</td>
+            <td><img height=300 src="readme_and_testing_media/editproduct1-mobile.png"
+                    alt="Screenshot of edit product page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Edit product page</td>
+            <td><img height=300 src="readme_and_testing_media/editproduct2-mobile.png"
+                    alt="Screenshot of edit product page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Edit variant page</td>
+            <td><img height=300 src="readme_and_testing_media/editvariant1-mobile.png"
+                    alt="Screenshot of edit variant page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Edit variant page</td>
+            <td><img height=300 src="readme_and_testing_media/editvariant2-mobile.png"
+                    alt="Screenshot of edit variant page on mobile"></td>
+        </tr>
+        <tr>
+            <td>Product management modal</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagementmodal1-mobile.png"
+                    alt="Screenshot of product management modal on product management page mobile"></td>
+        </tr>
+        <tr>
+            <td>Product management modal</td>
+            <td><img height=300 src="readme_and_testing_media/productmanagementmodal2-mobile.png"
+                    alt="Screenshot of product management modal on product management page mobile"></td>
+        </tr>
+        <tr>
+            <td>Stock management page</td>
+            <td><img height=300 src="readme_and_testing_media/stockamanagement1-mobile.png"
+                    alt="Screenshot of stock management page mobile"></td>
+        </tr>
+        <tr>
+            <td>Stock management page</td>
+            <td><img height=300 src="readme_and_testing_media/stockmanagement2-mobile.png"
+                    alt="Screenshot of stock management page tablet"></td>
+        </tr>
+        <tr>
+            <td>Login page</td>
+            <td><img height=300 src="readme_and_testing_media/login-mobile.png" alt="Screenshot of login page mobile">
+            </td>
+        </tr>
+        <tr>
+            <td>Logout page</td>
+            <td><img height=300 src="readme_and_testing_media/logout-mobile.png" alt="Screenshot of logout page mobile">
+            </td>
+        </tr>
+        <tr>
+            <td>Register page</td>
+            <td><img height=300 src="readme_and_testing_media/register-mobile.png"
+                    alt="Screenshot of register page mobile"></td>
+        </tr>
+        <tr>
+            <td>Sidenav</td>
+            <td><img height=300 src="readme_and_testing_media/sidenav-mobile.png" alt="Screenshot of sidenav mobile">
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    #### Tablet
-
-    <img src="readme_and_testing_media/welcome-tablet.png" alt="Screenshot of welcome screen on tablet">
-    <img src="readme_and_testing_media/products-tablet.png" alt="Screenshot of products page on tablet">
-    <img src="readme_and_testing_media/productdetail1-tablet.png" alt="Screenshot of product details page on tablet">
-    <img src="readme_and_testing_media/productdetail2-tablet.png" alt="Screenshot of product details page on tablet">
-    <img src="readme_and_testing_media/bag-tablet.png" alt="Screenshot of shopping bag page on tablet">
-    <img src="readme_and_testing_media/checkout1-tablet.png" alt="Screenshot of checkout page on tablet">
-    <img src="readme_and_testing_media/checkout2-tablet.png" alt="Screenshot of checkout page on tablet">
-    <img src="readme_and_testing_media/checkoutsuccess-tablet.png" alt="Screenshot of checkout success page on tablet">
-    <img src="readme_and_testing_media/profile1-tablet.png" alt="Screenshot of profile page on tablet">
-    <img src="readme_and_testing_media/profile2-tablet.png" alt="Screenshot of profile page on tablet">
-    <img src="readme_and_testing_media/profile3-tablet.png" alt="Screenshot of profile page on tablet">
-    <img src="readme_and_testing_media/productmanagement1-tablet.png" alt="Screenshot of product management page on tablet">
-    <img src="readme_and_testing_media/productmanagment2-tablet.png" alt="Screenshot of product management page on tablet">
-    <img src="readme_and_testing_media/addproduct1-tablet.png" alt="Screenshot of add product page on tablet">
-    <img src="readme_and_testing_media/addproduct2-tablet.png" alt="Screenshot of add product page on tablet">
-    <img src="readme_and_testing_media/addvariant1-tablet.png" alt="Screenshot of add variant page on tablet">
-    <img src="readme_and_testing_media/addvariant2-tablet.png" alt="Screenshot of add variant page on tablet">
-    <img src="readme_and_testing_media/editproduct1-tablet.png" alt="Screenshot of edit product page on tablet">
-    <img src="readme_and_testing_media/editproduct2-tablet.png" alt="Screenshot of edit product page on tablet">
-    <img src="readme_and_testing_media/editvariant1-tablet.png" alt="Screenshot of edit variant page on tablet">
-    <img src="readme_and_testing_media/editvariant2-tablet.png" alt="Screenshot of edit variant page on tablet">
-    <img src="readme_and_testing_media/productmanagementmodal1-tablet.png" alt="Screenshot of product management modal on product management page tablet">
-    <img src="readme_and_testing_media/productmanagementmodal2-tablet.png" alt="Screenshot of product management modal on product management page tablet">
-    <img src="readme_and_testing_media/stockmanagement1-tablet.png" alt="Screenshot of stock management page tablet">
-    <img src="readme_and_testing_media/stockmanagement2-tablet.png" alt="Screenshot of stock management page tablet">
-    <img src="readme_and_testing_media/login-tablet.png" alt="Screenshot of login page tablet">
-    <img src="readme_and_testing_media/logout-tablet.png" alt="Screenshot of logout page tablet">
-    <img src="readme_and_testing_media/register-tablet.png" alt="Screenshot of register page tablet">
-    <img src="readme_and_testing_media/sidenav-tablet.png" alt="Screenshot of sidenav tablet">
-
-    #### Mobile
-
-    <img src="readme_and_testing_media/welcome-mobile.png" alt="Screenshot of welcome screen on mobile">
-    <img src="readme_and_testing_media/products-mobile.png" alt="Screenshot of products page on mobile">
-    <img src="readme_and_testing_media/products2-mobile.png" alt="Screenshot of products page on mobile">
-    <img src="readme_and_testing_media/productdetail1-mobile.png" alt="Screenshot of product details page on mobile">
-    <img src="readme_and_testing_media/productdetail2-mobile.png" alt="Screenshot of product details page on mobile">
-    <img src="readme_and_testing_media/bag1-mobile.png" alt="Screenshot of shopping bag page on mobile">
-    <img src="readme_and_testing_media/bag2-mobile.png" alt="Screenshot of shopping bag page on mobile">
-    <img src="readme_and_testing_media/checkout1-mobile.png" alt="Screenshot of checkout page on mobile">
-    <img src="readme_and_testing_media/checkout2-mobile.png" alt="Screenshot of checkout page on mobile">
-    <img src="readme_and_testing_media/checkoutsuccess1-mobile.png" alt="Screenshot of checkout success page on mobile">
-    <img src="readme_and_testing_media/checkoutsuccess2-mobile.png" alt="Screenshot of checkout success page on mobile">
-    <img src="readme_and_testing_media/profile1-mobile.png" alt="Screenshot of profile page on mobile">
-    <img src="readme_and_testing_media/profile2-mobile.png" alt="Screenshot of profile page on mobile">
-    <img src="readme_and_testing_media/profile3-mobile.png" alt="Screenshot of profile page on mobile">
-    <img src="readme_and_testing_media/productmanagement1-mobile.png" alt="Screenshot of product management page on mobile">
-    <img src="readme_and_testing_media/productmanagement2-mobile.png" alt="Screenshot of product management page on mobile">
-    <img src="readme_and_testing_media/addproduct1-mobile.png" alt="Screenshot of add product page on mobile">
-    <img src="readme_and_testing_media/addproduct2-mobile.png" alt="Screenshot of add product page on mobile">
-    <img src="readme_and_testing_media/addvariant1-mobile.png" alt="Screenshot of add variant page on mobile">
-    <img src="readme_and_testing_media/addvariant2-mobile.png" alt="Screenshot of add variant page on mobile">
-    <img src="readme_and_testing_media/editproduct1-mobile.png" alt="Screenshot of edit product page on mobile">
-    <img src="readme_and_testing_media/editproduct2-mobile.png" alt="Screenshot of edit product page on mobile">
-    <img src="readme_and_testing_media/editvariant1-mobile.png" alt="Screenshot of edit variant page on mobile">
-    <img src="readme_and_testing_media/editvariant2-mobile.png" alt="Screenshot of edit variant page on mobile">
-    <img src="readme_and_testing_media/productmanagementmodal1-mobile.png" alt="Screenshot of product management modal on product management page mobile">
-    <img src="readme_and_testing_media/productmanagementmodal2-mobile.png" alt="Screenshot of product management modal on product management page mobile">
-    <img src="readme_and_testing_media/stockamanagement1-mobile.png" alt="Screenshot of stock management page mobile">
-    <img src="readme_and_testing_media/stockmanagement2-mobile.png" alt="Screenshot of stock management page tablet">
-    <img src="readme_and_testing_media/login-mobile.png" alt="Screenshot of login page mobile">
-    <img src="readme_and_testing_media/logout-mobile.png" alt="Screenshot of logout page mobile">
-    <img src="readme_and_testing_media/register-mobile.png" alt="Screenshot of register page mobile">
-    <img src="readme_and_testing_media/sidenav-mobile.png" alt="Screenshot of sidenav mobile">
 <hr>
 
 - Intuitive and easy to navigate using the top navbar on larger screens and sidenav on smaller screens which present different options to the user depending on whether or not they are logged in, and if they are a 'super user' as well as if there are products currently in their shopping bag. 
