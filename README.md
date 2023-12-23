@@ -1135,9 +1135,15 @@ The database schema flow charts were created using [Figma](https://www.figma.com
 
 ### Future Features
 
--   I would like to incorporate an intelligent function into the app in the future where users are provided helpful and personalised tips and advice about their budgets.
--   I would also like to implement 2 factor authorisation given that a user can store quite sensitive data on this app.
--   I would also like to add a storage facility where users can store documents relating to their budget such as payslips, invoices and receipts.
+Given additioanl time and resource some future features that I would like to encorporate into this project are...
+
+- The abilitiy to sign up and sign in using social accounts such as google or facebook.
+- To restric reviews so that a personal can only review a product that they have previously purchased
+- For the user to be able to store favourite products or a wishlist
+- Product recommendations based on previous purchases and also other similar user profiles
+- Abdandoned cart recovery
+- A loyalty program
+- A feature where users can request notification emails when their favourite products come back into stock
 
 ### Accessibility
 -   The use of semantic HTML.
@@ -1150,9 +1156,9 @@ The database schema flow charts were created using [Figma](https://www.figma.com
 ### Development Process
 As well as using [Figma](https://www.figma.com/) to create wireframes and flow charts for this project, I also used Figma's Kanban template to keep track of tasks as I found the "sticky note" style more user friendly and it suited my style of task management better.
 
-You can view the Kanban board [here](https://www.figma.com/file/kG9qjy6KkTMRNKzj4HqHlx/Budgify-Kanban?type=whiteboard&node-id=0%3A1&t=cNNHQPXaYC5tNSht-1).
+You can view the Kanban board [here](https://www.figma.com/file/rspHu8qzVH35mFzarGLARC/Keto-Kreations-Kanban?type=whiteboard&node-id=0%3A1&t=CzMSWuqP3I3DBtYb-1).
 
-<img src="./documentation/wireframes/kanban.webp" alt="Screenshot of Kanban board">
+<img src="readme_and_testing_media/kanban.png" alt="Screenshot of Kanban board">
 
 [Back to top](#title)  
 
