@@ -206,7 +206,6 @@
                 // Get current value of input or if empty set to 0 so starting value on press is 1
                 const currentValue = parseInt(closestInput.value || 0);
                 closestInput.value = currentValue + 1;
-                const itemId = button.dataset.item_id;
                 handleEnableDisable();
             });
         });
@@ -219,7 +218,6 @@
                 // Get current value of input or if empty set to 2 so starting value on press is 1
                 const currentValue = parseInt(closestInput.value) || 2;
                 closestInput.value = currentValue - 1;
-                const itemId = button.dataset.item_id;
                 handleEnableDisable();
             });
         });
@@ -228,7 +226,7 @@
         // Update quantity on click
         document.querySelectorAll('.update-link').forEach(link => {
             link.addEventListener('click', (e) => {
-                form = link.parentElement.parentElement
+                const form = link.parentElement.parentElement;
                 form.submit();
                 
             });
