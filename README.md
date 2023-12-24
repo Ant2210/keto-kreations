@@ -1,6 +1,5 @@
 <h1 align="center" id="title"><img src="media/logo.webp" height="125" alt="Title - Keto Kreations Logo"></h1>
 
-
 Welcome to Keto Kreations, where delicious meets nutritious! Our mission is to fuel your body and delight your palate with a delectable array of ketogenic culinary wonders. At Keto Kreations, we understand the importance of embracing a low-carb, high-fat lifestyle, and we've curated a collection of mouthwatering products to support your journey.
 
 Indulge in guilt-free treats, savory snacks, and wholesome staples that adhere to the principles of the ketogenic diet. From satisfying your sweet tooth with our luscious sweet treats to discovering innovative and flavorful twists on traditional favorites, Keto Kreations is your go-to destination for all things keto.
@@ -1192,6 +1191,7 @@ You can view the Kanban board [here](https://www.figma.com/file/rspHu8qzVH35mFza
 -   [GitHub](https://github.com/) - To store website files and repository for the website.
 -   [Google Dev Tools](https://developer.chrome.com/docs/devtools) - Built into the chrome browser to test features and design and to troubleshoot as I went along as well as for testing later on using tools such a Lighthouse.
 -   [Google Fonts](https://fonts.google.com/) - To import the fonts I chose for the website.
+-   [Gmail](https://mail.google.com/) - As my email hosting provider
 -   [Gunicorn](https://gunicorn.org/) - As a HTTP server within my Heroku app
 -   [Heroku](https://www.heroku.com/) - To host my application
 -   [JSHint](https://jshint.com/) - To validate and test javaScript code.
@@ -1293,7 +1293,7 @@ The project was deployed to [Heroku](https://www.heroku.com/) using a free relat
     | -- | -- |
     | AWS_ACCESS_KEY_ID | `your variable here if you have it already` |
     | AWS_SECRET_ACCESS_KEY | `your variable here if you have it already` |
-    | collectstatic | False* |
+    | DISABLE_COLLECTSTATIC | 1* |
     | DATABASE_URL | `your variable here`** |
     | EMAIL_HOST_PASS | `your variable here` |
     | EMAIL_HOST_USER | `your variable here` |
@@ -1301,7 +1301,8 @@ The project was deployed to [Heroku](https://www.heroku.com/) using a free relat
     | STRIPE_PUBLIC_KEY | `your variable here` |
     | STRIPE_SECRET_KEY | `your variable here` |
     | STRIPE_WH_SECRET | `your variable here` |
-    | USE_AWS | TRUE |
+    | USE_AWS | True |
+    | DEVELOPMENT | True*** |
 
     *This is temporary and will be removed later.
 
@@ -1311,23 +1312,130 @@ The project was deployed to [Heroku](https://www.heroku.com/) using a free relat
 
 11. You then need to add the hostname of your Heroku app to settings.py which can be found in the Heroku settings tab under Domains.
 
-```bash
-ALLOWED_HOSTS = ['keto-kreations-25ff0a2cbc9e.herokuapp.com', 'localhost']
-```
-
-11. You're now ready to click the enable automatic deploys and create button. Heroku will start building the app.
-
-12. We will now need to go the more button on the dashboard and select run console. This is where we will set up the tables in the database we have created on ElephantSQL.
-
-13. Type python3 and then once the python interpreter opens, we can run the following:
-
     ```bash
-    from budgify import db
-    db.create_all()
-    exit()
+    ALLOWED_HOSTS = ['keto-kreations-25ff0a2cbc9e.herokuapp.com', 'localhost']
     ```
 
-14. Now that the relational database has been set up and the tables created, we can now click open app and the budgify application should now open in a new tab.
+12. We now need to migrate our database to our ElephantSQL databse. Go to the top right hand of Heroku and select, more then select Run console. Type bash and click Run then type the following commands.
+
+    ```bash
+    python3 manage.py makemigrations --dry-run
+    python3 manage.py makemigrations
+    python3 manage.py migrate --plan
+    python3 manage.py migrate
+    ```
+    
+13. Assuming all your migrations were completed succesfully you can now create your superuser by running the below command and filling in your details.
+
+      ```bash
+      python3 manage.py createsuperuser    
+      ```
+
+14. Now that the relational database has been set up and the tables created and superuser created, we can now click open app and the application should now open in a new tab. If you haven't set up your AWS yet your CSS and images wont have loaded yet. We will set that up next.
+
+### Amazon AWS
+
+  #### Setting up an S3 Bucket
+  1. Create an [Amazon AWS](aws.amazon.com) account
+
+  2. Search for **S3** and create a new bucket
+      - Allow public access
+      - Acknowledge
+
+  3. Under **Properties > Static** website hosting
+      - Enable
+      - `index.html` as index document
+      - Save
+
+  4. Under **Permissions > CORS** use:
+      ```bash
+          [
+        {
+            "AllowedHeaders": [
+                "Authorization"
+            ],
+            "AllowedMethods": [
+                "GET"
+            ],
+            "AllowedOrigins": [
+                "*"
+            ],
+            "ExposeHeaders": []
+        }
+      ]
+      ```
+
+  5. Under **Permissions > Bucket Policy**:
+      - Generate Bucket Policy and take note of **Bucket ARN**
+      - Chose **S3 Bucket Policy** as Type of Policy
+      - For **Principal**, enter `*`
+      - Enter **ARN** noted above
+      - **Add Statement**
+      - **Generate Policy**
+      - Copy **Policy JSON Document**
+      - Paste policy into **Edit Bucket policy** on the previous tab
+      - Save changes
+
+  6. Under **Access Control List (ACL)**:
+      - For **Everyone (public access)**, tick **List**
+      - Accept that everyone in the world may access the Bucket
+      - Save changes
+
+  #### Setting up AWS IAM
+  1. From the **IAM dashboard** within AWS, select **User Groups**:
+      - Create new group e.g. `manage-keto-kreations`
+      - Click through without adding a policy
+      - **Create Group**
+
+  2. Select **Policies**:
+      - Create policy
+      - Under **JSON** tab, click **Import managed policy**
+      - Choose **AmazongS3FullAccess**
+      - Edit the resource to include the **Bucket ARN** noted earlier when creating the Bucket Policy:
+
+      ```bash
+            "Resource": [
+                            "arn:aws:s3:::keto-kreations",
+                            "arn:aws:s3:::keto-kreations/*"
+                  ]
+      ```
+
+      - Click **next step** and go to **Review policy**
+      - Give the policy a name e.g. `keto-kreations-policy` and description
+      - **Create policy**
+
+  3. Go back to **User Groups** and choose the group created earlier
+      - Under **Permissions > Add permissions**, choose **Attach Policies** and select the one just created
+      - **Add permissions**
+
+  4. Under **Users**:
+      - Choose a user name e.g. `keto-kreations-staticfiles-user`
+      - Select **Programmatic access** as the **Access type**
+      - Click Next
+      - Add the user to the Group just created
+      - Click Next and **Create User**
+
+  5. **Download the `.csv` containing the access key and secret access key. This will NOT be available to download again**
+
+  #### Hooking Django up to S3
+
+  1. Install boto3 and django-storages
+      ```bash
+      pip3 install boto3
+      pip3 install django-storages
+      pip3 freeze > requirements.txt
+      ```
+
+  2. Add the values from the `.csv` you downloaded to your Heroku Config Vars under Settings:
+      ```bash
+      AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY
+      ```
+
+  3. Delete the `DISABLE_COLLECTSTATIC` variable from your Config Vars and deploy your Heroku app, if you have enabled automatic deployment in Heroku this will happen automatically the next push you make to GitHub
+
+  4. With your S3 bucket now set up, you can create a new folder called `media` (at the same level as the newly added `static` folder) and upload any required media files to it, making sure they are publicly accessible under **Permissions**
+
 
 ### Forking the GitHub Repository
 
@@ -1349,6 +1457,10 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 6. Change the current working directory to the location where you want the cloned directory to be made.
 7. Type git clone, and then paste the URL you copied in Step 3.
 8. Press Enter. Your local clone should be created.
+9. To install all the required dependencies you just need to run the following...
+    ```bash
+    pip3 install -r requirements.txt
+    ```
 
 [Back to top](#title)  
 
@@ -1364,7 +1476,8 @@ All other code was written by the developer.
 
 ### Content
 
--   Static content for this website was all written by the developer.
+-   Ingredients, allergens, product descriptions and nutritional information is made up data using ChatGPT
+-   All other static content for this website was written by the developer.
  
 
 ### Media
