@@ -542,8 +542,6 @@ The database schema flow charts were created using [Figma](https://www.figma.com
 
 - Fully responsive across all screen sizes.
 
-    #### Laptop / Desktop
-
 <table>
     <thead>
         <tr>
@@ -1172,35 +1170,40 @@ You can view the Kanban board [here](https://www.figma.com/file/rspHu8qzVH35mFza
 
 
 ### Databases Used
--   PostgreSQL - A relational database
+-   sqlite3 in development - A relational database
+-   PostgreSQL via ElephantSQL in production - A relational database
 
 ### Frameworks, Libraries & Programs Used
 
--   [Am I Responsive](https://amiresponsive.co.uk/) - To create the website mockup images at the top of the README.
--   [Bootstrap](https://getbootstrap.com/) Version 5.3.0 - For the layout and framework of the website, it was also used to create the various modals which were then restyled to math the rest of the website.
--   [Chart JS](https://www.chartjs.org/) - To create the pie chart and bar chart used in the insights section of the budget page.
+-   [Amazon AWS](https://aws.amazon.com/) - For static file storage
+-   [Bootstrap](https://getbootstrap.com/) - Version 5.3.0 - For the layout and framework of the website, it was also used to create the various modals which were then restyled to match the rest of the website.
+-   [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - For AWS implementation
 -   [Cloud Convert](https://cloudconvert.com/) - To compress and convert images to webp.
 -   [Code Institute PEP8 Python Linter](https://pep8ci.herokuapp.com/) - To check for linting errors in my python code.
 -   [Coolors](https://coolors.co/) - To check contrast and accessibility of the colours I chose to use.
 -   [ElephantSQL](https://www.elephantsql.com/) - To host my PostgreSQL database
--   [EmailJS](https://www.emailjs.com/) - To allows users to send support messages and also send an auto response to them upon receipt.
 -   [Figma](https://www.figma.com/) - To create the wireframes, user journey flow chart and database schema flow chart as well as the Kanban feature to manage the development process.
--   [Flask](https://flask.palletsprojects.com/en/2.3.x/) - A micro framework
+-   [dj-database-url](https://pypi.org/project/dj-database-url/) - So that I can use databse URLs in Django
+-   [Django](https://www.djangoproject.com/) - An open source python web framework
+-   [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - For Django form styling
 -   [Font Awesome](https://fontawesome.com/) - Used for the GitHub icon used in the footer button.
+-   [Figma](https://www.figma.com/) - For my wireframes, database schema diagram and also as a Kanban board for project management
 -   [Git](https://git-scm.com/) - For version control.
 -   [GitHub](https://github.com/) - To store website files and repository for the website.
--   Google Dev Tools - Built into the chrome browser to test features and design and troubleshoot as I went along as well as for testing later on, these sections of the website which were then edited myself inside of Visual Stdio Code.
+-   [Google Dev Tools](https://developer.chrome.com/docs/devtools) - Built into the chrome browser to test features and design and to troubleshoot as I went along as well as for testing later on using tools such a Lighthouse.
 -   [Google Fonts](https://fonts.google.com/) - To import the fonts I chose for the website.
+-   [Gunicorn](https://gunicorn.org/) - As a HTTP server within my Heroku app
 -   [Heroku](https://www.heroku.com/) - To host my application
--   [html5pattern.com](https://www.html5pattern.com/) - The the HTML 5 regex pattern to ensure users create a secure password.
--   [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) - Templating engine
--   [JSHint](https://jshint.com/) - To validate and text javaScript code.
--   [Pixlr](https://pixlr.com/e/) - To edit images such as the favicon and welcome page image.
--   [randomkeygen.com](https://randomkeygen.com/) - To generate a strong password to use as my secret key within the flask app.
+-   [JSHint](https://jshint.com/) - To validate and test javaScript code.
+-   [Mini Webtool](https://miniwebtool.com/django-secret-key-generator/) - To generate a secret key for Django
+-   [Pillow](https://pillow.readthedocs.io/en/stable/) - For image processing in Django 
+-   [Psycopg2](https://pypi.org/project/psycopg2/) - To more easily manage my PostgrSQL databse using Python
 -   [Siege Media](https://www.siegemedia.com/contrast-ratio) - To check contrast and accessibility of the `rgba` colours I chose to use.
+-   [Stripe](https://stripe.com/gb) - For payment processing
 -   Lighthouse - Built into Google Dev Tools for testing.
 -   [SQLAlchemy](https://www.sqlalchemy.org/) - Database abstraction library, used to interact with PostgreSQL.
--   [Visual Studio Code](https://code.visualstudio.com/) - Was used as my code editor to write code, version control using git and pushing changes for storage to GitHub.
+-   [VS Code](https://code.visualstudio.com/) - Was used as my code editor to write code, version control using git and pushing changes for storage to GitHub.
+-   [Website Mockup Generator](https://websitemockupgenerator.com/) - To create the website mockup images at the top of the README.
 -   [W3C](https://www.w3.org/) - To validate and test HTML and CSS code.
 
 
@@ -1253,53 +1256,70 @@ The project was deployed to [Heroku](https://www.heroku.com/) using a free relat
 
 ### Heroku
 
-1. To successfully deploy on Heroku we first need to create some files: a requirements.txt file and a Procfile.
+1. To successfully deploy on Heroku we first to install some dependencies to that you can use Postgres on your deployed site. 
 
-2. The requirements.txt file contains all the applications and dependencies that are required to run the app. To create the requirements.txt file run the following command in the terminal:
+    ```bash
+    pip3 install dj_database_url
+    pip3 install psycopg2
+    ```
+
+2. We then need to create some files: a requirements.txt file and a Procfile.
+
+3. The requirements.txt file contains all the applications and dependencies that are required to run the app. To create the requirements.txt file run the following command in the terminal:
 
     ```bash
     pip3 freeze --local > requirements.txt
     ```
 
-3. The Procfile tells Heroku which files run the app and how to run it. To create the Procfile run the following command in the terminal:
+4. The Procfile tells Heroku which files run the app and how to run it. To create the Procfile run the following command in the terminal:
 
     ```bash
-    echo web: python run.py > Procfile
+     web: gunicorn [your app name].wsgi:application
     ```
 
-    NOTE: This is assuming the file used to launch your app is called run.py, otherwise replace with the correct file name. The Procfile uses a capital P and doesn't have a file extension on the end.
+5. If the Procfile has been created correctly it will have the Heroku logo next to it. It is also important to check the Procfile contents, as sometimes on creation a blank line will be added at the end of the file. This can sometimes cause problems when deploying to Heroku, so if the file contains a blank line at the end, delete this and save the file. Make sure to save both these files and then add, commit and push them to GitHub.
 
-4. If the Procfile has been created correctly it will have the Heroku logo next to it. It is also important to check the Procfile contents, as sometimes on creation a blank line will be added at the end of the file. This can sometimes cause problems when deploying to Heroku, so if the file contains a blank line at the end, delete this and save the file. Make sure to save both these files and then add, commit and push them to GitHub.
+6. Login (or sign up) to [Heroku.com](https://www.heroku.com).
 
-5. Login (or sign up) to [Heroku.com](https://www.heroku.com).
+7. Click the new button and then click create new app.
 
-6. Click the new button and then click create new app.
+8. You will then be asked to give your app a name (these must be unique) and select a region. Once these are completed click create app.
 
-7. You will then be asked to give your app a name (these must be unique) and select a region. Once these are completed click create app.
+9. You will now need to connect the Heroku app to the GitHub repository for the site. Select GitHub in the deployment section, find the correct repository for the project and then click connect.
 
-8. You will now need to connect the Heroku app to the GitHub repository for the site. Select GitHub in the deployment section, find the correct repository for the project and then click connect.
-
-9. Once the repository is connected, you will need to provide Heroku some config variables it needs to build the app. Click on the settings tab and then click reveal config vars button. You will now need to add the environment key/value variables that were used in the env.py file:
+10. Once the repository is connected, you will need to provide Heroku some config variables it needs to build the app. Click on the settings tab and then click reveal config vars button. You will now need to add the environment key/value variables some of which were used in the env.py file and some of which will be different:
 
     | KEY | VALUE |
     | -- | -- |
-    | IP | 0.0.0.0 |
-    | PORT | 5000 |
-    | SECRET_KEY| YOUR_SECRET_KEY* |
-    | DATABASE_URL | POSTGRES_DB** |
-    | DEBUG | TRUE*** |
+    | AWS_ACCESS_KEY_ID | `your variable here if you have it already` |
+    | AWS_SECRET_ACCESS_KEY | `your variable here if you have it already` |
+    | collectstatic | False* |
+    | DATABASE_URL | `your variable here`** |
+    | EMAIL_HOST_PASS | `your variable here` |
+    | EMAIL_HOST_USER | `your variable here` |
+    | SECRET_KEY | `your variable here` |
+    | STRIPE_PUBLIC_KEY | `your variable here` |
+    | STRIPE_SECRET_KEY | `your variable here` |
+    | STRIPE_WH_SECRET | `your variable here` |
+    | USE_AWS | TRUE |
 
-    *This ca be anything you want but as the name suggests is a secret.
+    *This is temporary and will be removed later.
 
     **This is where we paste our URL from step 13 in ElephantSQL section.
 
     ***This variable is to be deleted once debugging is complete and you are ready to deploy your "production" app.
 
-10. You're now ready to click the enable automatic deploys and create button. Heroku will start building the app.
+11. You then need to add the hostname of your Heroku app to settings.py which can be found in the Heroku settings tab under Domains.
 
-11. We will now need to go the more button on the dashboard and select run console. This is where we will set up the tables in the database we have created on ElephantSQL.
+```bash
+ALLOWED_HOSTS = ['keto-kreations-25ff0a2cbc9e.herokuapp.com', 'localhost']
+```
 
-12. Type python3 and then once the python interpreter opens, we can run the following:
+11. You're now ready to click the enable automatic deploys and create button. Heroku will start building the app.
+
+12. We will now need to go the more button on the dashboard and select run console. This is where we will set up the tables in the database we have created on ElephantSQL.
+
+13. Type python3 and then once the python interpreter opens, we can run the following:
 
     ```bash
     from budgify import db
@@ -1307,7 +1327,7 @@ The project was deployed to [Heroku](https://www.heroku.com/) using a free relat
     exit()
     ```
 
-13. Now that the relational database has been set up and the tables created, we can now click open app and the budgify application should now open in a new tab.
+14. Now that the relational database has been set up and the tables created, we can now click open app and the budgify application should now open in a new tab.
 
 ### Forking the GitHub Repository
 
