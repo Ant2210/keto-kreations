@@ -96,6 +96,7 @@
                                         <th scope="col">Subtotal</th>
                                     </tr>
                                 </thead>
+                                <tbody>
                                 {% for item in bag_items %}
                                     <tr>
                                         <td class="p-3 w-25">
@@ -140,16 +141,17 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-                                <tr>
-                                    <td colspan="5" class="pt-5 text-end">
-                                        {% include "bag/bag_total.html" %}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5" class="text-center">
-                                        {% include "bag/checkout_buttons.html" %}
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="5" class="pt-5 text-end">
+                                            {% include "bag/bag_total.html" %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            {% include "bag/checkout_buttons.html" %}
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     {% else %}
