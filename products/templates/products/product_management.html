@@ -233,16 +233,15 @@
     <script>
         // Filter code found here: https://shorturl.at/empuU
         function filter(listId, filterId) {
-            input = document.getElementById(filterId).value.toUpperCase();
+            const input = document.getElementById(filterId).value.toUpperCase();
 
-            options = document.getElementById(listId);
-            elements = options.getElementsByTagName("a");
-            for (e of elements) {
-                txtValue = e.innerText;
+            const options = document.getElementById(listId);
+            const elements = options.getElementsByTagName("a");
+            for (let e of elements) {
+                let txtValue = e.innerText;
                 if (!txtValue.toUpperCase().includes(input)) {
                     e.style.display = "none";
-                }
-                else {
+                } else {
                     e.style.display = "";
                 }
             }
