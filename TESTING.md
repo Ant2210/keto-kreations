@@ -64,35 +64,528 @@ I used Lighthouse within the Chrome Developer Tools to test the performance, acc
 
 | Page | Results |
 | --- | --- |
-| Welcome Page | <img src="./documentation/lighthouse/welcome.webp" alt="Light house results for welcome page"> |
-| Log In Page | <img src="./documentation/lighthouse/login.webp" alt="Light house results for log in page"> |
-| Register Page | <img src="./documentation/lighthouse/register.webp" alt="Light house results for register page"> |
-| Budgets Page | <img src="./documentation/lighthouse/budgets.webp" alt="Light house results for budgets page"> |
-| Budget Page | <img src="./documentation/lighthouse/budget.webp" alt="Light house results for budget page"> |
-| Profile Page | <img src="./documentation/lighthouse/profile.webp" alt="Light house results for profile page"> |
+| Add Product | <img src="readme_and_testing_media/testing/addproductlh.png" alt="Light house results for Add Product page"> |
+| Add Variant | <img src="readme_and_testing_media/testing/addvariantlh.png" alt="Light house results for Add Variant page"> |
+| Bag | <img src="readme_and_testing_media/testing/baglh.png" alt="Light house results for Bag page"> |
+| Checkout | <img src="readme_and_testing_media/testing/checkoutlh.png" alt="Light house results for Checkout page"> |
+| Checkout Success | <img src="readme_and_testing_media/testing/checkoutsuccesslh.png" alt="Light house results for Checkout Success page"> |
+| Edit Product | <img src="readme_and_testing_media/testing/editproductlh.png" alt="Light house results for Edit Product page"> |
+| Edit Variant | <img src="readme_and_testing_media/testing/editvariantlh.png" alt="Light house results for Edit Variant page"> |
+| Login | <img src="readme_and_testing_media/testing/loginlh.png" alt="Light house results for Login page"> |
+| Logout | <img src="readme_and_testing_media/testing/logoutlh.png" alt="Light house results for Logout page"> |
+| Order History | <img src="readme_and_testing_media/testing/orderhistorylh.png" alt="Light house results for Order History page"> |
+| Product Details | <img src="readme_and_testing_media/testing/productdetailsls.png" alt="Light house results for Product Details page"> |
+| Product Management | <img src="readme_and_testing_media/testing/productmanagementlh.png" alt="Light house results for Product Management page"> |
+| Products | <img src="readme_and_testing_media/testing/productsls.png" alt="Light house results for Products page"> |
+| Profile | <img src="readme_and_testing_media/testing/profilelh.png" alt="Light house results for Profile page"> |
+| Register | <img src="readme_and_testing_media/testing/registerlh.png" alt="Light house results for Register page"> |
+| Stock Management | <img src="readme_and_testing_media/testing/stocklh.png" alt="Light house results for Stock Management page"> |
+| Welcome | <img src="readme_and_testing_media/testing/welcomelh.png" alt="Light house results for Welcome page"> |
+
 
 ## MANUAL TESTING
 
 ### Testing User Stories
 
-#### First Time Visitor
-| Goals | How are they achieved? | Image |
-| --- | --- | --- |
-| As a first time visitor, I want to easily understand the purpose and features of the Budgify app without any prior knowledge. | This is achieved through clear introductory text and an illustrative image on the welcome screen. | <img src="./documentation/features/welcomescreen.webp" alt="Image of the welcome screen"> |
-| As a first time visitor, I want to quickly create a new budget and explore the app's functionalities. | Once a user has registered or logged in they can instantly create a new budget from their main screen which is the budgets screen. | <img src="./documentation/features/budgetsscreen.webp" alt="Image of the budgets screen"> |
-| As a first time visitor, I don't want to be overwhelmed with complex instructions or processes to start using the app. | This is achieved with a minimalist style design and clear calls to action on the buttons for the next steps, e.g. login, add budget, add transaction. | <img src="./documentation/features/welcomescreen.webp" alt="Image of the welcome screen"> <img src="./documentation/features/login.webp" alt="Image of the login screen"> <img src="./documentation/features/budgetsscreen.webp" alt="Image of the budgets screen"> <img src="./documentation/features/budgetmanagement.webp" alt="Image of the budget screen"> |
-| As a first time visitor, I want to be able to contact budgify easily with any issues or questions I have about the app. | Whether logged in or not the user can contact support either via an online form by clicking the email icon in the footer or any of the social media links in the footer. Once logged in there is also a support button prominently displayed in the navbar which links to the same contact form. | <img src="./documentation/features/footer.webp" alt="Image of the footer"> <img src="./documentation/features/navbar.webp" alt="Image of the navbar"> <img src="./documentation/features/sidenav.webp" alt="Image of the sidenav">|
-| As a first time visitor I want to be able to register easily and use the app straight away. | The user is able to click the register button straight from the welcome screen, and once registered is immediately logged in | <img src="./documentation/features/welcomescreen.webp" alt="Image of the welcome screen"> <img src="./documentation/features/register.webp" alt="Image of the registration screen"> |
+<table>
+    <thead>
+        <tr>
+            <th>As a...</th>
+            <th>I want to be able to…</th>
+            <th>This is achieved by...</th>
+            <th>Image</th>
+        </tr>
+        <tr>
+            <th colspan="4">Viewing and Navigation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Shopper</td>
+            <td>Immediately understand the purpose of the site</td>
+            <td>Tell quickly whether this site is going to be of interest to me</td>
+            <td><img src="readme_and_testing_media/welcome-desktop.png"
+                    alt="Screenshot of welcome screen on laptop"></td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>View a list of products</td>
+            <td>A products page listing all available products that is searchable and sortable</td>
+            <td><img src="readme_and_testing_media/products-desktop.png"
+                    alt="Screenshot of products page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>View individual product details</td>
+            <td>The products details page</td>
+            <td><img src="readme_and_testing_media/productdeatil1-dekstop.png"
+                    alt="Screenshot of product details page on laptop"></td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Quickly identify deals, clearance items and special offers</td>
+            <td>There is a page category for special offers right in the navbar, all products which are either new or on
+                sale also have a badge right next to the product name</td>
+            <td>
+            <img src="readme_and_testing_media/specials.png"
+                    alt="Screenshot of specials">
+            <img src="readme_and_testing_media/badges.png"
+                    alt="Screenshot of product badges">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Easily view the total of my purchases at any time</td>
+            <td>The bag icon in the navbar is updated dynamically with the current total, on mobile view when the navbar
+                is collapsed the customer will see there are items in their bag by an icon next to the navbar toggle,
+                indicative if they open the navbar they can access the basked and find out.</td>
+            <td>
+            <img src="readme_and_testing_media/navbar.png"
+                    alt="Screenshot of navbar">
+            <img src="readme_and_testing_media/mobilenav.png"
+                    alt="Screenshot of mobile navbar">
+            <img src="readme_and_testing_media/sidenav-mobile.png"
+                    alt="Screenshot of sidenav">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>See what past customers think about the products</td>
+            <td>By clicking on the product details page they can see past review left by customers</td>
+            <td>
+            <img src="readme_and_testing_media/accountdropdown.png"
+                    alt="Screenshot of account dropdown">
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="4">Registration and User Accounts</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Registered User</td>
+            <td>Easily register for an account</td>
+            <td>The register page is easily accessible form the account dropdown in the navbar</td>
+            <td>
+                <img src="readme_and_testing_media/productdetail2-tablet.png"
+                    alt="Screenshot of review section">
+            </td>
+        </tr>
+        <tr>
+            <td>Registered User</td>
+            <td>Easily login or logout</td>
+            <td>The login and logout buttons are easily accessible from the account dropdown in the navbar</td>
+            <td>
+                <img src="readme_and_testing_media/accountdropdown.png"
+                    alt="Screenshot of account dropdown">
+                <img src="readme_and_testing_media/accountdropdown2.png"
+                    alt="Screenshot of account dropdown">
+            </td>
+        </tr>
+        <tr>
+            <td>Registered User</td>
+            <td>Easily recover my password in case I forget it</td>
+            <td>The login page has a prominent forgot my password link to recover a forgotten password</td>
+            <td>
+                <img src="readme_and_testing_media/login-tablet.png"
+                    alt="Screenshot of login page">
+            </td>
+        </tr>
+        <tr>
+            <td>Registered User</td>
+            <td>Receive an email confirmation after registering</td>
+            <td>An email is sent upon registration which also needs to be verified by clicking the link in the email
+            </td>
+            <td>
+                <img src="readme_and_testing_media/registrationemail.png"
+                    alt="Screenshot of registration email">
+            </td>
+        </tr>
+        <tr>
+            <td>Registered User</td>
+            <td>Have a personalised used profile</td>
+            <td>The user profile shows default delivery information, past orders as well as past reviews left by the
+                customers</td>
+            <td>
+                <img src="readme_and_testing_media/profile1-desktop.png"
+                    alt="Screenshot of profile page">
+                <img src="readme_and_testing_media/profile2-desktop.png"
+                    alt="Screenshot of profile page">
+            </td>
+        </tr>
+        <tr>
+            <td>Registered User</td>
+            <td>Have my email address verified by the site</td>
+            <td>All email addresses require verification when a new account is registered</td>
+            <td>
+                <img src="readme_and_testing_media/registrationemail.png"
+                    alt="Screenshot of registration email">
+            </td>
+        </tr>
+        <tr>
+            <td>Registered User</td>
+            <td>See my past order history</td>
+            <td>This is available in the users profile page</td>
+            <td>
+                <img src="readme_and_testing_media/profile1-desktop.png"
+                    alt="Screenshot of profile page">
+            </td>
+        </tr>
+        <tr>
+            <td>Registered User</td>
+            <td>See my past reviews</td>
+            <td>This is available in the users profile page</td>
+            <td>
+                <img src="readme_and_testing_media/profile2-desktop.png"
+                    alt="Screenshot of profile page">
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="4">Sorting and Searching</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Shopper</td>
+            <td>Sort the list of available products</td>
+            <td>Products can be sorted using a range of filters on the main products page as well as categorised in the
+                navbar</td>
+            <td>
+                <img src="readme_and_testing_media/sort.png"
+                    alt="Screenshot of sort box">
+                <img src="readme_and_testing_media/navbar.png"
+                    alt="Screenshot of navbar">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Sort a specific category of product</td>
+            <td>A category can be chosen in the navbar and then sorted with the drop down on the main products page</td>
+            <td>
+                <img src="readme_and_testing_media/navbar.png"
+                    alt="Screenshot of navbar">
+                <img src="readme_and_testing_media/sort.png"
+                    alt="Screenshot of sort box">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Sort multiple categories of products simultaneously</td>
+            <td>There are broader categories that cover many subcategories which can also be sorted</td>
+            <td>
+                <img src="readme_and_testing_media/navbar.png"
+                    alt="Screenshot of navbar">
+                <img src="readme_and_testing_media/sort.png"
+                    alt="Screenshot of sort box">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Search for a product by name or description</td>
+            <td>Via the search bar which is always accessible in the navbar</td>
+            <td>
+                <img src="readme_and_testing_media/navbar.png"
+                    alt="Screenshot of navbar">
+                <img src="readme_and_testing_media/sidenav.png"
+                    alt="Screenshot of sidenav">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Easily see what I've searched for and the number of results</td>
+            <td>Breadcrumbs show the number of results and search term used</td>
+            <td>
+                <img src="readme_and_testing_media/breadcrumbs.png"
+                    alt="Screenshot of breadcrumbs">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Easily see if a product is out of stock</td>
+            <td>A badge is displayed next to all out of stock products on the main product page. Stock levels are also
+                highlighted in the product details page</td>
+            <td>
+                <img src="readme_and_testing_media/badges.png"
+                    alt="Screenshot of product badges">
+                <img src="readme_and_testing_media/outofstock.png"
+                    alt="Screenshot of out of stock">
+                <img src="readme_and_testing_media/outofstock2.png"
+                    alt="Screenshot of out of stock">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Save my billing and shipping details</td>
+            <td>These can always be updated via the users profile page or using the save button on the checkout page</td>
+            <td>
+                <img src="readme_and_testing_media/profile1-desktop.png"
+                    alt="Screenshot of profile page">
+                <img src="readme_and_testing_media/saveinfo.png"
+                    alt="Screenshot of save info button">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Leave my views and feedback about products</td>
+            <td>Reviews can be left by all registered users by simply clicking add review on the product detail page
+            </td>
+            <td>
+                <img src="readme_and_testing_media/reviews.png"
+                    alt="Screenshot of review carousel">  
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Edit/Update my reviews</td>
+            <td>Reviews can be amended in the users profile page</td>
+            <td>
+                <img src="readme_and_testing_media/profile3-tablet.png"
+                    alt="Screenshot of profile page">  
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Delete my reviews</td>
+            <td>Reviews can be deleted in the users profile page</td>
+            <td>
+                <img src="readme_and_testing_media/profile3-tablet.png"
+                    alt="Screenshot of profile page">
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="4">Purchasing and Checkout</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Shopper</td>
+            <td>Easily select the size and quantity of a product when purchasing it</td>
+            <td>For products with sizes these can easily be selected using the drop down on the product details page
+            </td>
+            <td>
+                <img src="readme_and_testing_media/sizeselector.png"
+                    alt="Screenshot of size selector">
+                <img src="readme_and_testing_media/sizeselect.png"
+                    alt="Screenshot of size selector">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>View items in my bag to be purchased</td>
+            <td>Clicking on the shopping bag icon will take the user to the shopping bag to view their items</td>
+            <td>
+                <img src="readme_and_testing_media/bag-desktop.png"
+                    alt="Screenshot of bag page">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>View the total cost of my purchase before checking out</td>
+            <td>This is available in the shopping bag page</td>
+            <td>
+                <img src="readme_and_testing_media/bag-desktop.png"
+                    alt="Screenshot of bag page">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Adjust the quantity of individual items in my bag</td>
+            <td>Items can be easily updated and removed in the shopping bag page</td>
+            <td>
+                <img src="readme_and_testing_media/bag-desktop.png"
+                    alt="Screenshot of bag page">
+                <img src="readme_and_testing_media/qtyselector.png"
+                    alt="Screenshot of quantity selector">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Easily enter my payment information</td>
+            <td>There is a simple box provided by Stripe to enter payment information at checkout</td>
+            <td>
+                <img src="readme_and_testing_media/checkout2-mobile.png"
+                    alt="Screenshot of checkout page">
+                <img src="readme_and_testing_media/stripe.png"
+                    alt="Screenshot of stripe box">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Feel my personal and payment information is safe and secure</td>
+            <td>It is clear to the customer on the button they click to access the checkout that it is secure. Stripe is
+                also a brand that people know and trust</td>
+            <td>
+                <img src="readme_and_testing_media/bag1-mobile.png"
+                    alt="Screenshot of shopping bag page">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>View an order confirmation at checkout</td>
+            <td>After checkout the customer is taken to an order confirmation page as well as being emailed an order
+                confirmation</td>
+            <td>
+                <img src="readme_and_testing_media/checkoutsuccess-desktop.png"
+                    alt="Screenshot of checkout success page">
+                <img src="readme_and_testing_media/orderconfirmationemail.png"
+                    alt="Screenshot of order confirmation email">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Receive an email confirmation after checking out</td>
+            <td>Customers are immediately sent a confirmation email upon completion of a successful order</td>
+            <td>
+                <img src="readme_and_testing_media/orderconfirmationemail.png"
+                    alt="Screenshot of order confirmation email">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Contact the store easily with any questions or concerns</td>
+            <td>Users can send messages directly to the store by clicking the contact icon in the navbar</td>
+            <td>
+                <img src="readme_and_testing_media/navcontact.png"
+                    alt="Screenshot of navbar icons">
+                <img src="readme_and_testing_media/contactmodal.png"
+                    alt="Screenshot of contact modal">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>See what discounts have been applied to my order</td>
+            <td>Discount information is supplied in the shopping bag, checkout and order confirmation</td>
+            <td>
+                <img src="readme_and_testing_media/discount.png"
+                    alt="Screenshot of discounted order">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>See at a glance if there are any items in my shopping basket</td>
+            <td>On larger screens the bag icon will show the total price of items in the bag, on smaller screens an icon
+                is depicted on the navbar toggler</td>
+            <td>
+                <img src="readme_and_testing_media/navbar.png"
+                    alt="Screenshot of navbar">
+                <img src="readme_and_testing_media/mobilenav.png"
+                    alt="Screenshot of mobile navbar">
+                <img src="readme_and_testing_media/sidenav.png"
+                    alt="Screenshot of sidenav">
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Be informed if the store doesn't have enough stock to fulfill the amount I need</td>
+            <td>A users selected quantity is checked against current stock before an order is place, if the stock levels
+                are too low the customer will not be able to proceed and will be provided a message on screen stating as
+                such</td>
+            <td>
+                <img src="readme_and_testing_media/stockerror.png"
+                    alt="Screenshot of stock error"> 
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>See how much I need to spend to qualify for free shipping</td>
+            <td>This is always shown in the shopping bag and shopping bag preview toast</td>
+            <td>
+                <img src="readme_and_testing_media/shoppingbagpreview.png"
+                    alt="Screenshot of shopping bag preview"> 
+                <img src="readme_and_testing_media/bag1-mobile.png"
+                    alt="Screenshot of shopping bag"> 
+            </td>
+        </tr>
+        <tr>
+            <td>Shopper</td>
+            <td>Be able to checkout without registering for an account</td>
+            <td>Anyone can checkout anonymously, an account is not required to check out as is evidenced by this image on the checkout page where customers are prompted to sign up if they want to save their details for future but are not obligated to</td>
+            <td>
+                <img src="readme_and_testing_media/checkout2-tablet.png"
+                    alt="Screenshot of checkout page">
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th colspan="4">Admin and Store Management</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Store Owner/Staff Member</td>
+            <td>Add a product</td>
+            <td>New items can be added in the product management section</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Store Owner/Staff Member</td>
+            <td>Edit/Update a product</td>
+            <td>Items can be amended in the product management section</td>
+            <td>
+                <img src="readme_and_testing_media/productmanagement-desktop.png"
+                    alt="Screenshot of product management">
+                <img src="readme_and_testing_media/addproduct1-desktop.png"
+                    alt="Screenshot of add product">
+            </td>
+        </tr>
+        <tr>
+            <td>Store Owner/Staff Member</td>
+            <td>Delete a product</td>
+            <td>Items can be deleted in the product management section</td>
+            <td>
+                <img src="readme_and_testing_media/productmanagement-desktop.png"
+                    alt="Screenshot of product management">
+                <img src="readme_and_testing_media/deleteproductmodal.png"
+                    alt="Screenshot of delete product modal">
+            </td>
+        </tr>
+        <tr>
+            <td>Store Owner/Staff Member</td>
+            <td>Manage Stock levels</td>
+            <td>Stock can be easily updated by editing the individual product or by using the stock management page
+                located in the product management section</td>
+            <td>
+                <img src="readme_and_testing_media/stockmanagement1-desktop.png"
+                    alt="Screenshot of stock management">
+            </td>
+        </tr>
+        <tr>
+            <td>Store Owner/Staff Member</td>
+            <td>Add a discount code</td>
+            <td>Discounts codes can be added in the product management section</td>
+            <td>
+                <img src="readme_and_testing_media/productmanagement-desktop.png"
+                    alt="Screenshot of product management">
+            </td>
+        </tr>
+        <tr>
+            <td>Store Owner/Staff Member</td>
+            <td>Edit/Update a discount code</td>
+            <td>Discounts codes can be amended in the product management section</td>
+            <td>
+                <img src="readme_and_testing_media/productmanagement-desktop.png"
+                    alt="Screenshot of product management">
+            </td>
+        </tr>
+        <tr>
+            <td>Store Owner/Staff Member</td>
+            <td>Delete a discount code</td>
+            <td>Discounts codes can be removed in the product management section</td>
+            <td>
+                <img src="readme_and_testing_media/productmanagement-desktop.png"
+                    alt="Screenshot of product management">
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-#### Returning Visitor
-| Goals | How are they achieved? | Image |
-| --- | --- | --- |
-| As a returning visitor, I want to easily log in to my existing account and access my saved budgets. | The welcome screen displays a prominent login button and once a user is logged in the first page they are taken too is their budgets page where all budgets are listed. | <img src="./documentation/features/welcomescreen.webp" alt="Image of the welcome screen"> <img src="./documentation/features/budgetsscreen.webp" alt="Image of the budgets screen"> |
-| As a returning visitor, I want to be able to modify or delete existing budgets and view insights on my spending habits. | The user can modify and delete existing budgets from the budget page itself and also view insights at the bottom of each budget. | <img src="./documentation/features/budgetmanagement.webp" alt="Image of the budget management section"> <img src="./documentation/features/insights1.webp" alt="Image of the insights section"> <img src="./documentation/features/insights2.webp" alt="Image of the insights section"> |
-| As a returning visitor, I want to be able to modify or delete existing transactions within my budgets. | The user can modify or delete any transaction by simply clicking on it, this is also explained right at the top of the budget page in the budget management section. | <img src="./documentation/features/budgetmanagement.webp" alt="Image of the budget management section"> <img src="./documentation/features/edittransactionmodal.webp" alt="Image of the edit transaction modal">|
-
-#### Frequent Users
-As per the [README.md](./README.md) frequent users would have similar needs to returning visitors due to the app's straightforward nature.
 
 ### Devices Used For Testing
 
@@ -110,177 +603,183 @@ The site has altogether in one way or another been used and tested on the follow
 
 #### Welcome Page
 
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Log in button | When clicked the user is redirected to the log in page | Clicked log in button | Redirected to the log in page | Pass |
-| Register button | When clicked the user is redirected to the registration page | Clicked the register button | Redirected to the register page | Pass  |
+| Feature/Action        | Pass/Fail |
+|-----------------------|-----------|
+| Shop now button takes you to the product page | Pass      |
 
-#### Log In Page
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Log in with incorrect details | The user stays on the login page but a message is displayed showing incorrect username and/or password | Tried to log in with incorrect details | Remained on login page with a message showing incorrect username and/or password| Pass |
-| Log in with correct details | The user is logged in and redirected to the budgets page displaying the message "Welcome, (User)!" | Log in with correct details | Logged in and redirected to the budgets page displaying the message "Welcome, (User)!". | Pass |
-| Register Here Link | When clicked the user is redirected to the registration page. | Clicked Register Here link | Redirected to the the registration page | Pass |
-
-#### Registration Page
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Register with incorrect username format | A validation message asking them to match the required format. | Tried to log in with usernames too short, too long and with invalid characters | Validation message is displayed | Pass |
-| Register with incorrect password format | A validation message asking them to match the required format | Tried to register with a password that was too long, too short, used only lowercase letters, used only uppercase characters, used only numbers, used only lowercase characters with numbers, used only uppercase characters with numbers, used only special characters. | Validation message is displayed | Pass |
-| Register with the correct format but the password and confirm password don't match | A validation message is displayed advising the passwords don't match. | Tried to register with the correct password format but the password and confirm password don't match. | A validation message is displayed advising the passwords don't match. | Pass |
-| Register with correct username and password details. | User is registered, logged in and redirected to the budgets page and displayed the message "Registration successful, let's create your first budget!". | Registered with correct details. | Registered, logged in and redirected to the budgets page with a message displaying "Registration successful, let's create your first budget!".| Pass |
-| Log In Here Link | When clicked the user is redirected to the log in page. | Clicked Log In Here link | Redirected to the the log in page | Pass |
-
-#### Logged Out Navbar
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Budgify Logo | When clicked the user is redirected to the welcome page | Clicked logo | Redirected to the welcome page | Pass |
+#### Navbar
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Logo takes you back to the home page | Pass |
+| Search bar works and loads the products page with the correct results | Pass |
+| All links to product categories take you to the correct page | Pass |
+| Account drop down and dropdown links all work and take you to the correct page | Pass |
+| Bag button works and takes you to the bag page | Pass |
+| Bag button updates dynamically when new items are added to the cart | Pass |
+| Contact button launches the contact modal | Pass |
+| Contact modal successfully submits a message to the store and both the customer and store receive confirmation emails | Pass |
+| Form validation in contact modal works | Pass |
+| Navbar collapes to mobile nav on smaller screens | Pass |
+| When there are items in the shopping bag a badge appears over the navbar toggler | Pass |
+| All links in mobile nav behave identically to the full navbar | Pass |
+| Sidenav collapses correctly on click of x or when you click outside the nav | Pass |
 
 #### Footer
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Footer email icon/link | When clicked the support modal is visible | Clicked the email icon/link in footer | The support modal is visible | Pass |
-| Footer social icon/link | When clicked the user is redirected to a new tab displaying the appropriate page | Clicked each social icon/link | each link takes you to the appropriate social media page | Pass |
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Footer logo takes you to the home page on click | Pass |
+| Social links open the correct page in a new tab | Pass |
 
-#### Logged In Navbar
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Budgify Logo | When clicked the user is redirected to the budgets page | Clicked logo | Redirected to the budgets page | Pass |
-| My Budgets Link | When clicked the user is redirected to the budgets page | Clicked My Budgets link | Redirected to the budgets page | Pass |
-| Profile Link | When clicked the user is redirected to the profile page | Clicked Profile link | Redirected to the profile page | Pass |
-| Support Link | When clicked the support modal is visible | Clicked Support link | The support modal is visible | Pass |
-| Log Out Link | When clicked the log out modal is visible | Clicked log out link | The log out modal is visible | Pass |
+#### Products Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| All product images and links are clickable and take you to the correct product | Pass      |
+| Sort function sorts the products correctly                                     | Pass      |
+| All images are rendered correctly                                              | Pass      |
+| New and sales badges are clickable and take you to the correct page | Pass      |
+| Product tags are clickable and take you to the correct page | Pass      |
 
-#### Logged In Sidenav
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Hamburger icon | When clicked the sidenav is toggled open | Clicked hamburger icon | Sidenav is opened | Pass |
-| X icon (when sidenav is visible) | When clicked the sidenav is toggled closed | Clicked X icon | Sidenav is closed | Pass |
-| Budgify Logo | When clicked the user is redirected to the budgets page | Clicked logo | Redirected to the budgets page | Pass |
-| Click page outside sidenav | Sidenav is toggled close | Clicked page outside of sidenav | Page toggled closed| Pass |
-| My Budgets Link | When clicked the user is redirected to the budgets page | Clicked My Budgets link | Redirected to the budgets page | Pass |
-| Profile Link | When clicked the user is redirected to the profile page | Clicked Profile link | Redirected to the profile page | Pass |
-| Support Link | When clicked the support modal is visible | Clicked Support link | The support modal is visible | Pass |
-| Log Out Link | When clicked the log out modal is visible | Clicked log out link | The log out modal is visible | Pass |
+#### Product Details Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Product image loads full size in a new tabe on click                                   | Pass      |
+| Quantity selector buttons work correctly and are disables outside the range of 1-99    | Pass      |
+| Size selector drop down works correctly and dynamically updates the price              | Pass      |
+| Ingredients, allergens and nutritional information dropdowns work correctly            | Pass      |
+| Review caoursel buttons work and cycle through reviews                                 | Pass      |
+| Add review button works and launches the modal                                         | Pass      |
+| Add review modal submits review and is visible on the page                             | Pass      |
+| Items are added correctly to the shopping bag and the correct success message is shown | Pass      |
+| Keep shopping button takes you back to the products page                               | Pass      |
+| Sale and new badges are clickable taking you to the relevant pages                     | Pass      |
 
-#### Budgets Page
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Budget Card | When a budget card is clicked the user is redirected to that budgets page | Clicked budget card | Redirected to appropriate budgets page | Pass |
-| Add Budget Card | When the add budget card is clicked the add budget modal is visible | Clicked add budget card | Ass budget modal is visible | Pass |
+#### Bag Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Quantity selector buttons works and are disabled outside the range of 1-99 | Pass |
+| Update button updates the number of items in the bag | Pass |
+| Remove button removes the product from the bag | Pass |
+| Discount box works and applies the correct discounts | Pass |
+| Subtotal updates dynamically after bag changes | Pass |
+| Bag total, delivery, discount and grand total all update dynamically and correctly on bag changes | Pass |
+| Product image and name take you back to the product detail page | Pass |
+| Keep shopping button takes you back to the products page | Pass |
+| Checkout button takes you to the checkout page | Pass |
 
-#### Budget Page
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Add Transaction Button | When clicked the add transaction modal is visible | Clicked add transaction button | Add transaction modal is visible | Pass |
-| Rename Budget Button | When clicked the rename budget modal is visible | Clicked rename budget button | Rename budget modal is visible | Pass |
-| Delete Budget Button | When clicked the delete budget modal is visible | Clicked delete budget button | Delete budget modal is visible | Pass |
-| Existing transaction | When an existing transaction is clicked the edit transaction modal is visible | Clicked an existing transaction | Edit transaction modal is visible | Pass |
-| Table Rows | When a transaction is added or deleted the table rows are updated appropriately | Added and removed transactions | Table rows updated appropriately | Pass |
-| Totals Section | When transactions are added and removed the tallies are updated | Added and removed transactions | Tallies updated | Pass |
-| Insights Section | Only visible when a transaction exists within the budget | Added a transaction to a fresh budget | Insights section is visible | Pass |
-| Pie Chart | When a colour is hovered or clicked the appropriate information is displayed | Hovered & clicked on a pie chart colour | Appropriate transaction information is displayed | Pass |
-| Bar Chart | When a colour is hovered or clicked the appropriate information is displayed | Hovered & clicked on a bar chart colour | Appropriate transaction information is displayed | Pass |
-| Key Button | When clicked the key for the pie chart and bar chart colours is toggled open and closed | Clicked key button | Key is opened then closed on the next click | Pass |
+#### Checkout Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Users delivery details are pre filled if they are already saved | Pass |
+| Order details and line items are correct | Pass |
+| Order total, delivery, discount and grand total are all correct | Pass |
+| Form validation works when incorrect details are entered such as not entering a properly formatted email | Pass |
+| Card validation works and error messages are shown correctly when validation fails | Pass |
+| Adjust bag button takes you back to the bag page | Pass |
+| Complete order button process order and redirect user to checkout success page upon successful order | Pass |
+
+#### Checkout Success Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Order details are displayed correctly | Pass |
+| User gets a success message which also confirms the order was successful | Pass |
+| Order confirmation email is sent to the user | Pass |
+| Checkout our latest deals button takes the user to the all specials page | Pass |
+
+#### Product Management Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Add/Edit product button and add/edit variant buttons redirects to the correct pages | Pass |
+| Delete product/variant buttons work and allow you to filter products and launches the delete modal upon selction of a product | Pass |
+| Add discount button launches the add  discount modal | Pass |
+| Add discount modal works, along with form validation and correctly add the discount code to the DB | Pass |
+| Edit discount button works and allows you to filter the discount codes and upon selection launches the edit discount modal | Pass |
+| Edit discount modal works, along with form validation and correctly update the discount code in the database | Pass |
+| Stock management button works and redirects user to the stock management page | Pass |
 
 #### Profile Page 
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Delete Account Button | When clicked the delete account modal is visible | Clicked delete account button | Delete account modal is visible | Pass |
-| Change password with incorrect current password | Form is reset and message displayed "Incorrect password, your password has not been updated." | Tried to update password with incorrect current password | Form reset and message displayed "Incorrect password, your password has not been updated." | Pass |
-| Change password with incorrect new password format | Tried to change password with incorrect password format | A validation message asking them to match the required format | Tried to register with a password that was too long, too short, used only lowercase letters, used only uppercase characters, used only numbers, used only lowercase characters with numbers, used only uppercase characters with numbers, used only special characters. | Validation message is displayed | Pass |
-| Change password with the correct format but the password and confirm password don't match | A validation message is displayed advising the passwords don't match. | Tried to change password with the correct password format but the password and confirm password don't match. | A validation message is displayed advising the passwords don't match. | Pass |
-| Change password with correct format and matching password and confirm password | Form is reset and message displayed "Password updated successfully." | Changed password with correct format and matching password and confirm password | Form reset and message displayed "Password updated successfully." | Pass |
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Default delivery info is populated with previously saved data if there is any | Pass |
+| Form validation works and correctly updates the users info in the database upon submission | Pass |
+| Order history shows all past order for the customer and upon clicking the order number takes them to the order details | Pass |
+| Reviews section shows all past reviews customer has left | Pass |
+| Edit review launches the edit review modal | Pass |
+| Edit review modal works correctly with form validation and correctly updates the review in the database | Pass |
+| Delete review button launches the delete review modal | Pass |
+| Delete review modal correctly deletes the review from the database | Pass |
 
 #### 404 Page
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Logged in user tries to access a page that does not exist or cannot be found | User is redirected to the 404 page with a message displayed "Sorry that page doesn't exist :( Taking you back to safety in 5...", and the user is redirected back to their my budgets page when the countdown ends. | Tried to type a URL to a page that doesn't exist whilst logged in | Redirected to 404 page with countdown then automatically redirected back to my budgets page | Pass |
-| Logged out user tries to access a page that does not exist or cannot be found | User is redirected to the 404 page with a message displayed "Sorry that page doesn't exist :( Taking you back to safety in 5...", and the user is redirected back to the welcome page when the countdown ends. | Tried to type a URL to a page that doesn't exist whilst logged out | Redirected to 404 page with countdown then automatically redirected back to welcome page | Pass |
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Customer 404 page is rendered when a 404 error happens | Pass |
+| Take me back home button returns the user to the welcome page | Pass |
 
-#### Add Budget Modal 
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Choose budget name with too few characters | Validation message is visible | Tried to choose a budget name with only 2 characters | Validation message is visible | Pass |
-| Choose budget name with too many characters | Input field will not allow more than 50 characters | Tried to choose a budget name with more than 50 characters | Input field does not allow more than 50 characters | Pass |
-| Choose budget name in the correct format | Budget is created, user is redirected to that budget and message displayed "Budget created successfully, lets add some transactions!" | Created a new budget with correctly formatted name | Budget created, redirected to budget and message displayed "Budget created successfully, lets add some transactions!" | Pass |
-| Cancel Button | When clicked add budget modal is closed | Clicked cancel button | Add budget modal closed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
+#### Add Product
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Add product form validation works correctly and ensures the user is entering the correct details | Pass |
+| If the variant checkbox is checked/unchecked the correct modal launches advising the user of how to proceed and confirming they are happy to  | Pass |
+| If the sale checkbox is checked/unchecked the correct modal launches advising the user of how to proceed and confirming they are happy to | Pass |
+| Select image button works and correctly loads the selected image | Pass |
+| Cancel button return the user to the product management page | Pass |
+| Add product button correctly adds the product to the database and return the user to the product management page | Pass |
 
-#### Support Modal
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Choose a name with too few characters | Validation message is visible | Tried to choose a budget name with only 2 characters | Validation message is visible | Pass |
-| Choose name with too many characters | Input field will not allow more than 50 characters | Tried to choose a budget name with more than 50 characters | Input field does not allow more than 50 characters | Pass |
-| Choose an email with an @ symbol | Validation message is visible | Tried to choose an email without an @ symbol | Validation message is visible | Pass |
-| Type a message with too few characters | Validation message is visible | Tried to type a message with only 9 characters | Validation message is visible | Pass |
-| Type a message with too many characters | Input field will not allow more than 300 characters | Tried to type a message with more than 300 characters | Input field does not allow more than 300 characters | Pass |
-| Send message with correct information (no errors) | Spinning loader appears until the message is sent, loader disappears, message displays "Your message has been successfully sent and we will be in touch soon. This box will automatically close in 5..." and the modal is closed when the countdown from 5 is complete. User then received a confirmation email as well as the support inbox for Budgify | Sent message with correct formatting and information | Loader appears, appropriate message appears, modal closes, confirmation email received and email received into Budgify support inbox | Pass |
-| Send message with correct information but error is present | Spinning loader appears until sending fails, message displays "Sorry, something went wrong. Please try again later." | Disconnected from internet then tried to send message | Loader appears very briefly before displaying message "Sorry, something went wrong. Please try again later." | Pass |
-| Cancel Button | When clicked support modal is closed | Clicked cancel button | support modal closed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
+#### Add Variant
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Add variant form validation works correctly and ensures the user is entering the correct details | Pass |
+| Cancel button return the user to the product management page | Pass |
+| Add variant button correctly adds the product to the database and return the user to the product management page | Pass |
 
-#### Log Out Modal
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| No! Take me back! Button | When clicked the modal is closed | Clicked No! Take me back! button | Modal closed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
-| Yes, Log me out button | When clicked the user is logged out, redirected to log in page and message displays "You have been logged out, come back again soon!" | Clicked Yes, Log me out button | Logged out, redirected to log in page, message displays "You have been logged out, come back again soon!" | Pass |
+#### Edit Product
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Existing product information is correctly loaded to the form | Pass |
+| Edit product form validation works correctly and ensures the user is entering the correct details | Pass |
+| If the variant checkbox is checked/unchecked the correct modal launches advising the user of how to proceed and confirming they are happy to  | Pass |
+| If the sale checkbox is checked/unchecked the correct modal launches advising the user of how to proceed and confirming they are happy to | Pass |
+| Select image button works and correctly loads the selected image | Pass |
+| Cancel button return the user to the product management page | Pass |
+| Edit product button correctly updates the product in the database and returns the user to the product management page | Pass |
 
-#### Add Transaction Modal 
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Add transaction without selecting a transaction type | Validation message is displayed | Tried to add a transaction without selecting a transaction type | Validation message displayed | Pass |
-| Choose a description with too few characters | Validation message is visible | Tried to choose a description with only 2 characters | Validation message is visible | Pass |
-| Choose description too many characters | Input field will not allow more than 50 characters | Tried to choose a description with more than 50 characters | Input field does not allow more than 50 characters | Pass |
-| Choose a transaction amount less than 0 | Validation message is displayed | Tried to choose a transaction amount less than 0 | Validation message is displayed | Pass |
-| Choose a transaction amount above 999,999 | Validation message is displayed | Tried to choose a transaction amount of 1,000,000 | Validation message is displayed | Pass |
-| Choose a day of the month not between 1 and 31 | Validation message is displayed | Tried to choose 0 & 32 | Validation message is displayed | Pass |
-| Add a transaction with correct form details | Modal closes, transaction is added to the correct section of the table, total section, pie chart and bar chart are all updated accordingly | Added a new transaction with correct form details | Modal closes, transaction is added in the correct place in the table, totals, pie chart and bar chart are all updated | Pass |
-| Cancel Button | When clicked modal is closed | Clicked cancel button | Modal closed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
+#### Edit Variant
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Existing variant information is correctly loaded to the form | Pass |
+| Edit variant form validation works correctly and ensures the user is entering the correct details | Pass |
+| Cancel button return the user to the product management page | Pass |
+| Edit variant button correctly updates the product in the database and returns the user to the product management page | Pass |
 
-#### Rename Budget Modal
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Choose budget name with too few characters | Validation message is visible | Tried to choose a budget name with only 2 characters | Validation message is visible | Pass |
-| Choose budget name with too many characters | Input field will not allow more than 50 characters | Tried to choose a budget name with more than 50 characters | Input field does not allow more than 50 characters | Pass |
-| Choose budget name in the correct format | Budget name is updated, budget page is refreshed and message displayed "Budget renamed successfully." | Renamed budget with correctly formatted name | Budget name updated, budget page refreshed and message displayed "Budget renamed successfully." | Pass |
-| Cancel Button | When clicked add budget modal is closed | Clicked cancel button | Add budget modal closed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
+#### Login Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Form validation works | Pass |
+| Sign up button redirects the user to the sign up page | Pass |
+| Forgot password button redirects the user to the forgot password page | Pass |
+| Take me home button redirects user to the home page | Pass |
+| Sign in logs the user in assuming their details are correct and redirects them to the homepage with a success message | Pass |
 
-#### Delete Budget Modal
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| No! Take me back! Button | When clicked the modal is closed | Clicked No! Take me back! button | Modal closed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
-| Yes, delete it! button | When clicked the budget is deleted, user is redirected back to budgets page and message displays "Budget deleted successfully." | Clicked Yes, delete it! button | Budget deleted, redirected back to budgets page and message displays "Budget deleted successfully." | Pass |
+#### Logout Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Take me home button redirects the user back to the home page | Pass |
+| Sign out button successfully signs the user out and redirects them to the home page with a success message | Pass |
 
-#### Edit Transaction Modal
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Choose a new description with too few characters | Validation message is visible | Tried to choose a description with only 2 characters | Validation message is visible | Pass |
-| Choose new description too many characters | Input field will not allow more than 50 characters | Tried to choose a description with more than 50 characters | Input field does not allow more than 50 characters | Pass |
-| Choose a new transaction amount less than 0 | Validation message is displayed | Tried to choose a transaction amount less than 0 | Validation message is displayed | Pass |
-| Choose a new transaction amount above 999,999 | Validation message is displayed | Tried to choose a transaction amount of 1,000,000 | Validation message is displayed | Pass |
-| Choose a new day of the month not between 1 and 31 | Validation message is displayed | Tried to choose 0 & 32 | Validation message is displayed | Pass |
-| Edit a transaction with correct form details | Modal closes,transaction details are updated accordingly, transaction is moved to the correct section of the table (if necessary), total section, pie chart and bar chart are all updated accordingly | Change transaction with correct form details, tried changing the type and not updating any details at all | Modal closes,transaction details are updated accordingly (if necessary), transaction is moved to the correct section of the table (if necessary), total section, pie chart and bar chart are all updated accordingly | Pass |
-| Delete transaction button | When clicked, displays the delete transaction modal | Clicked delete transaction button | Delete transaction modal is displayed | Pass |
-| Cancel Button | When clicked modal is closed | Clicked cancel button | Modal closed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
+#### Register Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| Form validation works correctly and ensure emails match, passwords match, password isn't too weak and no user exists with those details | Pass |
+| Sign in button redirects the user to the home page | Pass |
+| Sign up button creates an account and sends a confirmation email for verification | Pass |
 
-#### Delete Transaction Modal
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| No! Take me back! Button | When clicked modal is closed and edit transaction modal is redisplayed | Clicked No! Take me back! Button | Modal closed and edit transaction modal is redisplayed | Pass |
-| Click outside of modal | When clicking elsewhere on the page outside of the modal the modal is closed | Clicked elsewhere on page while modal was open | Modal closed | Pass |
-| Yes, delete it! Button | When clicked the modal is closed, user is redirected back to the appropriate budget page where the transaction should be removed and message displayed "Transaction deleted successfully." | Clicked Yes delete it! button | Modal closed and redirected back to the budget page where the transaction have been removed and with message displayed "Transaction deleted successfully." | Pass |
+#### Reset Password Page
+| Feature/Action | Pass/Fail |
+|----------------|-----------|
+| When a correct email is entered the user is sent an email to reset their password | Pass |
+| When the email link is clicked the user is prompted to create a new password | Pass |
+| Password validation works ensuring a previous password and a weak password isn't used | Pass |
+| Password is correctly updated in the database for future logins | Pass |
 
-#### Defensive Programming (not elsewhere covered)
-| Feature/Action | Expected Outcome | Testing Performed | Result | Pass/Fail |
-| --- | --- | --- | --- | --- |
-| Logged out user tries to access a page URL that requires them to be logged in | User is redirected to the log in page with a message displayed "Please log in to view this page." | Typed URL for my budgets page whilst logged out | Redirected to log in page with message displayed "Please log in to view this page." | Pass |
-| Logged in user tries to access a page URL the COULD belong to another user e.g. budgets or profile page | User is redirected back to their own budgets page with message displayed "You do not have permission to access this page." | Tried to type in the URL pattern for both a test user accounts budgets and profile page and a made up users budgets and profile page whilst logged in | Redirected back to my own budgets page with message displayed "You do not have permission to access this page." | Pass |
 
 
 
@@ -288,16 +787,21 @@ The site has altogether in one way or another been used and tested on the follow
 
 ### Solved Bugs
 
-| No. | Bug | How I solved the issue |
-| --- | --- | --- |
-| 1. | The default labels used by ChartJS for the pie chart and bar chart were being cut on smaller screen sizes. | Removed them and created my own key.  |
-| 2. | The pie chart was displaying negative figures and "infinity" percentages. | Set the pie chart to show a message of "No income provided" in place of the percentage if income was 0. The pie chart is also now only visible is there is at least 1 transaction. |
-| 3. | Fixed circular import error caught at deploy | When using a linter in VS code the routes import in the __ init __.py was being moved to the top. Moved back tot the bottom manually. |
-| 4. | Bug - Auto focus on input element of the add budget modal not working. | I was using the wrong element ID so changed the code to match the correct ID. |
-| 5. | When signing up with a capital letter in the user name, user taken to 404 page as the user session was saving the user as example "John" but was then checking the database for user "john" when loading the my budgets page. | Fixed by adding .lower() when storing the user in the session upon registration. |
-| 6. | When I changed the background from off-white to white the navbar became transparent. | Set the navbar to white also. |
-
+| No. | Bug. | How I solved the issue |
+|---|---|---|
+| 1 | Missing default value in the product model meant I couldn't migrae my data | Added the missing default value |
+| 2 | As I made the sale price field default to 0 in the models the filtering by sale item was no longer working.  | Changed sale_price__isnull=False to sale_price__gt=0 which fixed the issue |
+| 3 | Price sorting stopped working | Changed method of how the lowest price per product is determined which fixed the issue |
+| 4 | Receiving an error SMTP.starttls() got an unexpected keyword argument 'keyfile' in heroku but emails work in local environment. | Set python version for heroku to same as local environment version. |
+| 5 | Quantity form on the bag page no longer worked correctly after styling update as there was now essentially 2 versions of the same form on the page with the same ID just one was hidden on mobile view and the other was hidden on large views. | Removed the ID and identified them using classes instead and updated the JS code to work correctly with the new structure |
+| 6 | Checkout page was not saving names and emails when user opted to save their info | Updated the view to also get the name and email from the form and update the user profile accordingly |
+| 7 | Contact confirmation email wasn't sending to the user | This was human error in testing, I was using the same email as the store email to test the contact form so only the store was receive the email and the 'user' was not |
+| 8 | Couldn't check out as an anonymous user | Initialised discount code to 0 as the error was stating python couldn't access a non existent variable |
+| 9 | Modals not working on the add product page | They had been accidently deleted at some point so had to re-code them |
+| 10 | Crispy forms with bootstrap 5 doesn't work with this version of Django | Continued to use bootstrap 5 for styling, but some styling was no long working with crispy forms as the classes for bootstrap 4 are slightly different. Manually styled some forms or created the correct classes using widgets/attributes in the python forms. |
 
 ### Unsolved Bugs
-
-None known at this time.
+| No. | Bug. |
+|---|---|
+| 1 | Bag items are removed from the bag once a user logs out |  |
+| 2 | Product ratings correctly updates when a review is deleted by a user through the website but not when the review is deleted using the admin panel |
