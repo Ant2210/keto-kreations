@@ -37,7 +37,7 @@ I was only able to validate the pages that didn't require any form of login or o
 | --- | --- | --- | --- |
 | base.css | <img src="readme_and_testing_media/testing/basewarningscss.png" alt="CSS validator results for base.css"> | These errors come from external code I found for the moving discount code bar and don't seem to have any detrimental effect on the site | <img src="readme_and_testing_media/testing/basecss.png" alt="CSS validator results for profile.css"> |
 | checkout.css | -webkit-transition is a vendor extension | N/A - No detrimental effect on the website | <img src="readme_and_testing_media/testing/checkoutcss.png" alt="CSS validator results for checkout.css"> |
-| products.css | N/A | N/A | <img src="readme_and_testing_media/testing/addeditproductsjs.jpeg" alt="CSS validator results for products.css"> |
+| products.css | N/A | N/A | <img src="readme_and_testing_media/testing/productscss.png" alt="CSS validator results for products.css"> |
 | profile.css | N/A | N/A | <img src="readme_and_testing_media/testing/profilecss.png" alt="CSS validator results for profile.css"> |
 
 #### JSHint Validator - [JSHint](https://jshint.com/)
@@ -619,7 +619,7 @@ The site has altogether in one way or another been used and tested on the follow
 | Contact button launches the contact modal | Pass |
 | Contact modal successfully submits a message to the store and both the customer and store receive confirmation emails | Pass |
 | Form validation in contact modal works | Pass |
-| Navbar collapes to mobile nav on smaller screens | Pass |
+| Navbar collapses to mobile nav on smaller screens | Pass |
 | When there are items in the shopping bag a badge appears over the navbar toggler | Pass |
 | All links in mobile nav behave identically to the full navbar | Pass |
 | Sidenav collapses correctly on click of x or when you click outside the nav | Pass |
@@ -642,11 +642,11 @@ The site has altogether in one way or another been used and tested on the follow
 #### Product Details Page
 | Feature/Action | Pass/Fail |
 |----------------|-----------|
-| Product image loads full size in a new tabe on click                                   | Pass      |
+| Product image loads full size in a new tab on click                                   | Pass      |
 | Quantity selector buttons work correctly and are disables outside the range of 1-99    | Pass      |
 | Size selector drop down works correctly and dynamically updates the price              | Pass      |
 | Ingredients, allergens and nutritional information dropdowns work correctly            | Pass      |
-| Review caoursel buttons work and cycle through reviews                                 | Pass      |
+| Review carousel buttons work and cycle through reviews                                 | Pass      |
 | Add review button works and launches the modal                                         | Pass      |
 | Add review modal submits review and is visible on the page                             | Pass      |
 | Items are added correctly to the shopping bag and the correct success message is shown | Pass      |
@@ -787,7 +787,7 @@ The site has altogether in one way or another been used and tested on the follow
 
 ### Solved Bugs
 
-| No. | Bug. | How I solved the issue |
+| No. | Bug | How I solved the issue |
 |---|---|---|
 | 1 | Missing default value in the product model meant I couldn't migrae my data | Added the missing default value |
 | 2 | As I made the sale price field default to 0 in the models the filtering by sale item was no longer working.  | Changed sale_price__isnull=False to sale_price__gt=0 which fixed the issue |
