@@ -1,0 +1,90 @@
+<!-- Product Variant Modals -->
+<div class="modal fade" id="uncheck-variants-modal" tabindex="-1" aria-labelledby="uncheck-variants-label" aria-hidden="true" data-bs-backdrop='static'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="uncheck-variants-label">Warning!</h1>
+            <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By unchecking this box you agree that this product only has one size and no variants will be added later.
+                    You will be required to complete all fields on this form including the price fields.
+                </p>
+                <p>
+                    Are you sure you want to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-uncheck-variants" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="check-variants-modal" tabindex="-1" aria-labelledby="check-variants-label" aria-hidden="true" data-bs-backdrop='static'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <h1 class="modal-title fs-4 text-danger text-center pt-3" id="check-variants-label">Warning!</h1>
+                <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By checking this box you understand this product will not show in the store until at least 1 product variant is added and associated with this product.
+                    You will also not be required to complete price details on this page but on the variants you add.
+                </p>
+                <p>
+                    Are you sure you wish to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-check-variants" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- On Sale Modals -->
+<div class="modal fade" id="uncheck-on-sale-modal" tabindex="-1" aria-labelledby="uncheck-on-sale-label" aria-hidden="true" data-bs-backdrop='static'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="uncheck-on-sale-label">Warning!</h1>
+            <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By unchecking this box, on form submission, this product and/or <strong>ALL</strong> product variants associated with this product, will have their sale price set to <strong>£0</strong> and will need to be reset if you decide to put the product back on sale.
+                </p>
+                <p>
+                    Are you sure you want to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-uncheck-on-sale" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="check-on-sale-modal" tabindex="-1" aria-labelledby="check-on-sale-label" aria-hidden="true" data-bs-backdrop='static'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h1 class="modal-title fs-4 text-danger text-center pt-3" id="check-on-sale-label">Warning!</h1>
+            <hr class="w-100">
+            <div class="modal-body dark-blue text-center">
+                <p>
+                    By checking this box you will be required to fill out the sale price below if this is a standalone product. 
+                </p>
+                <p>
+                    If however this is intended to have product variants associated with it you will not be required to fill out the sale price details on this page, but this product will not be visible on the website until you have added at least one variant and updated the sale price on <strong>ALL</strong> product variants.
+                </p>
+                <p>
+                    Are you sure you want to proceed?
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-danger shopping-button" data-bs-dismiss="modal">Yes</button>
+                <button id="undo-check-on-sale" type="button" class="btn btn-primary shopping-button">No, cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

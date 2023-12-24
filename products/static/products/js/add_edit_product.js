@@ -9,7 +9,6 @@ const sizeInput = document.getElementById('id_size');
 const sizeUnitDiv = document.getElementById('div_id_size_unit');
 const sizeUnitInput = document.getElementById('id_size_unit');
 const stockCountDiv = document.getElementById('div_id_stock_count');
-const stockCountInput = document.getElementById('id_stock_count');
 
 /*
 Functions to toggle the visibility and required attributes of the relevant 
@@ -36,7 +35,7 @@ const toggleRequired = () => {
     document.querySelector('label[for="id_size_unit"]').innerHTML = 'Size unit*';
     toggleSalePriceRequired();
     toggleSalePriceVisibility();
-}
+};
 
 // Add event listener to checkbox
 variantCheckbox.addEventListener('change', () => {
@@ -63,7 +62,7 @@ const toggleSalePriceRequired = () => {
     } else {
         salePriceInput.required = false;
     }
-}
+};
 
 // Add event listener to on_sale checkbox
 onSaleCheckbox.addEventListener('change', () => {
