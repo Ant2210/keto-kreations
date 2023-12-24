@@ -45,31 +45,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for order in orders %}
+                            {% if orders.count == 0 %}
                                 <tr>
-                                    <td>
-                                        <a href="{% url 'order_history' order.order_number %}"
-                                        title="{{ order.order_number }}">
-                                        {{ order.order_number|truncatechars:6 }}
-                                        </a>
-                                    </td>
-                                    <td>{{ order.date|date:"d/m/Y" }}</td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            {% for item in order.lineitems.all %}
-                                                <li class="small">
-                                                    {% if item.product %}
-                                                        {{ item.product.name }} - {{ item.product.size }}({{ item.product.size_unit }}) x {{ item.quantity }}
-                                                    {% else %}
-                                                        {{ item.product_variant.product.name }} - {{ item.product_variant.size }}({{ item.product_variant.size_unit }}) x {{ item.quantity }}
-                                                    {% endif %}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </td>
-                                    <td>£{{ order.grand_total }}</td>
+                                    <td colspan="4" class="text-center">You haven't made any orders yet.</td>
                                 </tr>
-                            {% endfor %}
+                            {% else %}
+                                {% for order in orders %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'order_history' order.order_number %}"
+                                            title="{{ order.order_number }}">
+                                            {{ order.order_number|truncatechars:6 }}
+                                            </a>
+                                        </td>
+                                        <td>{{ order.date|date:"d/m/Y" }}</td>
+                                        <td>
+                                            <ul class="list-unstyled">
+                                                {% for item in order.lineitems.all %}
+                                                    <li class="small">
+                                                        {% if item.product %}
+                                                            {{ item.product.name }} - {{ item.product.size }}({{ item.product.size_unit }}) x {{ item.quantity }}
+                                                        {% else %}
+                                                            {{ item.product_variant.product.name }} - {{ item.product_variant.size }}({{ item.product_variant.size_unit }}) x {{ item.quantity }}
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td>£{{ order.grand_total }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -81,59 +87,65 @@
                 <div class="reviews table-responsive">
                     <table class="table table-borderless">
                         <tbody>
-                            {% for review in reviews %}
+                            {% if reviews.count == 0 %}
                                 <tr>
-                                    <td>
-                                        Product:
-                                    </td>
-                                    <td>
-                                        <a href="{% url 'product_detail' review.product.id %}">
-                                            {{ review.product }}
-                                        </a>
-                                    </td>
+                                    <td colspan="2" class="text-center">You haven't made any reviews yet.</td>
                                 </tr>
+                            {% else %}
+                                {% for review in reviews %}
                                     <tr>
                                         <td>
-                                            Comment:
+                                            Product:
                                         </td>
                                         <td>
-                                            {{ review.comment }}
+                                            <a href="{% url 'product_detail' review.product.id %}">
+                                                {{ review.product }}
+                                            </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            Rating:
-                                        </td>
-                                        <td>
-                                            <small class="text-muted"><i class="fas fa-star pe-1 text-warning"></i></small>{{ review.rating }} / 5
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Date:
-                                        </td>
-                                        <td>
-                                            {{ review.created_date|date:"d/m/Y" }}
-                                        </td>
-                                    </tr>
-                                    <tr class="review-table-edit-row">
-                                        <td class="align-middle">
-                                            Edit/Delete:
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#edit-review-modal-{{ review.id }}">
+                                        <tr>
+                                            <td>
+                                                Comment:
+                                            </td>
+                                            <td>
+                                                {{ review.comment }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Rating:
+                                            </td>
+                                            <td>
+                                                <small class="text-muted"><i class="fas fa-star pe-1 text-warning"></i></small>{{ review.rating }} / 5
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Date:
+                                            </td>
+                                            <td>
+                                                {{ review.created_date|date:"d/m/Y" }}
+                                            </td>
+                                        </tr>
+                                        <tr class="review-table-edit-row">
+                                            <td class="align-middle">
+                                                Edit/Delete:
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#edit-review-modal-{{ review.id }}">
+                                        
+                                                    Edit
+                                                </button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-review-modal-{{ review.id }}">
                                     
-                                                Edit
-                                            </button>
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-review-modal-{{ review.id }}">
-                                   
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    {% include 'profiles/includes/edit_review_modal.html' %}
-                                    {% include 'profiles/includes/delete_review_modal.html' %}
-                            {% endfor %}
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        {% include 'profiles/includes/edit_review_modal.html' %}
+                                        {% include 'profiles/includes/delete_review_modal.html' %}
+                                {% endfor %}
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
